@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>The Terrible Dungeon</title>
+    <link href="WebDungeonMainCSS.css" rel="stylesheet"></link>
+    <script src="WebDungeonMainJavascript.js"></script>
+</head>
+<body>
+    
+    <div class="gameframe">
+        <div id="namebox" class="headerbox">
+            <button style="font-size: 30px; font-weight: bold; width: 300px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="nameYourCharacter()">Name Your Hero</button>
+        </div>
+        <div class="headerbox">Str: 32   Dex: 48</div>
+        <div class="headerbox">
+            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="logIn()">Log In</button>
+            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="signUp()">Sign Up</button>
+        </div>
+        <div class="headerbox">Level 27 Monk</div>
+        <div class="headerbox">Int: 17   Luck: 21</div>
+        <div class="headerbox">
+            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="logOut()">Settings</button>
+            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="about()">About</button>
+        </div>
+
+
+        <div class="statusbarbg">
+
+            <div class="statuscontainer">
+                <div style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">HP :</div>
+                <div class="statusbars hpbar"></div>
+            </div>
+
+            <div class="statuscontainer">
+                <div style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">MP :</div>
+                <div id="mpbar" class="statusbars mpbar"></div>
+            </div>
+
+            <div class="statuscontainer">
+                <div style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">EXP :</div>
+                <div class="statusbars xpbar"></div>
+            </div>
+
+            <div class="statuscontainer">
+                <div style="font-size: 18px; font-weight: bold; font-family: Aharoni; background: #660000;" class="statusbarheader">MONSTER</div>
+                <div id="monsterbar" style="font-size: 18px; font-weight: bold; font-family: Aharoni;" class="statusbars monsterbar"></div>
+            </div>
+        </div>
+        <div class="leftbar">
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+
+        </div>
+        <div class="rightbar">
+            <div class="bricks">Floor: 12</div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+            <div class="bricks"></div>
+
+
+        </div>
+
+        <div class="monsterbg">
+            <img src="dungeon.jpg" />
+        </div>
+        <div class="actionbuttons hpbar">
+            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #FF6633" onclick="meleeAttack()">Melee Attack</button>
+        </div>
+        <div class="actionbuttons mpbar">
+            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #3399FF" onclick="magicAttack()">Magic Attack</button>
+        </div>
+        <div class="actionbuttons xpbar">
+            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #FFCC33" onclick="rangedAttack()">Ranged Attack</button>
+        </div>
+        <div class="actionbuttons runbutton">
+            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #ff6a00" onclick="runAway()">Run Away</button>
+        </div>
+    </div>
+
+    <script src="WebDungeonMainJavascript.js"></script>
+</body>
+</html>

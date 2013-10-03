@@ -1,0 +1,137 @@
+﻿body {
+    background-image:url('wall.jpg');
+    
+}
+
+.gameframe {
+    width: 912px;
+    height: 600px;
+    border: solid black 4px;
+    float: none;
+    background: #996633;
+}
+
+.headerbox {
+    font-family: 'Gentium Book Basic';
+    font-size: 35px;
+    text-align: center;
+    width: 300px;
+    height: 38px;
+    border: solid black 2px;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    border-radius: 0px;
+    background: gray;
+}
+
+.statusbarheader {
+    float:left;
+    width:106px;
+    height:15px;
+    border:solid black 1px;
+    background: gray;
+}
+
+.statuscontainer {
+    width:910;
+    height:17;
+    border:solid black 1px;
+}
+
+.statusbars {
+    font-family: 'Gentium Book Basic';
+    font-weight: bold;
+    width: 800px;
+    height: 15px;
+    border: solid black 1px;
+    display: grid;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    border-radius: 0px;
+    background: brown;
+}
+
+.hpbar {
+    background: #FF6633;
+}
+
+.mpbar {
+    background: #3399FF;
+}
+
+.xpbar {
+    background: #FFCC33;
+}
+.monsterbar {
+    background: red;
+}
+
+
+.runbutton {
+    background: #ff6a00;
+}
+
+.statusbarbg {
+    width: 912px;
+    height: 150px;
+    border: solid black 1px;
+    float: none;
+    background: black;
+}
+
+
+
+.monsterbg {
+    width: 910px;
+    height: 400px;
+    border: solid black 1px;
+    background: black;
+}
+
+.actionbuttons {
+    font-family: 'Buxton Sketch';
+    font-size: 37px;
+    font-weight: bold;
+    width: 224px;
+    height: 44px;
+    border: solid black 2px;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    border-radius: 0px;
+}
+
+.leftbar {
+    float: left;
+    width: 140px;
+    height: 400px;
+    border: solid black 1px;
+    background: black;
+}
+
+.rightbar {
+    float: right;
+    width: 140px;
+    height: 400px;
+    border: solid black 1px;
+    background: black;
+}
+
+.bricks {
+    font-family: 'Buxton Sketch';
+    font-size: 28px;
+    text-align:center;
+    width: 136px;
+    height: 30px;
+    border: ridge black 3px;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    border-radius: 0px;
+    background: #996633;
+}
