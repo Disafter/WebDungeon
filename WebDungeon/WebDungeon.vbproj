@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="dragon.jpg" />
     <Content Include="dungeon.jpg" />
+    <Content Include="wall.jpg" />
     <Content Include="WebDungeonInitialization.html" />
     <Content Include="jquery.js" />
     <Content Include="WebDungeonMainCSS.css" />

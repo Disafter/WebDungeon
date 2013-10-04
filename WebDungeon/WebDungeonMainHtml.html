@@ -10,18 +10,17 @@
 <body>
     
     <div class="gameframe">
-        <div id="namebox" class="headerbox">
-            <button style="font-size: 30px; font-weight: bold; width: 300px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="nameYourCharacter()">Name Your Hero</button>
+        <div id="namebox" class="headerbox"> Nameless Hero
         </div>
-        <div class="headerbox">Str: 32   Dex: 48</div>
+        <div id="strdexbox" class="headerbox">Str: 0 &nbsp;&nbsp;&nbsp;&nbsp;Dex: 0</div>
         <div class="headerbox">
-            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="logIn()">Log In</button>
+            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="logIn()">Start</button>
             <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="signUp()">Sign Up</button>
         </div>
-        <div class="headerbox">Level 27 Monk</div>
-        <div class="headerbox">Int: 17   Luck: 21</div>
+        <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
+        <div id="intluckbox" class="headerbox">Int: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
         <div class="headerbox">
-            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="logOut()">Settings</button>
+            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="settings()">Settings</button>
             <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="about()">About</button>
         </div>
 
@@ -29,31 +28,31 @@
         <div class="statusbarbg">
 
             <div class="statuscontainer">
-                <div style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">HP :</div>
-                <div class="statusbars hpbar"></div>
+                <div id="hpheader" style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">HP :</div>
+                <div id="hpbar" class="statusbars hpbar"></div>
             </div>
 
             <div class="statuscontainer">
-                <div style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">MP :</div>
+                <div id="mpheader" style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">MP :</div>
                 <div id="mpbar" class="statusbars mpbar"></div>
             </div>
 
             <div class="statuscontainer">
-                <div style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">EXP :</div>
-                <div class="statusbars xpbar"></div>
+                <div id="xpheader" style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">EXP :</div>
+                <div id="xpbar" class="statusbars xpbar"></div>
             </div>
 
             <div class="statuscontainer">
-                <div style="font-size: 18px; font-weight: bold; font-family: Aharoni; background: #660000;" class="statusbarheader">MONSTER</div>
+                <div id="monsterheader" style="font-size: 18px; font-weight: bold; font-family: Aharoni; background: #660000;" class="statusbarheader">MONSTER</div>
                 <div id="monsterbar" style="font-size: 18px; font-weight: bold; font-family: Aharoni;" class="statusbars monsterbar"></div>
             </div>
         </div>
         <div class="leftbar">
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
+            <div id="pointbrick" class="bricks"></div>
+            <div id="plusstrbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addStr()">+Str</button></div>
+            <div id="plusdexbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addDex()">+Dex</button></div>
+            <div id="plusintbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addInt()">+Int</button></div>
+            <div id="plusluckbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addLuck()">+Luck</button></div>
             <div class="bricks"></div>
             <div class="bricks"></div>
             <div class="bricks"></div>
