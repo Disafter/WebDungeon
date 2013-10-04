@@ -17,18 +17,18 @@ var maxMonsterHP = 0;
 var currMonsterHP = 0;
 var monsterDamage = 1;
 var monstersSlain = 0;
-var floorChoice;
-var quit = false;
-var battleChoice = 0;
 var meleeDamage = 1;
 var magicDamage = 1;
 var rangedDamage = 1;
 var experience = 0;
 var expToLevel = 100;
 var levelBonus = 0;
-var bonusStatPoints = 2;
+var bonusStatPoints = 0;
 var monsterBarLength = 0;
 var expBarLength = 0;
+var monstersLeft = 1;
+var dodgeRoll = 0;
+var dodgeChance = 0;
 
 function nameYourCharacter() {
     var x;
@@ -73,41 +73,110 @@ function monsterDamage() {
 function maxMonsterHP() {
     return ((1.4 * currentFloor) + 4);
 }
+
 function meleeAttack() {
-    currMonsterHP -= (.18 * str) + (.18 * cLevel) + 2;
-    monsterBarLength = (currMonsterHP / ((1.4 * currentFloor) + 4)) * 800;
-    document.getElementById("monsterbar").style.width = monsterBarLength + 'px';
-    if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-    document.getElementById("hpheader").innerHTML = "HP :" + cHP;
-    document.getElementById("monsterheader").innerHTML = "MONSTER HP :" + currMonsterHP;
+    if (maxHP > 1) {
+        currMonsterHP -= (.18 * str) + (.18 * cLevel) + 2;
+        updatePage();
+        if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+        updatePage();
+        if (currMonsterHP <= 0) {
+            experience += 10 + (25 / currentFloor);
+            if (experience >= 100) {
+                experience = 0;
+                cLevel += 1;
+                bonusStatPoints += 3;
+                cHP = maxHP;
+                cMP = maxMP;
+                monstersLeft -= 1;
+            }
+            if (monstersLeft <= 0) {
+                currentFloor += 1;
+                monstersLeft = currentFloor + 2;
+            }
+            
+            currMonsterHP = (1.4 * currentFloor) + 4;
+            updatePage();
+        }
+        monsterAttack();
+    }
+    else {
+        alert("You haven't started the game yet!");
+    }
 }
 
 function magicAttack() {
-    if (cMP >= 1) {
-        currMonsterHP -= (.2 * wis) + (.18 * cLevel) + 3;
-        monsterBarLength = (currMonsterHP / ((1.4 * currentFloor) + 4)) * 800;
-        document.getElementById("monsterbar").style.width = monsterBarLength + 'px';
-        if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-        document.getElementById("hpheader").innerHTML = "HP :" + cHP;
-        document.getElementById("monsterheader").innerHTML = "MONSTER HP :" + currMonsterHP;
-        cMP -= 1;
-        var magicBarLength = cMP / 5 * 800;
-        document.getElementById("mpbar").style.width = magicBarLength + 'px';
+    if (maxHP > 1) {
+        if (cMP >= 1) {
+            currMonsterHP -= (.2 * wis) + (.18 * cLevel) + 3;
+            updatePage();
+            if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+            updatePage();
+            cMP -= 1;
+            var magicBarLength = cMP / 5 * 800;
+            updatePage();
+            if (currMonsterHP <= 0) {
+                experience += 10 + (25 / currentFloor);
+                if (experience >= 100) {
+                    experience = 0;
+                    cLevel += 1;
+                    bonusStatPoints += 3;
+                    cHP = maxHP;
+                    cMP = maxMP;
+                    monstersLeft -= 1;
+                }
+                if (monstersLeft <= 0) {
+                    currentFloor += 1;
+                    monstersLeft = currentFloor + 2;
+                }
+                
+                currMonsterHP = (1.4 * currentFloor) + 4;
+                updatePage();
+
+            }
+            monsterAttack();
+        }
+        
+        else {
+            alert("You don't have enough mana to do that!");
+        }
     }
     else {
-        alert("You don't have enough mana to do that!");
+        alert("You haven't started the game yet!");
     }
     if (magicBarLength <= 0) { document.getElementById("mpbar").style.width = '1px'; }
-    document.getElementById("mpheader").innerHTML = "MP :" + cMP;
+
 }
 
 function rangedAttack() {
-    currMonsterHP -= (.16 * dex) + (.18 * cLevel) + 2;
-    monsterBarLength = (currMonsterHP / ((1.4 * currentFloor) + 4)) * 800;
-    document.getElementById("monsterbar").style.width = monsterBarLength + 'px';
-    if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-    document.getElementById("hpheader").innerHTML = "HP :" + cHP;
-    document.getElementById("monsterheader").innerHTML = "MONSTER HP :" + currMonsterHP;
+    if (maxHP > 1) {
+        currMonsterHP -= (.16 * dex) + (.18 * cLevel) + 2;
+        updatePage();
+        if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+        updatePage();
+        if (currMonsterHP <= 0) {
+            experience += 10 + (25 / currentFloor);
+            if (experience >= 100) {
+                experience = 0;
+                cLevel += 1;
+                bonusStatPoints += 3;
+                cHP = maxHP;
+                cMP = maxMP;
+                monstersLeft -= 1;
+            }
+            if (monstersLeft <= 0) {
+                currentFloor += 1;
+                monstersLeft = currentFloor + 2;
+            }
+            maxMonsterHP = (1.4 * currentFloor) + 4;
+            currMonsterHP = (1.4 * currentFloor) + 4;
+            updatePage();
+        }
+        monsterAttack();
+    }
+    else {
+        alert("You haven't started the game yet!");
+    }
 }
 
 function about() {
@@ -125,35 +194,32 @@ function logIn() {
     }
     cClass = prompt("Please enter your character's class.", "Monk");
     if (cClass != null) {
-        document.getElementById("levelbox").innerHTML = "Level " + cLevel + " " + cClass;
+        updatePage();
     }
-    document.getElementById("hpheader").innerHTML = "HP : " + cHP;
-    document.getElementById("hpbar").style.width = (cHP*20) + 'px';
-    document.getElementById("mpheader").innerHTML = "MP :" + cMP;
-    document.getElementById("mpbar").style.width = (cMP*20) + 'px';
-    expBarLength = (experience / expToLevel) * 800;
-    document.getElementById("xpbar").style.width = expBarLength + 'px';
-    document.getElementById("xpheader").innerHTML = "EXP :" + experience;
+    maxMonsterHP = (1.4 * currentFloor) + 4;
+    currMonsterHP = (1.4 * currentFloor) + 4;
+    bonusStatPoints = 2;
+
+    str = 2;
+    dex = 2;
+    wis = 2;
+    luck = 2;
+    bonusStatPoints = 2;
+    cHP = (1.1 * cLevel) + (1.1 * str) + 10;
+    maxHP = (1.1 * cLevel) + (1.1 * str) + 10;
+    cMP = (wis + 2);
+    maxMP = (wis + 2);
+    updatePage();
     if (monsterBarLength <= 0) { document.getElementById("xpbar").style.width = '1px'; }
     monsterBarLength = (currMonsterHP / ((1.4 * currentFloor) + 4)) * 800;
     if (currMonsterHP <= 0) {
         currMonsterHP = 0;
         monsterBarLength = 1;
     }
-    document.getElementById("monsterbar").style.width = monsterBarLength + 'px';
+    updatePage();
     if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-    cMP = (wis + 2);
-    maxMonsterHP = 0;
-    currMonsterHP = 0;
-    bonusStatPoints = 2;
-    str = 2;
-    dex = 2;
-    wis = 2;
-    luck = 2;
-    document.getElementById("strdexbox").innerHTML = "Str: " + str + "&nbsp;&nbsp;&nbsp;&nbsp;Dex: " + dex;
-    document.getElementById("intluckbox").innerHTML = "Int: " + wis + "&nbsp;&nbsp;&nbsp;Luck: " + luck;
-    document.getElementById("pointbrick").innerHTML = "+ Points:" + bonusStatPoints;
-    
+
+
 }
 
 function settings() {
@@ -163,35 +229,93 @@ function settings() {
 function addStr() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
-        document.getElementById("pointbrick").innerHTML = "+ Points:" + bonusStatPoints;
         str += 1;
-        document.getElementById("strdexbox").innerHTML = "Str: " + str + "&nbsp;&nbsp;&nbsp;&nbsp;Dex: " + dex;
+        cHP += (1.1 * str);
+        maxHP += (1.1 * str);
+        updatePage();
     }
 }
 
 function addDex() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
-        document.getElementById("pointbrick").innerHTML = "+ Points:" + bonusStatPoints;
         dex += 1;
-        document.getElementById("strdexbox").innerHTML = "Str: " + str + "&nbsp;&nbsp;&nbsp;&nbsp;Dex: " + dex;
+        updatePage();
     }
 }
 
 function addInt() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
-        document.getElementById("pointbrick").innerHTML = "+ Points:" + bonusStatPoints;
         wis += 1;
-        document.getElementById("intluckbox").innerHTML = "Int: " + wis + "&nbsp;&nbsp;&nbsp;Luck: " + luck;
+        cMP += 1;
+        maxMP += 1;
+        updatePage();
     }
+    
 }
 
 function addLuck() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
-        document.getElementById("pointbrick").innerHTML = "+ Points:" + bonusStatPoints;
         luck += 1;
-        document.getElementById("intluckbox").innerHTML = "Int: " + wis + "&nbsp;&nbsp;&nbsp;Luck: " + luck;
+        updatePage();
+    }
+}
+
+function updatePage() {
+
+    //Name, Class, Level
+    document.getElementById("namebox").innerHTML = cName;
+    document.getElementById("levelbox").innerHTML = "Level " + cLevel + " " + cClass;
+
+    //HP, MP, EXP
+    document.getElementById("hpheader").innerHTML = "HP : " + cHP + "/" + maxHP;
+    document.getElementById("hpbar").style.width = ((cHP / maxHP) * 800) + 'px';
+    document.getElementById("mpheader").innerHTML = "MP : " + cMP + "/" + maxMP;
+    document.getElementById("mpbar").style.width = ((cMP / maxMP) * 800) + 'px';
+    expBarLength = (experience / expToLevel) * 800;
+    document.getElementById("xpbar").style.width = expBarLength + 'px';
+    document.getElementById("xpheader").innerHTML = "EXP :" + experience;
+
+    //STATS, STATPOINTS
+    document.getElementById("strdexbox").innerHTML = "Str: " + str + "&nbsp;&nbsp;&nbsp;&nbsp;Dex: " + dex;
+    document.getElementById("pointbrick").innerHTML = "+ Points:" + bonusStatPoints;
+    document.getElementById("intluckbox").innerHTML = "Int: " + wis + "&nbsp;&nbsp;&nbsp;Luck: " + luck;
+
+    //MONSTER, MONSTER HP, FLOOR, MONSTERS LEFT
+    maxMonsterHP = (1.4 * currentFloor) + 4;
+    document.getElementById("floorbrick").innerHTML = "Floor: " + currentFloor;
+    document.getElementById("loginbox").innerHTML = "Inside Dungeon"
+    monsterBarLength = (currMonsterHP / ((1.4 * currentFloor) + 4)) * 800;
+    document.getElementById("monsterbar").style.width = monsterBarLength + 'px';
+    if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+    document.getElementById("monsteraccuracybox").innerHTML = "Roll:"+(dodgeRoll).toFixed(2);
+    document.getElementById("dodgechancebox").innerHTML = "Chance:" + ((75 - (.48 * dex) + (.1 * currentFloor)) * .01).toFixed(2);
+
+    //SPECIAL STATS
+
+
+    //ITEMS
+
+    //IMPORTANT CHECKS
+    if (cHP <= 0) {
+        window.location.href = "WebDungeonInitialization.html"
+    }
+
+
+}
+
+function monsterAttack() {
+    dodgeRoll = Math.random();
+    updatePage();
+    if (dodgeRoll <= (75-(.48*dex)+(.1*currentFloor))*.01) { 
+        document.getElementById("dodgenotice").innerHTML = "You were hit!";
+        cHP -= 1 * currentFloor;
+        updatePage();
+    }
+    else {
+        document.getElementById("dodgenotice").innerHTML = "You dodged!";
+        updatePage();
     }
 }

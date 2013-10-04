@@ -78,7 +78,7 @@
     width: 912px;
     height: 76px;
     border: solid black 1px;
-    background: #151515;
+    background: #3e3e3e;
     clear:both;
 }
 
@@ -123,7 +123,7 @@
 
 .bricks {
     font-family: 'Buxton Sketch';
-    font-size: 28px;
+    font-size: 20px;
     text-align:center;
     width: 136px;
     height: 30px;
