@@ -221,7 +221,7 @@ function addStr() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
         str += 1;
-        cHP += (1.1*str);
+        cHP += 1.1;
         updatePage();
     }
 }
@@ -385,7 +385,7 @@ function dropItems() {
             $('#itemtext').text("You found Excalibur! Strength +5!");
 
             document.getElementById("weaponbrick").innerHTML = "Excalibur";
-            str += 5
+            str += 5;
             isWeaponEquipped = true;
             updatePage();
         }
@@ -394,10 +394,10 @@ function dropItems() {
         if (!isHelmetEquipped) {
             document.getElementById("itemwindow").className = "itemPopup";
             document.getElementById("itembg").className = "itemPopupBG";
-            $('#itemtext').text("You found Destiny Crown! Intelligence +5!");
+            $('#itemtext').text("You found Destiny Crown! Dexterity +4!");
 
             document.getElementById("helmetbrick").innerHTML = "Destiny Crown";
-            wis += 5
+            dex += 4;
             isHelmetEquipped = true;
             updatePage();
         }
@@ -409,7 +409,7 @@ function dropItems() {
             $('#itemtext').text("You found Shadow Cape! Dexterity +3!");
 
             document.getElementById("armorbrick").innerHTML = "Shadow Cape";
-            dex += 3
+            dex += 3;
             isArmorEquipped = true;
             updatePage();
         }
@@ -421,7 +421,7 @@ function dropItems() {
             $('#itemtext').text("You found Goldcoil! Luck +5!");
             
             document.getElementById("amuletbrick").innerHTML = "Goldcoil";
-            luck += 5
+            luck += 5;
             isAmuletEquipped = true;
             updatePage();
         }
@@ -433,7 +433,7 @@ function dropItems() {
             $('#itemtext').text("You found Great Bow! Dexterity +5!");
 
             document.getElementById("weaponbrick").innerHTML = "Great Bow";
-            dex += 5
+            dex += 5;
             isWeaponEquipped = true;
             updatePage();
         }
@@ -445,7 +445,7 @@ function dropItems() {
             $('#itemtext').text("You found Mindshield! Intelligence +3!");
 
             document.getElementById("helmetbrick").innerHTML = "Mindshield";
-            wis += 3
+            wis += 3;
             isHelmetEquipped = true;
             updatePage();
         }
@@ -457,7 +457,7 @@ function dropItems() {
             $('#itemtext').text("You found Leather Jib! Luck +3!");
 
             document.getElementById("armorbrick").innerHTML = "Leather Jib";
-            luck += 3
+            luck += 3;
             isArmorEquipped = true;
             updatePage();
         }
@@ -468,7 +468,109 @@ function dropItems() {
             document.getElementById("itembg").className = "itemPopupBG";
             $('#itemtext').text("You found Skullchain! Strength +3");
             document.getElementById("amuletbrick").innerHTML = "Skullchain";
-            str += 3
+            str += 3;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 9) {
+        if (!isWeaponEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Manasphere! Intelligence +4");
+            document.getElementById("weaponbrick").innerHTML = "Manasphere";
+            wis += 4;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 10) {
+        if (!isArmorEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Mithril Plate! Strength +4");
+            document.getElementById("armorbrick").innerHTML = "Mithril Plate";
+            str += 4;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 11) {
+        if (!isHelmetEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Cat Ears! Luck +4!");
+            document.getElementById("helmetbrick").innerHTML = "Cat Ears";
+            luck += 4;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 12) {
+        if (!isAmuletEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Twisted Coven! Dexterity +4");
+            document.getElementById("amuletbrick").innerHTML = "Twisted Coven";
+            dex += 4;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 13) {
+        if (!isWeaponEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Handwarmers! Luck +2!");
+            document.getElementById("weaponbrick").innerHTML = "Skullchain";
+            luck += 2;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 14) {
+        if (!isArmorEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Spiritwrap! Intelligence +2!");
+            document.getElementById("armorbrick").innerHTML = "Skullchain";
+            wis += 2;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 15) {
+        if (!isHelmetEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Demon Skull! Strength +2!");
+            document.getElementById("helmetbrick").innerHTML = "Skullchain";
+            str += 2;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 16) {
+        if (!isAmuletEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Aethercrest! Intelligence +2!");
+            document.getElementById("amuletbrick").innerHTML = "Aethercrest";
+            wis += 2;
+            isAmuletEquipped = true;
+            updatePage();
+        }
+    }
+    if (itemRoll == 17) {
+        if (!isAmuletEquipped) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You found Ancient Pact! All Stats +3!!!");
+            document.getElementById("amuletbrick").innerHTML = "Skullchain";
+            str += 3;
+            dex += 3;
+            wis += 3;
+            luck += 3;
             isAmuletEquipped = true;
             updatePage();
         }
