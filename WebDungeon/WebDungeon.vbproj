@@ -81,14 +81,15 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chest.png" />
     <Content Include="dragon.jpg" />
     <Content Include="dungeon.jpg" />
     <Content Include="wall.jpg" />
-    <Content Include="WebDungeonInitialization.html" />
+    <Content Include="defeated.html" />
     <Content Include="jquery.js" />
-    <Content Include="WebDungeonMainCSS.css" />
-    <Content Include="WebDungeonMainHtml.html" />
-    <Content Include="WebDungeonMainJavascript.js" />
+    <Content Include="index.css" />
+    <Content Include="index.html" />
+    <Content Include="index.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

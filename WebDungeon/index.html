@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>The Terrible Dungeon</title>
-    <link href="WebDungeonMainCSS.css" rel="stylesheet"></link>
-    <script src="WebDungeonMainJavascript.js"></script>
+    <link href="index.css" rel="stylesheet"></link>
 </head>
 <body>
     
@@ -54,46 +53,58 @@
             <div id="plusintbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addInt()">+Int</button></div>
             <div id="plusluckbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addLuck()">+Luck</button></div>
             <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
+            <div id="itemheader" class="bricks"></div>
+            <div id="helmetbrick" class="bricks"></div>
+            <div id="armorbrick" class="bricks"></div>
+            <div id="weaponbrick" class="bricks"></div>
+            <div id="amuletbrick" class="bricks"></div>
 
         </div>
         <div class="rightbar">
             <div id="floorbrick" class="bricks">Entrance</div>
+            <div id="remainingbrick" class="bricks"></div>
             <div class="bricks"></div>
             <div id="monsteraccuracybox" class="bricks"></div>
             <div id="dodgechancebox" class="bricks"></div>
             <div id="dodgenotice" class="bricks"></div>
             <div class="bricks"></div>
+            <div id="elixirbrick" class="bricks"></div>
+            <div id="useelixirbrick" class="bricks"><button style="font-size: 18px; font-weight: bold; width: 120px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="useElixir()">Use Elixir</button></div>
             <div class="bricks"></div>
             <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
+            
+         
 
 
         </div>
+
+        
 
         <div class="monsterbg">
             <img src="dungeon.jpg" />
         </div>
-        <div class="actionbuttons hpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #FF6633" onclick="meleeAttack()">Melee Attack</button>
+        <div class="attackbuttoncontainer">
+        <div class="actionbuttons meleeattackbutton">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FF6633" onclick="meleeAttack()">Melee Attack</button>
         </div>
         <div class="actionbuttons mpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #3399FF" onclick="magicAttack()">Magic Attack</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #3399FF" onclick="magicAttack()">Magic Attack</button>
         </div>
         <div class="actionbuttons xpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #FFCC33" onclick="rangedAttack()">Ranged Attack</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FFCC33" onclick="rangedAttack()">Ranged Attack</button>
         </div>
         <div class="actionbuttons runbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 224px; height: 32px; font-family: 'Gentium Book Basic'; color: #ff6a00" onclick="runAway()">Run Away</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #ff6a00" onclick="runAway()">Run Away</button>
         </div>
+             </div>
     </div>
+    <div id="itemwindow" class="itemPopup hidden">
+        <h5 id="itemtext"></h5>
+        <img id="chestimage" class="chest" src="chest.png"/>
+    </div>
+    <div id="itembg" class="itemPopupBG hidden"></div>
 
-    <script src="WebDungeonMainJavascript.js"></script>
+    <script src="jquery.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
