@@ -7,17 +7,18 @@
     <link href="index.css" rel="stylesheet"></link>
 </head>
 <body>
-    
+
     <div class="gameframe">
-        <div id="namebox" class="headerbox"> Nameless Hero
+        <div id="namebox" class="headerbox">
+            Nameless Hero
         </div>
-        <div id="strdexbox" class="headerbox">Str: 0 &nbsp;&nbsp;&nbsp;&nbsp;Dex: 0</div>
+        <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
         <div id="loginbox" class="headerbox">
             <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="logIn()">Start</button>
             <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="signUp()">Sign Up</button>
         </div>
-        <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
-        <div id="intluckbox" class="headerbox">Int: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
+        <div id="strdexbox" class="headerbox">Strength: 0 &nbsp;&nbsp;&nbsp;&nbsp;Dexterity: 0</div>
+        <div id="intluckbox" class="headerbox">Intelligence: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
         <div class="headerbox">
             <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="settings()">Settings</button>
             <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="about()">About</button>
@@ -48,59 +49,81 @@
         </div>
         <div class="leftbar">
             <div id="pointbrick" class="bricks"></div>
-            <div id="plusstrbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addStr()">+Str</button></div>
-            <div id="plusdexbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addDex()">+Dex</button></div>
-            <div id="plusintbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addInt()">+Int</button></div>
-            <div id="plusluckbrick" class="bricks"><button style="font-size: 22px; font-weight: bold; width: 75px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="addLuck()">+Luck</button></div>
-            <div class="bricks"></div>
-            <div id="itemheader" class="bricks"></div>
-            <div id="helmetbrick" class="bricks"></div>
-            <div id="armorbrick" class="bricks"></div>
-            <div id="weaponbrick" class="bricks"></div>
+            <div id="plusstrdexbrick" class="bricks">
+                <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addStr()">+Str</button>
+                <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addDex()">+Dex</button>
+            </div>
+            <div id="plusintluckbrick" class="bricks">
+                <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addInt()">+Int</button>
+                <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addLuck()">+Luck</button>
+            </div>
+
+            <div id="autobrick" class="bricks">
+                <button id="autobutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="setAutoPlay()">Autoplay</button>
+            </div>
+            <div id="popupsbrick" class="bricks"><button id="popupsbutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button></div>
+            <div id="itemheader" style="font-size: 18px" class="bricks"></div>
+             <div id="helmetbrick" class="bricks"></div>
             <div id="amuletbrick" class="bricks"></div>
+            <div id="weaponbrick" class="bricks"></div>
+            <div id="shieldbrick" class="bricks"></div>
+            <div id="armorbrick" class="bricks"></div>
+             <div id="beltbrick" class="bricks"></div>
+             <div id="pantsbrick" class="bricks"></div>
+            <div id="bootsbrick" class="bricks"></div>
+            
 
         </div>
         <div class="rightbar">
             <div id="floorbrick" class="bricks">Entrance</div>
             <div id="remainingbrick" class="bricks"></div>
             <div class="bricks"></div>
+            <div id="itemfindbrick" class="bricks"></div>
+            <div id="gamblechancebrick" class="bricks"></div>
             <div id="monsteraccuracybox" class="bricks"></div>
             <div id="dodgechancebox" class="bricks"></div>
             <div id="dodgenotice" class="bricks"></div>
+             
+             
+             <div id="fordamagebrick" class="bricks"></div>
             <div class="bricks"></div>
             <div id="elixirbrick" class="bricks"></div>
-            <div id="useelixirbrick" class="bricks"><button style="font-size: 18px; font-weight: bold; width: 120px; height: 28px; font-family: 'Gentium Book Basic'; color: green" onclick="useElixir()">Use Elixir</button></div>
-            <div class="bricks"></div>
-            <div class="bricks"></div>
-            
-         
+            <div id="useelixirbrick" class="bricks">
+                <button style="font-size: 17px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: purple" onclick="useElixir()">Use Elixir</button>
+            </div>
 
+            <div id="goldbrick" class="bricks"></div>
+            <div id="gamblebrick" class="bricks">
+                <button style="font-size: 17px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #6f4400" onclick="gamble()">Gamble</button>
+            </div>
 
         </div>
 
-        
+    </div>
 
-        <div class="monsterbg">
-            <img src="dungeon.jpg" />
-        </div>
-        <div class="attackbuttoncontainer">
+
+
+    <div class="monsterbg">
+        <img src="dungeon.jpg" />
+    </div>
+    <div class="attackbuttoncontainer">
         <div class="actionbuttons meleeattackbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FF6633" onclick="meleeAttack()">Melee Attack</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FF6633" onclick="meleeAttack()">Attack</button>
         </div>
         <div class="actionbuttons mpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #3399FF" onclick="magicAttack()">Magic Attack</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #3399FF" onclick="magicAttack()">Fireball</button>
         </div>
         <div class="actionbuttons xpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FFCC33" onclick="rangedAttack()">Ranged Attack</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FFCC33" onclick="rangedAttack()">Stab</button>
         </div>
         <div class="actionbuttons runbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #ff6a00" onclick="runAway()">Run Away</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #ff6a00" onclick="runAway()">Run</button>
         </div>
-             </div>
+    </div>
     </div>
     <div id="itemwindow" class="itemPopup hidden">
         <h5 id="itemtext"></h5>
-        <img id="chestimage" class="chest" src="chest.png"/>
+        <img id="chestimage" class="chest" src="chest.png" />
     </div>
     <div id="itembg" class="itemPopupBG hidden"></div>
 

@@ -4,15 +4,15 @@
 
 .gameframe {
     width: 912px;
-    height: 620px;
-    border: solid black 4px;
+    height: 600px;
+    border: groove #797979 4px;
     margin: 0 auto;
     background: black;
 }
 
 .headerbox {
-    font-family: 'Gentium Book Basic';
-    font-size: 35px;
+    font-family: 'Franklin Gothic';
+    font-size: 25px;
     text-align: center;
     width: 300px;
     height: 38px;
@@ -23,28 +23,38 @@
     float: left;
     border-radius: 0px;
     background: gray;
+    text-transform: capitalize;
 }
 
 .statusbarheader {
     float: left;
     width: 106px;
     height: 15px;
-    border: solid black 1px;
+    border: groove #797979 1px;
     background: gray;
 }
 
+
+.statuscontainer {
+    width: 448px;
+    height: 17px;
+    border: groove #797979 1px;
+    display: inline-block;
+    margin: -1px 0px -6px 0px;
+}
+/*
 .statuscontainer {
     width: 910px;
     height: 17px;
     border: solid black 1px;
 }
-
+    */
 .statusbars {
     font-family: 'Gentium Book Basic';
     font-weight: bold;
     width: 1px;
     height: 15px;
-    border: solid black 1px;
+    border: groove #797979 1px;
     display: grid;
     margin: 0px;
     padding: 0px;
@@ -79,19 +89,18 @@
 }
 
 .statusbarbg {
-    width: 912px;
-    height: 76px;
-    border: solid black 1px;
+    width: 908px;
+    border: groove #797979 1px;
     background: #3e3e3e;
+    height: 43px;
     clear: both;
 }
 
 
 
 .monsterbg {
-    width: 624px;
     height: 396px;
-    border: solid black 1px;
+    border: groove #797979 1px;
     background: black;
     display: inline-block;
 }
@@ -100,9 +109,7 @@
     font-family: 'Buxton Sketch';
     font-size: 37px;
     font-weight: bold;
-    width: 222px;
-    height: 48px;
-    border: solid black 2px;
+    border: groove #797979 2px;
     display: inline-block;
     float: left;
 }
@@ -110,8 +117,6 @@
 .leftbar {
     float: left;
     width: 140px;
-    height: 396px;
-    border: solid black 1px;
     background: black;
     display: inline;
 }
@@ -119,8 +124,6 @@
 .rightbar {
     float: right;
     width: 140px;
-    height: 396px;
-    border: solid black 1px;
     background: black;
     display: inline;
 }
@@ -130,14 +133,14 @@
     font-size: 20px;
     text-align: center;
     width: 136px;
-    height: 30px;
-    border: ridge black 3px;
+    height: 24px;
+    border: groove #6d4615 3px;
     display: inline-block;
     margin: 0px;
     padding: 0px;
     float: left;
     border-radius: 0px;
-    background: #996633;
+    background: #683702;
 }
 
 .headstatbutton {
@@ -153,7 +156,7 @@
 .attackbuttoncontainer {
     width: 904px;
     height: 48px;
-    border: solid black 4px;
+    border: groove #797979 4px;
     float: none;
     background: #996633;
 }
@@ -161,9 +164,9 @@
 .itemPopup {
     width: 600px;
     height: 343px;
-    border: 10px solid #755e06;
-    font-family:monospace;
-    text-align:center;
+    border: 10px groove #755e06;
+    font-family: monospace;
+    text-align: center;
     margin: -160px -309px -200px;
     font-size: 20px;
     background: gray;
