@@ -41,7 +41,10 @@ var randomStat = 0;
 var uniqueItemsFound = 0;
 var disableItemPopups = false;
 var isRecovering = false;
+var wasAutoPlaying = false;
 
+var ItemsFoundArray = new Array(false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false);
+var ItemCollectionArray = new Array();
 
 var found1 = false;
 var found2 = false;
@@ -112,53 +115,15 @@ function runAJAX() {
 
 
 function maxMonsterHP() {
-    return ((1.4 * currentFloor) + 4);
+    return ((3 * currentFloor) + 4);
 }
 
 function meleeAttack() {
-    if (maxHP > 1) {
-        currMonsterHP -= (.2 * str) + (.18 * cLevel) + 2 + (Math.random() * 5);
-        updatePage();
-        if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-        updatePage();
-        if (currMonsterHP <= 0) {
-            experience += (10 / cLevel) + (10 / currentFloor);
-            dropItems();
-            monstersLeft -= 1;
-            updatePage();
-            if (monstersLeft <= 0) {
-                currentFloor += 1;
-                monstersLeft = currentFloor + 2;
-            }
-            if (experience >= 100) {
-                experience = 0;
-                cLevel += 1;
-                bonusStatPoints += 2;
-                cHP = maxHP;
-                cMP = maxMP;
-                monstersLeft -= 1;
-            }
-
-
-            currMonsterHP = (1.4 * currentFloor) + 4;
-            updatePage();
-        }
-        monsterAttack();
-    }
-    else {
-        alert("You haven't started the game yet!");
-    }
-}
-
-function magicAttack() {
-    if (maxHP > 1) {
-        if (cMP >= 1) {
-            currMonsterHP -= (.5 * wis) + (.18 * cLevel) + (Math.random() * 20);
+    if (!isRecovering) {
+        if (maxHP > 1) {
+            currMonsterHP -= (.2 * str) + (.18 * cLevel) + 2 + (Math.random() * 5);
             updatePage();
             if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-            updatePage();
-            cMP -= 1;
-            var magicBarLength = cMP / 5 * 800;
             updatePage();
             if (currMonsterHP <= 0) {
                 experience += (10 / cLevel) + (10 / currentFloor);
@@ -178,60 +143,119 @@ function magicAttack() {
                     monstersLeft -= 1;
                 }
 
-                currMonsterHP = (1.4 * currentFloor) + 4;
-                updatePage();
 
+                currMonsterHP = (3 * currentFloor) + 4;
+                updatePage();
             }
             monsterAttack();
         }
-
         else {
-            alert("You don't have enough mana to do that!");
+            alert("You haven't started the game yet!");
+        }
+    
+    }
+    else {
+        alert("You're still recovering!");
+    }
+}
+
+function magicAttack() {
+    if (!isRecovering) {
+        if (maxHP > 1) {
+            if (cMP >= 1) {
+                currMonsterHP -= (.5 * wis) + (.18 * cLevel) + (Math.random() * 20);
+                updatePage();
+                if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+                updatePage();
+                cMP -= 1;
+                var magicBarLength = cMP / 5 * 800;
+                updatePage();
+                if (currMonsterHP <= 0) {
+                    experience += (10 / cLevel) + (10 / currentFloor);
+                    dropItems();
+                    monstersLeft -= 1;
+                    updatePage();
+                    if (monstersLeft <= 0) {
+                        currentFloor += 1;
+                        monstersLeft = currentFloor + 2;
+                    }
+                    if (experience >= 100) {
+                        experience = 0;
+                        cLevel += 1;
+                        bonusStatPoints += 2;
+                        cHP = maxHP;
+                        cMP = maxMP;
+                        monstersLeft -= 1;
+                    }
+
+                    currMonsterHP = (3 * currentFloor) + 4;
+                    updatePage();
+
+                }
+                monsterAttack();
+            }
+
+            else {
+                alert("You don't have enough mana to do that!");
+            }
+        }
+        else {
+            alert("You haven't started the game yet!");
         }
     }
     else {
-        alert("You haven't started the game yet!");
+        alert("You're still recovering!");
     }
     if (magicBarLength <= 0) { document.getElementById("mpbar").style.width = '1px'; }
 
 }
 
 function rangedAttack() {
-    if (maxHP > 1) {
-        currMonsterHP -= (.15 * dex) + (.18 * cLevel) + 3;
-        updatePage();
-        if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-        updatePage();
-        if (currMonsterHP <= 0) {
-            experience += (10 / cLevel) + (10 / currentFloor);
-            dropItems();
-            monstersLeft -= 1;
+    if (!isRecovering) {
+        if (maxHP > 1) {
+            currMonsterHP -= (.15 * dex) + (.18 * cLevel) + 3;
             updatePage();
-            if (monstersLeft <= 0) {
-                currentFloor += 1;
-                monstersLeft = currentFloor + 2;
-            }
-            if (experience >= 100) {
-                experience = 0;
-                cLevel += 1;
-                bonusStatPoints += 2;
-                cHP = maxHP;
-                cMP = maxMP;
+            if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+            updatePage();
+            if (currMonsterHP <= 0) {
+                experience += (10 / cLevel) + (10 / currentFloor);
+                dropItems();
                 monstersLeft -= 1;
+                updatePage();
+                if (monstersLeft <= 0) {
+                    currentFloor += 1;
+                    monstersLeft = currentFloor + 2;
+                }
+                if (experience >= 100) {
+                    experience = 0;
+                    cLevel += 1;
+                    bonusStatPoints += 2;
+                    cHP = maxHP;
+                    cMP = maxMP;
+                    monstersLeft -= 1;
+                }
+                currMonsterHP = (3 * currentFloor) + 4;
+                updatePage();
             }
-            currMonsterHP = (1.4 * currentFloor) + 4;
-            updatePage();
+            monsterAttackVsRanged();
         }
-        monsterAttackVsRanged();
+        else {
+            alert("You haven't started the game yet!");
+        }
     }
     else {
-        alert("You haven't started the game yet!");
+        alert("You're still recovering!");
     }
 }
 
 function about() {
     alert("This game was made by John Vastola.\nContact me at johndvastola (at) hotmail (dot) com.");
     alert("Melee attacks do average damage based on your strength. Magic attacks do heavy damage based on your intelligence, but also cost MP. Ranged attacks deal light damage based on your dexterity, but give you a much better chance of dodging the opponent's attack. Running away gives your character time to heal up, but also brings you to a fresh monster. Elixirs fully restore your HP and MP, but monsters rarely drop them. Increasing your luck improves everything your character does by a little bit.");
+    
+}
+
+function showItems() {
+    alert("Item Collection: " + ItemCollectionArray.toString());
 }
 
 function signUp() {
@@ -247,8 +271,8 @@ function logIn() {
     if (cClass != null) {
         updatePage();
     }
-    maxMonsterHP = (1.4 * currentFloor) + 4;
-    currMonsterHP = (1.4 * currentFloor) + 4;
+    maxMonsterHP = (3 * currentFloor) + 4;
+    currMonsterHP = (3 * currentFloor) + 4;
     bonusStatPoints = 2;
 
     str = 2;
@@ -263,7 +287,7 @@ function logIn() {
     maxMP = (wis + 2);
     updatePage();
     if (monsterBarLength <= 0) { document.getElementById("xpbar").style.width = '1px'; }
-    monsterBarLength = (currMonsterHP / ((1.4 * currentFloor) + 4)) * 800;
+    monsterBarLength = (currMonsterHP / ((3 * currentFloor) + 4)) * 800;
     if (currMonsterHP <= 0) {
         currMonsterHP = 0;
         monsterBarLength = 1;
@@ -343,10 +367,10 @@ function updatePage() {
     document.getElementById("intluckbox").innerHTML = "Intelligence: " + wis + "&nbsp;&nbsp;&nbsp;Luck: " + luck;
 
     //MONSTER, MONSTER HP, FLOOR, MONSTERS LEFT
-    maxMonsterHP = (1.4 * currentFloor) + 4;
+    maxMonsterHP = (3 * currentFloor) + 4;
     document.getElementById("floorbrick").innerHTML = "Floor: " + currentFloor;
     document.getElementById("loginbox").innerHTML = "Inside Dungeon"
-    monsterBarLength = (currMonsterHP / ((1.4 * currentFloor) + 4)) * 337;
+    monsterBarLength = (currMonsterHP / ((3 * currentFloor) + 4)) * 337;
     document.getElementById("monsterbar").style.width = monsterBarLength + 'px';
     if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
     document.getElementById("remainingbrick").innerHTML = "Monsters Here:" + monstersLeft;
@@ -367,14 +391,19 @@ function updatePage() {
     document.getElementById("elixirbrick").innerHTML = "Elixirs: " + elixirs + "/10";
     document.getElementById("goldbrick").innerHTML = "Gold: " + gold;
     if (uniqueItemsFound >= 100) { uniqueItemsFound = 100; }
-    document.getElementById("itemheader").innerHTML = "Items found:" + uniqueItemsFound + "/100";
+    document.getElementById("itemheader").innerHTML = "Items Found: " + uniqueItemsFound + "/45";
 
     //IMPORTANT CHECKS
     if (cHP <= 0) {
+        if (isAutoPlaying) {
+            wasAutoPlaying = true;
+        }
         isAutoPlaying = false;
+        isRecovering = true;
         $("#autobutton").text("recovering...");
         clearInterval(timerId);
-        recoverId = setInterval(recover, 500);
+        clearInterval(recoverId);
+        recoverId = setInterval(recover, 250);
       //  window.location.href = "defeated.html";
         // document.getElementById("defeatedstats").innerHTML = " Items found:" + uniqueItemsFound + "/100" + " Gold: " + gold + " Elixirs: " + elixirs + "/10";
     }
@@ -383,11 +412,31 @@ function updatePage() {
 }
 
 function recover() {
-    if (cHP <= maxHP) {
-        cHP += maxHP/
+    if (!isRecovering) {
+        clearInterval(recoverId);
+    }
+    else if (cHP >= maxHP) {
+        cHP = maxHP;
+        clearInterval(recoverId);
+        isRecovering = false;
+        if (wasAutoPlaying) {
+            setAutoPlay();
+            wasAutoPlaying = false;
         }
+        $("#autobutton").text("Autoplay");
+    }
+    else if (cHP <= maxHP) {
+        cHP += maxHP / 120
+        document.getElementById("hpheader").innerHTML = "HP : " + Math.ceil(cHP) + "/" + Math.ceil(maxHP);
+        document.getElementById("hpbar").style.width = ((Math.ceil(cHP) / Math.ceil(maxHP)) * 337) + 'px';
+        $("#autobutton").text("recovering...");
+    }
+    
+        document.getElementById("hpheader").innerHTML = "HP : " + Math.ceil(cHP) + "/" + Math.ceil(maxHP);
+        document.getElementById("hpbar").style.width = ((Math.ceil(cHP) / Math.ceil(maxHP)) * 337) + 'px';
 
-    $("#autobutton").text("Autoplay");
+
+    
     
 }
 
@@ -398,8 +447,8 @@ function monsterAttack() {
     updatePage();
     if (dodgeRoll <= (75 - (.25 * dex) + (.2 * currentFloor)) * .01) {
         document.getElementById("dodgenotice").innerHTML = "You were hit";
-        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.5 * currentFloor * dodgeRoll))) + " damage!"
-        cHP -= (Math.ceil((.5 * currentFloor * dodgeRoll)));
+        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((1 * currentFloor * dodgeRoll))) + " damage!"
+        cHP -= (Math.ceil((.1 * currentFloor * dodgeRoll)));
         updatePage();
     }
     else {
@@ -432,8 +481,8 @@ function monsterAttackVsRanged() {
     updatePage();
     if (dodgeRoll <= (75 - (.30 * dex) + (.2 * currentFloor)) * .007) {
         document.getElementById("dodgenotice").innerHTML = "You were hit";
-        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.5 * currentFloor * dodgeRoll))) + " damage!"
-        cHP -= (Math.floor((.5 * currentFloor * dodgeRoll)));
+        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((1 * currentFloor * dodgeRoll))) + " damage!"
+        cHP -= (Math.floor((1 * currentFloor * dodgeRoll)));
         updatePage();
         document.getElementById("dodgechancebox").innerHTML = "Dodge:" + (100 - (((75 - (.30 * dex) + (.2 * currentFloor)))) * .7).toFixed(0) + "%";
     }
@@ -478,27 +527,32 @@ function useElixir() {
 }
 
 function runAway() {
-    if (cMP >= 1) {
-        cMP -= 1;
-    }
+    if (!isRecovering) {
+        if (cMP >= 1) {
+            cMP -= 1;
+        }
 
-    if (gold > 3) {
-        gold -= 3;
+        if (gold > 3) {
+            gold -= 3;
+        }
+        else {
+            gold = 0;
+        }
+        updatePage();
+        cHP = maxHP;
+        currMonsterHP = maxMonsterHP;
+        updatePage();
+        document.getElementById("dodgenotice").innerHTML = "You ran away!";
     }
     else {
-        gold = 0;
+        alert("You're still recovering!");
     }
-    updatePage();
-    cHP = maxHP;
-    currMonsterHP = maxMonsterHP;
-    updatePage();
-    document.getElementById("dodgenotice").innerHTML = "You ran away!";
 }
 
 function dropItems() {
     itemRoll = Math.ceil((Math.random() * (600 - luck)));
     if (itemRoll == 1) {
-        if (!found1) {
+        if (!ItemsFoundArray[1]) {
             //  if (!isWeaponEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -506,10 +560,11 @@ function dropItems() {
                 $('#itemtext').text("You found Excalibur! Strength +5!");
             }
             uniqueItemsFound += 1;
+            ItemCollectionArray[1] = "Excalibur";
             document.getElementById("weaponbrick").innerHTML = "Excalibur";
             str += 5;
             //isWeaponEquipped = true;
-            found1 = true;
+            ItemsFoundArray[1] = true;
             updatePage();
         }
 
@@ -517,23 +572,24 @@ function dropItems() {
     }
     if (itemRoll == 2) {
         // if (!isHelmetEquipped) {
-        if (!found2) {
+        if (!ItemsFoundArray[2]) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
                 document.getElementById("itembg").className = "itemPopupBG";
                 $('#itemtext').text("You found Destiny Crown! Dexterity +4!");
             }
             uniqueItemsFound += 1;
+            ItemCollectionArray[2] = "Destiny Crown";
             document.getElementById("helmetbrick").innerHTML = "Destiny Crown";
             dex += 4;
             //isHelmetEquipped = true;
-            found2 = true;
+            ItemsFoundArray[2] = true;
             updatePage();
         }
         //  }
     }
     if (itemRoll == 3) {
-        if (!found3) {
+        if (!ItemsFoundArray[3]) {
             // if (!isArmorEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -541,16 +597,17 @@ function dropItems() {
                 $('#itemtext').text("You found Shadow Cape! Dexterity +3!");
             }
             uniqueItemsFound += 1;
+            ItemCollectionArray[3] = "Shadow Cape";
             document.getElementById("armorbrick").innerHTML = "Shadow Cape";
             dex += 3;
             //isArmorEquipped = true;
-            found3 = true;
+            ItemsFoundArray[3] = true;
             updatePage();
         }
         //  }
     }
     if (itemRoll == 4) {
-        if (!found4) {
+        if (!ItemsFoundArray[4]) {
             // if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -558,17 +615,18 @@ function dropItems() {
                 $('#itemtext').text("You found Goldcoil! Luck +5!");
             }
             uniqueItemsFound += 1;
+            ItemCollectionArray[4] = "Goldcoil";
             document.getElementById("amuletbrick").innerHTML = "Goldcoil";
             luck += 5;
             //isAmuletEquipped = true;
-            found4 = true;
+            ItemsFoundArray[4] = true;
             updatePage();
         }
         //  }
     }
     if (itemRoll == 5) {
-        if (!found5) {
-            found5 = true;
+        if (!ItemsFoundArray[5]) {
+            ItemsFoundArray[5] = true;
             //  if (!isWeaponEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -576,6 +634,7 @@ function dropItems() {
                 $('#itemtext').text("You found Great Bow! Dexterity +5!");
             }
             uniqueItemsFound += 1;
+            ItemCollectionArray[5] = "Great Bow";
             document.getElementById("weaponbrick").innerHTML = "Great Bow";
             dex += 5;
             //isWeaponEquipped = true;
@@ -584,8 +643,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 6) {
-        if (!found6) {
-            found6 = true;
+        if (!ItemsFoundArray[6]) {
+            ItemsFoundArray[6] = true;
             //  if (!isHelmetEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -593,6 +652,7 @@ function dropItems() {
                 $('#itemtext').text("You found Mindshield! Intelligence +3!");
             }
             uniqueItemsFound += 1;
+            ItemCollectionArray[6] = "Mindshield";
             document.getElementById("helmetbrick").innerHTML = "Mindshield";
             wis += 3;
             // isHelmetEquipped = true;
@@ -601,8 +661,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 7) {
-        if (!found7) {
-            found7 = true;
+        if (!ItemsFoundArray[7]) {
+            ItemsFoundArray[7] = true;
             // if (!isArmorEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -610,6 +670,7 @@ function dropItems() {
                 $('#itemtext').text("You found Leather Jib! Luck +3!");
             }
             uniqueItemsFound += 1;
+            ItemCollectionArray[7] = "Leather Jib";
             document.getElementById("armorbrick").innerHTML = "Leather Jib";
             luck += 3;
             // isArmorEquipped = true;
@@ -618,8 +679,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 8) {
-        if (!found8) {
-            found8 = true;
+        if (!ItemsFoundArray[8]) {
+            ItemsFoundArray[8] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -628,6 +689,7 @@ function dropItems() {
             }
             document.getElementById("amuletbrick").innerHTML = "Skullchain";
             uniqueItemsFound += 1;
+            ItemCollectionArray[8] = "Skullchain";
             str += 3;
             // isAmuletEquipped = true;
             updatePage();
@@ -635,8 +697,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 9) {
-        if (!found9) {
-            found9 = true;
+        if (!ItemsFoundArray[9]) {
+            ItemsFoundArray[9] = true;
             // if (!isWeaponEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -645,6 +707,7 @@ function dropItems() {
             }
             document.getElementById("weaponbrick").innerHTML = "Manasphere";
             uniqueItemsFound += 1;
+            ItemCollectionArray[9] = "Manasphere";
             wis += 4;
             // isWeaponEquipped = true;
             updatePage();
@@ -652,8 +715,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 10) {
-        if (!found10) {
-            found10 = true;
+        if (!ItemsFoundArray[10]) {
+            ItemsFoundArray[10] = true;
             //  if (!isArmorEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -662,6 +725,7 @@ function dropItems() {
             }
             document.getElementById("armorbrick").innerHTML = "Mithril Plate";
             uniqueItemsFound += 1;
+            ItemCollectionArray[10] = "Mithril Plate";
             str += 4;
             // isArmorEquipped = true;
             updatePage();
@@ -669,8 +733,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 11) {
-        if (!found11) {
-            found11 = true;
+        if (!ItemsFoundArray[11]) {
+            ItemsFoundArray[11] = true;
             // if (!isHelmetEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -679,6 +743,7 @@ function dropItems() {
             }
             document.getElementById("helmetbrick").innerHTML = "Cat Ears";
             uniqueItemsFound += 1;
+            ItemCollectionArray[11] = "Cat Ears"
             luck += 4;
             // isHelmetEquipped = true;
             updatePage();
@@ -686,8 +751,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 12) {
-        if (!found12) {
-            found12 = true;
+        if (!ItemsFoundArray[12]) {
+            ItemsFoundArray[12] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -696,6 +761,7 @@ function dropItems() {
             }
             document.getElementById("amuletbrick").innerHTML = "Twisted Coven";
             uniqueItemsFound += 1;
+            ItemCollectionArray[12] = "Twisted Coven";
             dex += 4;
             // isAmuletEquipped = true;
             updatePage();
@@ -703,8 +769,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 13) {
-        if (!found13) {
-            found13 = true;
+        if (!ItemsFoundArray[13]) {
+            ItemsFoundArray[13] = true;
             //  if (!isWeaponEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -713,6 +779,7 @@ function dropItems() {
             }
             document.getElementById("weaponbrick").innerHTML = "Handwarmers";
             uniqueItemsFound += 1;
+            ItemCollectionArray[13] = "Handwarmers"
             luck += 2;
             // isWeaponEquipped = true;
             updatePage();
@@ -720,8 +787,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 14) {
-        if (!found14) {
-            found14 = true;
+        if (!ItemsFoundArray[14]) {
+            ItemsFoundArray[14] = true;
             //  if (!isArmorEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -730,6 +797,7 @@ function dropItems() {
             }
             document.getElementById("armorbrick").innerHTML = "Magecage";
             uniqueItemsFound += 1;
+            ItemCollectionArray[14] = "Magecage";
             wis += 2;
             //isArmorEquipped = true;
             updatePage();
@@ -737,8 +805,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 15) {
-        if (!found15) {
-            found15 = true;
+        if (!ItemsFoundArray[15]) {
+            ItemsFoundArray[15] = true;
             // if (!isHelmetEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -747,6 +815,7 @@ function dropItems() {
             }
             document.getElementById("helmetbrick").innerHTML = "Demon Skull";
             uniqueItemsFound += 1;
+            ItemCollectionArray[15] = "Demon Skull";
             str += 2;
             // isHelmetEquipped = true;
             updatePage();
@@ -754,8 +823,8 @@ function dropItems() {
         //  }
     }
     if (itemRoll == 16) {
-        if (!found16) {
-            found16 = true;
+        if (!ItemsFoundArray[16]) {
+            ItemsFoundArray[16] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -764,6 +833,7 @@ function dropItems() {
             }
             document.getElementById("amuletbrick").innerHTML = "Aethercrest";
             uniqueItemsFound += 1;
+            ItemCollectionArray[16] = "Aethercrest";
             wis += 2;
             // isAmuletEquipped = true;
             updatePage();
@@ -771,8 +841,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 17) {
-        if (!found17) {
-            found17 = true;
+        if (!ItemsFoundArray[17]) {
+            ItemsFoundArray[17] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -781,6 +851,7 @@ function dropItems() {
             }
             document.getElementById("amuletbrick").innerHTML = "Ancient Pact";
             uniqueItemsFound += 1;
+            ItemCollectionArray[17] = "Ancient Pact";
             str += 3;
             dex += 3;
             wis += 3;
@@ -791,8 +862,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 18) {
-        if (!found18) {
-            found18 = true;
+        if (!ItemsFoundArray[18]) {
+            ItemsFoundArray[18] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -801,6 +872,7 @@ function dropItems() {
             }
             document.getElementById("weaponbrick").innerHTML = "Razorfist";
             uniqueItemsFound += 1;
+            ItemCollectionArray[18] = "Razorfist";
             str += 2;
             dex += 2;
             // isAmuletEquipped = true;
@@ -809,8 +881,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 19) {
-        if (!found19) {
-            found19 = true;
+        if (!ItemsFoundArray[19]) {
+            ItemsFoundArray[19] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -819,6 +891,7 @@ function dropItems() {
             }
             document.getElementById("helmetbrick").innerHTML = "Time Hat";
             uniqueItemsFound += 1;
+            ItemCollectionArray[19] = "Time Hat";
             wis += 2;
             luck += 2;
             // isAmuletEquipped = true;
@@ -827,8 +900,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 20) {
-        if (!found20) {
-            found20 = true;
+        if (!ItemsFoundArray[20]) {
+            ItemsFoundArray[20] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -837,6 +910,7 @@ function dropItems() {
             }
             document.getElementById("armorbrick").innerHTML = "Angel Fortress";
             uniqueItemsFound += 1;
+            ItemCollectionArray[20] = "Angel Fortress";
             str += 3;
             luck += 1;
             // isAmuletEquipped = true;
@@ -845,8 +919,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 21) {
-        if (!found21) {
-            found21 = true;
+        if (!ItemsFoundArray[21]) {
+            ItemsFoundArray[21] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -855,6 +929,7 @@ function dropItems() {
             }
             document.getElementById("weaponbrick").innerHTML = "Eldrich Tome";
             uniqueItemsFound += 1;
+            ItemCollectionArray[21] = "Eldrich Tome";
             wis += 7
             //  isAmuletEquipped = true;
             updatePage();
@@ -862,8 +937,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 22) {
-        if (!found22) {
-            found22 = true;
+        if (!ItemsFoundArray[22]) {
+            ItemsFoundArray[22] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -872,6 +947,7 @@ function dropItems() {
             }
             document.getElementById("helmetbrick").innerHTML = "Stickygort";
             uniqueItemsFound += 1;
+            ItemCollectionArray[22] = "Stickygort";
 
             luck += 1;
             // isAmuletEquipped = true;
@@ -880,8 +956,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 23) {
-        if (!found23) {
-            found23 = true;
+        if (!ItemsFoundArray[23]) {
+            ItemsFoundArray[23] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -890,6 +966,7 @@ function dropItems() {
             }
             document.getElementById("amuletbrick").innerHTML = "Force Totem";
             uniqueItemsFound += 1;
+            ItemCollectionArray[23] = "Force Totem";
             wis += 3;
             dex += 1;
             //  isAmuletEquipped = true;
@@ -898,8 +975,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 24) {
-        if (!found24) {
-            found24 = true;
+        if (!ItemsFoundArray[24]) {
+            ItemsFoundArray[24] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -908,6 +985,7 @@ function dropItems() {
             }
             document.getElementById("armorbrick").innerHTML = "Two Chains";
             uniqueItemsFound += 1;
+            ItemCollectionArray[24] = "Two Chains";
             str += 2;
             luck += 2;
             // isAmuletEquipped = true;
@@ -916,8 +994,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 25) {
-        if (!found25) {
-            found25 = true;
+        if (!ItemsFoundArray[25]) {
+            ItemsFoundArray[25] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -926,6 +1004,7 @@ function dropItems() {
             }
             document.getElementById("weaponbrick").innerHTML = "Bonusfingers";
             uniqueItemsFound += 1;
+            ItemCollectionArray[25] = "Bonusfingers";
             dex -= 1;
             luck += 7;
             //  isAmuletEquipped = true;
@@ -934,8 +1013,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 26) {
-        if (!found26) {
-            found26 = true;
+        if (!ItemsFoundArray[26]) {
+            ItemsFoundArray[26] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -944,6 +1023,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Quickboots";
             uniqueItemsFound += 1;
+            ItemCollectionArray[26] = "Quickboots";
             dex += 3;
             //  isAmuletEquipped = true;
             updatePage();
@@ -951,8 +1031,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 27) {
-        if (!found27) {
-            found27 = true;
+        if (!ItemsFoundArray[27]) {
+            ItemsFoundArray[27] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -961,6 +1041,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Solidfoot";
             uniqueItemsFound += 1;
+            ItemCollectionArray[27] = "Solidfoot";
             str += 3;
             //  isAmuletEquipped = true;
             updatePage();
@@ -968,8 +1049,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 28) {
-        if (!found28) {
-            found28 = true;
+        if (!ItemsFoundArray[28]) {
+            ItemsFoundArray[28] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -978,6 +1059,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Bonustoes";
             uniqueItemsFound += 1;
+            ItemCollectionArray[28] = "Bonustoes";
             dex += 1;
             luck += 4;
             //  isAmuletEquipped = true;
@@ -986,8 +1068,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 29) {
-        if (!found29) {
-            found29 = true;
+        if (!ItemsFoundArray[29]) {
+            ItemsFoundArray[29] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -996,6 +1078,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Aero Treads";
             uniqueItemsFound += 1;
+            ItemCollectionArray[29] = "Aero Treads";
             dex += 1;
             wis += 3;
             //  isAmuletEquipped = true;
@@ -1004,8 +1087,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 30) {
-        if (!found30) {
-            found30 = true;
+        if (!ItemsFoundArray[30]) {
+            ItemsFoundArray[30] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1014,6 +1097,7 @@ function dropItems() {
             }
             document.getElementById("weaponbrick").innerHTML = "Great Axe";
             uniqueItemsFound += 1;
+            ItemCollectionArray[30] = "Great Axe";
             dex -= 3;
             str += 10;
             //  isAmuletEquipped = true;
@@ -1022,8 +1106,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 31) {
-        if (!found31) {
-            found31 = true;
+        if (!ItemsFoundArray[31]) {
+            ItemsFoundArray[31] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1032,6 +1116,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Girdlehurt";
             uniqueItemsFound += 1;
+            ItemCollectionArray[31] = "Girdlehurt";
             luck += 1;
             str += 1;
             //  isAmuletEquipped = true;
@@ -1040,8 +1125,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 32) {
-        if (!found32) {
-            found32 = true;
+        if (!ItemsFoundArray[32]) {
+            ItemsFoundArray[32] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1050,6 +1135,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Dazzle Sash";
             uniqueItemsFound += 1;
+            ItemCollectionArray[32] = "Dazzle Sash";
             luck += 4;
             //  isAmuletEquipped = true;
             updatePage();
@@ -1057,8 +1143,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 33) {
-        if (!found33) {
-            found33 = true;
+        if (!ItemsFoundArray[33]) {
+            ItemsFoundArray[33] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1067,6 +1153,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Spirit Wrap";
             uniqueItemsFound += 1;
+            ItemCollectionArray[33] = "Spirit Wrap";
             wis += 1;
             luck += 1;
             //  isAmuletEquipped = true;
@@ -1075,8 +1162,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 34) {
-        if (!found34) {
-            found34 = true;
+        if (!ItemsFoundArray[34]) {
+            ItemsFoundArray[34] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1085,6 +1172,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Belt from Beyond";
             uniqueItemsFound += 1;
+            ItemCollectionArray[34] = "Belt from Beyond";
             str -= 2;
             wis += 6;
             //  isAmuletEquipped = true;
@@ -1093,8 +1181,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 35) {
-        if (!found35) {
-            found35 = true;
+        if (!ItemsFoundArray[35]) {
+            ItemsFoundArray[35] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1103,6 +1191,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Waist of Time";
             uniqueItemsFound += 1;
+            ItemCollectionArray[35] = "Waist of Time";
             wis += 4;
             luck += 4;
             //  isAmuletEquipped = true;
@@ -1111,8 +1200,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 36) {
-        if (!found36) {
-            found36 = true;
+        if (!ItemsFoundArray[36]) {
+            ItemsFoundArray[36] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1121,6 +1210,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Nasty Pants";
             uniqueItemsFound += 1;
+            ItemCollectionArray[36] = "Nasty Pants";
             luck -= 1;
             str += 3;
             //  isAmuletEquipped = true;
@@ -1129,8 +1219,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 37) {
-        if (!found37) {
-            found37 = true;
+        if (!ItemsFoundArray[37]) {
+            ItemsFoundArray[37] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1139,6 +1229,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Studded Trousers";
             uniqueItemsFound += 1;
+            ItemCollectionArray[37] = "Studded Trousers";
             dex += 1;
             str += 1;
             //  isAmuletEquipped = true;
@@ -1147,8 +1238,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 38) {
-        if (!found38) {
-            found38 = true;
+        if (!ItemsFoundArray[38]) {
+            ItemsFoundArray[38] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1157,6 +1248,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Ultra Jeggings";
             uniqueItemsFound += 1;
+            ItemCollectionArray[38] = "Ultra Jeggings";
             luck += 2;
             dex += 1;
             //  isAmuletEquipped = true;
@@ -1165,8 +1257,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 39) {
-        if (!found39) {
-            found39 = true;
+        if (!ItemsFoundArray[39]) {
+            ItemsFoundArray[39] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1175,6 +1267,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Great Axe";
             uniqueItemsFound += 1;
+            ItemCollectionArray[39] = "Shadow Leggings";
             dex += 2;
             wis += 10;
             //  isAmuletEquipped = true;
@@ -1183,8 +1276,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 40) {
-        if (!found40) {
-            found40 = true;
+        if (!ItemsFoundArray[40]) {
+            ItemsFoundArray[40] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1193,6 +1286,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Ironkilt";
             uniqueItemsFound += 1;
+            ItemCollectionArray[40] = "Ironkilt";
             dex -= 1;
             str += 4;
             //  isAmuletEquipped = true;
@@ -1201,8 +1295,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 41) {
-        if (!found41) {
-            found41 = true;
+        if (!ItemsFoundArray[41]) {
+            ItemsFoundArray[41] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1211,6 +1305,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Spikewall";
             uniqueItemsFound += 1;
+            ItemCollectionArray[41] = "Spikewall";
             dex += 1;
             str += 3;
             //  isAmuletEquipped = true;
@@ -1219,8 +1314,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 42) {
-        if (!found42) {
-            found42 = true;
+        if (!ItemsFoundArray[42]) {
+            ItemsFoundArray[42] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1229,6 +1324,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Wooden Shield";
             uniqueItemsFound += 1;
+            ItemCollectionArray[42] = "Wooden Shield";
             dex += 2;
             str += 11;
             //  isAmuletEquipped = true;
@@ -1237,8 +1333,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 43) {
-        if (!found43) {
-            found43 = true;
+        if (!ItemsFoundArray[43]) {
+            ItemsFoundArray[43] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1247,6 +1343,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Mystic Orb";
             uniqueItemsFound += 1;
+            ItemCollectionArray[43] = "Mystic Orb";
             str -= 1;
             wis += 7;
             //  isAmuletEquipped = true;
@@ -1255,8 +1352,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 44) {
-        if (!found44) {
-            found44 = true;
+        if (!ItemsFoundArray[44]) {
+            ItemsFoundArray[44] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1265,6 +1362,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Backup Rope";
             uniqueItemsFound += 1;
+            ItemCollectionArray[44] = "Backup Rope";
             dex += 4;
             wis -= 1;
             //  isAmuletEquipped = true;
@@ -1273,8 +1371,8 @@ function dropItems() {
         // }
     }
     if (itemRoll == 45) {
-        if (!found45) {
-            found45 = true;
+        if (!ItemsFoundArray[45]) {
+            ItemsFoundArray[45] = true;
             //  if (!isAmuletEquipped) {
             if (!disableItemPopups) {
                 document.getElementById("itemwindow").className = "itemPopup";
@@ -1283,6 +1381,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Stormnet";
             uniqueItemsFound += 1;
+            ItemCollectionArray[45] = "Stormnet";
             dex += 2;
             wis += 2;
             //  isAmuletEquipped = true;
@@ -2125,7 +2224,7 @@ function autoPlayGame() {
             addInt();
         }
     }
-    if (cHP >= (maxHP/6) && isAutoPlaying == true) {
+    if (isAutoPlaying == true) {
         if (cMP >= 1) {
             magicAttack()
         }

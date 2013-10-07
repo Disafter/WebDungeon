@@ -12,16 +12,17 @@
         <div id="namebox" class="headerbox">
             Nameless Hero
         </div>
-        <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
-        <div id="loginbox" class="headerbox">
-            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="logIn()">Start</button>
-            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="signUp()">Sign Up</button>
-        </div>
         <div id="strdexbox" class="headerbox">Strength: 0 &nbsp;&nbsp;&nbsp;&nbsp;Dexterity: 0</div>
+       
+        <div id="loginbox" class="headerbox">
+            <button style="font-size: 22px; font-weight: bold; width: 290px; height: 26px; font-family: 'Gentium Book Basic'; color: #830000" onclick="logIn()">Enter The Dungeon</button>
+        </div>
+        
+         <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
         <div id="intluckbox" class="headerbox">Intelligence: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
         <div class="headerbox">
-            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="settings()">Settings</button>
-            <button style="font-size: 29px; font-weight: bold; width: 145px; height: 35px; font-family: 'Gentium Book Basic'; color: darkred" onclick="about()">About</button>
+            <button style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" onclick="settings()">Settings</button>
+            <button style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" onclick="about()">Item List</button>
         </div>
 
 
@@ -59,10 +60,12 @@
             </div>
 
             <div id="autobrick" class="bricks">
-                <button id="autobutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="setAutoPlay()">Autoplay</button>
+                <button id="autobutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="setAutoPlay()">Autoplay</button>
             </div>
-            <div id="popupsbrick" class="bricks"><button id="popupsbutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button></div>
-            <div id="itemheader" style="font-size: 18px" class="bricks"></div>
+            <div id="popupsbrick" class="bricks"><button id="popupsbutton" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button></div>
+            <div class="bricks">
+                 <button id="itemheader" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #530005" onclick="showItems()">Items Found</button>
+            </div>
              <div id="helmetbrick" class="bricks"></div>
             <div id="amuletbrick" class="bricks"></div>
             <div id="weaponbrick" class="bricks"></div>
@@ -74,6 +77,9 @@
             
 
         </div>
+        <div class="monsterbg">
+        <img src="dungeon.jpg" />
+    </div>
         <div class="rightbar">
             <div id="floorbrick" class="bricks">Entrance</div>
             <div id="remainingbrick" class="bricks"></div>
@@ -98,29 +104,27 @@
             </div>
 
         </div>
-
-    </div>
-
-
-
-    <div class="monsterbg">
-        <img src="dungeon.jpg" />
-    </div>
-    <div class="attackbuttoncontainer">
+         <div class="attackbuttoncontainer">
         <div class="actionbuttons meleeattackbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FF6633" onclick="meleeAttack()">Attack</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #FF6633" onclick="meleeAttack()">Attack</button>
         </div>
         <div class="actionbuttons mpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #3399FF" onclick="magicAttack()">Fireball</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #3399FF" onclick="magicAttack()">Fireball</button>
         </div>
         <div class="actionbuttons xpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #FFCC33" onclick="rangedAttack()">Stab</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #FFCC33" onclick="rangedAttack()">Stab</button>
         </div>
         <div class="actionbuttons runbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; color: #ff6a00" onclick="runAway()">Run</button>
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #ff6a00" onclick="runAway()">Run</button>
         </div>
     </div>
     </div>
+
+
+
+    
+   
+    
     <div id="itemwindow" class="itemPopup hidden">
         <h5 id="itemtext"></h5>
         <img id="chestimage" class="chest" src="chest.png" />
