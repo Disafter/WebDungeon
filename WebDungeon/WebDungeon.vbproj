@@ -84,10 +84,16 @@
     <Content Include="chest.png" />
     <Content Include="dragon.jpg" />
     <Content Include="dungeon.jpg" />
+    <Content Include="Gruntfile.js" />
+    <Content Include="jquery-1.9.1.js" />
+    <Content Include="jquery-ui-1.10.3.custom.css" />
+    <Content Include="jquery-ui-1.10.3.custom.js" />
+    <Content Include="jquery-ui.css" />
+    <Content Include="ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="ui-bg_highlight-soft_75_cccccc_1x100.png" />
     <Content Include="wall.jpg" />
     <Content Include="defeated.html" />
     <Content Include="jquery.js" />
-    <Content Include="index.css" />
     <Content Include="index.html" />
     <Content Include="index.js" />
     <Content Include="Web.config" />

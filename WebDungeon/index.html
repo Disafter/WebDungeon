@@ -4,21 +4,39 @@
 <head>
     <meta charset="utf-8" />
     <title>The Terrible Dungeon</title>
-    <link href="index.css" rel="stylesheet"></link>
+
+    <script src="jquery.js"></script>
+    <script src="index.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    
+    <link rel="stylesheet" href="jQuery-ui.css" />
+
+    <style>
+        #sortable1 li, #sortable2 li {
+            margin: 0 auto;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 60px;
+        }
+    </style>
+
 </head>
 <body>
+
+
 
     <div class="gameframe">
         <div id="namebox" class="headerbox">
             Nameless Hero
         </div>
         <div id="strdexbox" class="headerbox">Strength: 0 &nbsp;&nbsp;&nbsp;&nbsp;Dexterity: 0</div>
-       
+
         <div id="loginbox" class="headerbox">
             <button style="font-size: 22px; font-weight: bold; width: 290px; height: 26px; font-family: 'Gentium Book Basic'; color: #830000" onclick="logIn()">Enter The Dungeon</button>
         </div>
-        
-         <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
+
+        <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
         <div id="intluckbox" class="headerbox">Intelligence: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
         <div class="headerbox">
             <button style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" onclick="settings()">Settings</button>
@@ -62,24 +80,34 @@
             <div id="autobrick" class="bricks">
                 <button id="autobutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="setAutoPlay()">Autoplay</button>
             </div>
-            <div id="popupsbrick" class="bricks"><button id="popupsbutton" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button></div>
-            <div class="bricks">
-                 <button id="itemheader" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #530005" onclick="showItems()">Items Found</button>
+
+            <div id="popupsbrick" class="bricks">
+
+
+                <button id="popupsbutton1" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button>
+
+
+
             </div>
-             <div id="helmetbrick" class="bricks"></div>
+
+
+            <div class="bricks">
+                <button id="itemheader" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #530005" onclick="showItems()">Items Found</button>
+            </div>
+            <div id="helmetbrick" class="bricks"></div>
             <div id="amuletbrick" class="bricks"></div>
             <div id="weaponbrick" class="bricks"></div>
             <div id="shieldbrick" class="bricks"></div>
             <div id="armorbrick" class="bricks"></div>
-             <div id="beltbrick" class="bricks"></div>
-             <div id="pantsbrick" class="bricks"></div>
+            <div id="beltbrick" class="bricks"></div>
+            <div id="pantsbrick" class="bricks"></div>
             <div id="bootsbrick" class="bricks"></div>
-            
+
 
         </div>
         <div class="monsterbg">
-        <img src="dungeon.jpg" />
-    </div>
+            <img src="dungeon.jpg" />
+        </div>
         <div class="rightbar">
             <div id="floorbrick" class="bricks">Entrance</div>
             <div id="remainingbrick" class="bricks"></div>
@@ -89,9 +117,9 @@
             <div id="monsteraccuracybox" class="bricks"></div>
             <div id="dodgechancebox" class="bricks"></div>
             <div id="dodgenotice" class="bricks"></div>
-             
-             
-             <div id="fordamagebrick" class="bricks"></div>
+
+
+            <div id="fordamagebrick" class="bricks"></div>
             <div class="bricks"></div>
             <div id="elixirbrick" class="bricks"></div>
             <div id="useelixirbrick" class="bricks">
@@ -104,34 +132,121 @@
             </div>
 
         </div>
-         <div class="attackbuttoncontainer">
-        <div class="actionbuttons meleeattackbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #FF6633" onclick="meleeAttack()">Attack</button>
-        </div>
-        <div class="actionbuttons mpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #3399FF" onclick="magicAttack()">Fireball</button>
-        </div>
-        <div class="actionbuttons xpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #FFCC33" onclick="rangedAttack()">Stab</button>
-        </div>
-        <div class="actionbuttons runbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic';vertical-align:top; color: #ff6a00" onclick="runAway()">Run</button>
+        <div class="attackbuttoncontainer">
+            <div class="actionbuttons meleeattackbutton">
+                <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FF6633" onclick="meleeAttack()">Attack</button>
+            </div>
+            <div class="actionbuttons mpbar">
+                <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #3399FF" onclick="magicAttack()">Fireball</button>
+            </div>
+            <div class="actionbuttons xpbar">
+                <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FFCC33" onclick="rangedAttack()">Stab</button>
+            </div>
+            <div class="actionbuttons runbutton">
+                <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #ff6a00" onclick="runAway()">Run</button>
+            </div>
         </div>
     </div>
+
+
+    <div id="tabs" style="width: 528px; margin: auto; display: block">
+        <ul>
+            <li><a href="#tabs-1">Helmets</a></li>
+            <li><a href="#tabs-2">Weapons</a></li>
+            <li><a href="#tabs-3">Amulets</a></li>
+            <li><a href="#tabs-4">Shields</a></li>
+            <li><a href="#tabs-5">Armor</a></li>
+            <li><a href="#tabs-6">Pants</a></li>
+            <li><a href="#tabs-7">Belts</a></li>
+            <li><a href="#tabs-8">Boots</a></li>
+        </ul>
+        <div id="tabs-1">
+            <ul id="helmet" class="connectedSortable ui-helper-reset">
+                <li id="helmet1" class="ui-state-default">Not Yet Found!</li>
+                <li id="helmet2" class="ui-state-default">Not Yet Found!</li>
+                <li id="helmet3" class="ui-state-default">Not Yet Found!</li>
+                <li id="helmet4" class="ui-state-default">Not Yet Found!</li>
+                <li id="helmet5" class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
+        <div id="tabs-2">
+            <ul id="weapon" class="connectedSortable ui-helper-reset">
+                <li id="weapon1" class="ui-state-default">Not Yet Found!</li>
+                <li id="weapon2" class="ui-state-default">Not Yet Found!</li>
+                <li id="weapon3" class="ui-state-default">Not Yet Found!</li>
+                <li id="weapon4" class="ui-state-default">Not Yet Found!</li>
+                <li id="weapon5" class="ui-state-default">Not Yet Found!</li>
+                <li id="weapon6" class="ui-state-default">Not Yet Found!</li>
+                <li id="weapon7" class="ui-state-default">Not Yet Found!</li>
+                <li id="weapon8" class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
+        <div id="tabs-3">
+            <ul id="amulet" class="connectedSortable ui-helper-reset">
+                <li id="amulet1" class="ui-state-default">Not Yet Found!</li>
+                <li id="amulet2" class="ui-state-default">Not Yet Found!</li>
+                <li id="amulet3" class="ui-state-default">Not Yet Found!</li>
+                <li id="amulet4" class="ui-state-default">Not Yet Found!</li>
+                <li id="amulet5" class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
+        <div id="tabs-4">
+            <ul id="shield" class="connectedSortable ui-helper-reset">
+                <li id="shield1" class="ui-state-default">Not Yet Found!</li>
+                <li id="shield2" class="ui-state-default">Not Yet Found!</li>
+                <li id="shield3" class="ui-state-default">Not Yet Found!</li>
+                <li id="shield4" class="ui-state-default">Not Yet Found!</li>
+                <li id="shield5" class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
+        <div id="tabs-5">
+            <ul id="armor" class="connectedSortable ui-helper-reset">
+                <li id="armor1" class="ui-state-default">Not Yet Found!</li>
+                <li id="armor2" class="ui-state-default">Not Yet Found!</li>
+                <li id="armor3" class="ui-state-default">Not Yet Found!</li>
+                <li id="armor4" class="ui-state-default">Not Yet Found!</li>
+                <li id="armor5"class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
+        <div id="tabs-6">
+            <ul id="pants" class="connectedSortable ui-helper-reset">
+                <li id="pants1" class="ui-state-default">Not Yet Found!</li>
+                <li id="pants2" class="ui-state-default">Not Yet Found!</li>
+                <li id="pants3" class="ui-state-default">Not Yet Found!</li>
+                <li id="pants4" class="ui-state-default">Not Yet Found!</li>
+                <li id="pants5" class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
+        <div id="tabs-7">
+            <ul id="belt" class="connectedSortable ui-helper-reset">
+                <li id="belt1" class="ui-state-default">Not Yet Found!</li>
+                <li id="belt2" class="ui-state-default">Not Yet Found!</li>
+                <li id="belt3" class="ui-state-default">Not Yet Found!</li>
+                <li id="belt4" class="ui-state-default">Not Yet Found!</li>
+                <li id="belt5" class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
+        <div id="tabs-8">
+            <ul id="boots" class="connectedSortable ui-helper-reset">
+                <li id="boots1" class="ui-state-default">Not Yet Found!</li>
+                <li id="boots2" class="ui-state-default">Not Yet Found!</li>
+                <li id="boots3" class="ui-state-default">Not Yet Found!</li>
+                <li id="boots4" class="ui-state-default">Not Yet Found!</li>
+                <li id="boots5" class="ui-state-default">Not Yet Found!</li>
+            </ul>
+        </div>
     </div>
 
 
 
-    
-   
-    
+
     <div id="itemwindow" class="itemPopup hidden">
         <h5 id="itemtext"></h5>
         <img id="chestimage" class="chest" src="chest.png" />
     </div>
     <div id="itembg" class="itemPopupBG hidden"></div>
 
-    <script src="jquery.js"></script>
-    <script src="index.js"></script>
+
+
 </body>
 </html>

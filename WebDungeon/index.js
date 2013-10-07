@@ -132,7 +132,8 @@ function meleeAttack() {
                 updatePage();
                 if (monstersLeft <= 0) {
                     currentFloor += 1;
-                    monstersLeft = currentFloor + 2;
+                    monstersLeft = Math.ceil(currentFloor * (.5 * currentFloor));
+                    updatePage();
                 }
                 if (experience >= 100) {
                     experience = 0;
@@ -177,7 +178,8 @@ function magicAttack() {
                     updatePage();
                     if (monstersLeft <= 0) {
                         currentFloor += 1;
-                        monstersLeft = currentFloor + 2;
+                        monstersLeft = Math.ceil(currentFloor * (.5 * currentFloor));
+                        updatePage();
                     }
                     if (experience >= 100) {
                         experience = 0;
@@ -224,7 +226,8 @@ function rangedAttack() {
                 updatePage();
                 if (monstersLeft <= 0) {
                     currentFloor += 1;
-                    monstersLeft = currentFloor + 2;
+                    monstersLeft = Math.ceil(currentFloor * (.5 * currentFloor));
+                    updatePage();
                 }
                 if (experience >= 100) {
                     experience = 0;
@@ -450,8 +453,8 @@ function monsterAttack() {
     updatePage();
     if (dodgeRoll <= (75 - (.25 * dex) + (.2 * currentFloor)) * .01) {
         document.getElementById("dodgenotice").innerHTML = "You were hit";
-        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((1 * currentFloor * dodgeRoll))) + " damage!"
-        cHP -= (Math.ceil((.1 * currentFloor * dodgeRoll)));
+        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.3 * currentFloor * dodgeRoll))) + " damage!"
+        cHP -= (Math.ceil((.3 * currentFloor * dodgeRoll)));
         updatePage();
     }
     else {
@@ -484,8 +487,8 @@ function monsterAttackVsRanged() {
     updatePage();
     if (dodgeRoll <= (75 - (.30 * dex) + (.2 * currentFloor)) * .007) {
         document.getElementById("dodgenotice").innerHTML = "You were hit";
-        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((1 * currentFloor * dodgeRoll))) + " damage!"
-        cHP -= (Math.floor((1 * currentFloor * dodgeRoll)));
+        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.3 * currentFloor * dodgeRoll))) + " damage!"
+        cHP -= (Math.ceil((.3 * currentFloor * dodgeRoll)));
         updatePage();
         document.getElementById("dodgechancebox").innerHTML = "Dodge:" + (100 - (((75 - (.30 * dex) + (.2 * currentFloor)))) * .7).toFixed(0) + "%";
     }
@@ -565,6 +568,7 @@ function dropItems() {
             uniqueItemsFound += 1;
             ItemCollectionArray[1] = "Excalibur";
             document.getElementById("weaponbrick").innerHTML = "Excalibur";
+            $("#weapon1").text("Excalibur");
             str += 5;
             //isWeaponEquipped = true;
             ItemsFoundArray[1] = true;
@@ -639,6 +643,7 @@ function dropItems() {
             uniqueItemsFound += 1;
             ItemCollectionArray[5] = "Great Bow";
             document.getElementById("weaponbrick").innerHTML = "Great Bow";
+            $("#weapon2").text("Great Bow");
             dex += 5;
             //isWeaponEquipped = true;
             updatePage();
@@ -710,6 +715,7 @@ function dropItems() {
             }
             document.getElementById("weaponbrick").innerHTML = "Manasphere";
             uniqueItemsFound += 1;
+            $("#weapon3").text("Manasphere");
             ItemCollectionArray[9] = "Manasphere";
             wis += 4;
             // isWeaponEquipped = true;
@@ -781,6 +787,7 @@ function dropItems() {
                 $('#itemtext').text("You found Handwarmers! Luck +2!");
             }
             document.getElementById("weaponbrick").innerHTML = "Handwarmers";
+            $("#weapon4").text("Handwarmers");
             uniqueItemsFound += 1;
             ItemCollectionArray[13] = "Handwarmers"
             luck += 2;
@@ -874,6 +881,7 @@ function dropItems() {
                 $('#itemtext').text("You found Razorfist! Str +2! Dex +2!");
             }
             document.getElementById("weaponbrick").innerHTML = "Razorfist";
+            $("#weapon5").text("Razorfist");
             uniqueItemsFound += 1;
             ItemCollectionArray[18] = "Razorfist";
             str += 2;
@@ -931,6 +939,7 @@ function dropItems() {
                 $('#itemtext').text("You found Eldrich Tome! Int +7!");
             }
             document.getElementById("weaponbrick").innerHTML = "Eldrich Tome";
+            $("#weapon6").text("Eldrich Tome");
             uniqueItemsFound += 1;
             ItemCollectionArray[21] = "Eldrich Tome";
             wis += 7
@@ -1006,6 +1015,7 @@ function dropItems() {
                 $('#itemtext').text("You found Bonusfingers! Dex -1! Luck +7!");
             }
             document.getElementById("weaponbrick").innerHTML = "Bonusfingers";
+            $("#weapon7").text("Bonusfingers");
             uniqueItemsFound += 1;
             ItemCollectionArray[25] = "Bonusfingers";
             dex -= 1;
@@ -1099,6 +1109,7 @@ function dropItems() {
                 $('#itemtext').text("You found Great Axe! Str +10! Dex -3!");
             }
             document.getElementById("weaponbrick").innerHTML = "Great Axe";
+            $("#weapon8").text("Great Axe");
             uniqueItemsFound += 1;
             ItemCollectionArray[30] = "Great Axe";
             dex -= 3;
@@ -1408,6 +1419,7 @@ function gamble() {
                 uniqueItemsFound += 1;
                 ItemCollectionArray[1] = "Excalibur";
                 document.getElementById("weaponbrick").innerHTML = "Excalibur";
+                $("#weapon1").text("Excalibur");
                 str += 5;
                 //isWeaponEquipped = true;
                 ItemsFoundArray[1] = true;
@@ -1482,6 +1494,7 @@ function gamble() {
                 uniqueItemsFound += 1;
                 ItemCollectionArray[5] = "Great Bow";
                 document.getElementById("weaponbrick").innerHTML = "Great Bow";
+                $("#weapon2").text("Great Bow");
                 dex += 5;
                 //isWeaponEquipped = true;
                 updatePage();
@@ -1553,6 +1566,7 @@ function gamble() {
                 }
                 document.getElementById("weaponbrick").innerHTML = "Manasphere";
                 uniqueItemsFound += 1;
+                $("#weapon3").text("Manasphere");
                 ItemCollectionArray[9] = "Manasphere";
                 wis += 4;
                 // isWeaponEquipped = true;
@@ -1624,6 +1638,7 @@ function gamble() {
                     $('#itemtext').text("You found Handwarmers! Luck +2!");
                 }
                 document.getElementById("weaponbrick").innerHTML = "Handwarmers";
+                $("#weapon4").text("Handwarmers");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[13] = "Handwarmers"
                 luck += 2;
@@ -1717,6 +1732,7 @@ function gamble() {
                     $('#itemtext').text("You found Razorfist! Str +2! Dex +2!");
                 }
                 document.getElementById("weaponbrick").innerHTML = "Razorfist";
+                $("#weapon5").text("Razorfist");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[18] = "Razorfist";
                 str += 2;
@@ -1774,6 +1790,7 @@ function gamble() {
                     $('#itemtext').text("You found Eldrich Tome! Int +7!");
                 }
                 document.getElementById("weaponbrick").innerHTML = "Eldrich Tome";
+                $("#weapon6").text("Eldrich Tome");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[21] = "Eldrich Tome";
                 wis += 7
@@ -1849,6 +1866,7 @@ function gamble() {
                     $('#itemtext').text("You found Bonusfingers! Dex -1! Luck +7!");
                 }
                 document.getElementById("weaponbrick").innerHTML = "Bonusfingers";
+                $("#weapon7").text("Bonusfingers");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[25] = "Bonusfingers";
                 dex -= 1;
@@ -1942,6 +1960,7 @@ function gamble() {
                     $('#itemtext').text("You found Great Axe! Str +10! Dex -3!");
                 }
                 document.getElementById("weaponbrick").innerHTML = "Great Axe";
+                $("#weapon8").text("Great Axe");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[30] = "Great Axe";
                 dex -= 3;
@@ -2309,3 +2328,24 @@ function togglePopups() {
 }
 
 $("#itemwindow").on("click", removeItemWindow);
+
+$(function () {
+    $("#helmet, #weapon", "#amulet", "$boots", "#shield", "#belt", "#pants", "#armor").sortable().disableSelection();
+
+    var $tabs = $("#tabs").tabs();
+
+    var $tab_items = $("ul:first li", $tabs).droppable({
+        accept: ".connectedSortable li",
+        hoverClass: "ui-state-hover",
+        drop: function (event, ui) {
+            var $item = $(this);
+            var $list = $($item.find("a").attr("href"))
+              .find(".connectedSortable");
+
+            ui.draggable.hide("slow", function () {
+                $tabs.tabs("option", "active", $tab_items.index($item));
+                $(this).appendTo($list).show("slow");
+            });
+        }
+    });
+});
