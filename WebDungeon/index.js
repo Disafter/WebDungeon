@@ -46,56 +46,6 @@ var wasAutoPlaying = false;
 var ItemsFoundArray = new Array(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
 var ItemCollectionArray = new Array();
 
-var found1 = false;
-var found2 = false;
-var found3 = false;
-var found4 = false;
-var found5 = false;
-var found6 = false;
-var found7 = false;
-var found8 = false;
-var found9 = false;
-var found10 = false;
-var found11 = false;
-var found12 = false;
-var found13 = false;
-var found14 = false;
-var found15 = false;
-var found16 = false;
-var found17 = false;
-var found18 = false;
-var found19 = false;
-var found20 = false;
-var found21 = false;
-var found22 = false;
-var found23 = false;
-var found24 = false;
-var found25 = false;
-var found26 = false;
-var found27 = false;
-var found28 = false;
-var found29 = false;
-var found30 = false;
-var found31 = false;
-var found32 = false;
-var found33 = false;
-var found34 = false;
-var found35 = false;
-var found36 = false;
-var found37 = false;
-var found38 = false;
-var found39 = false;
-var found40 = false;
-var found41 = false;
-var found42 = false;
-var found43 = false;
-var found44 = false;
-var found45 = false;
-var found46 = false;
-var found47 = false;
-var found48 = false;
-var found49 = false;
-var found50 = false;
 
 
 
@@ -588,6 +538,7 @@ function dropItems() {
             uniqueItemsFound += 1;
             ItemCollectionArray[2] = "Destiny Crown";
             document.getElementById("helmetbrick").innerHTML = "Destiny Crown";
+            $("#helmet1").text("Destiny Crown");
             dex += 4;
             //isHelmetEquipped = true;
             ItemsFoundArray[2] = true;
@@ -606,6 +557,7 @@ function dropItems() {
             uniqueItemsFound += 1;
             ItemCollectionArray[3] = "Shadow Cape";
             document.getElementById("armorbrick").innerHTML = "Shadow Cape";
+            $("#armor1").text("Shadow Cape");
             dex += 3;
             //isArmorEquipped = true;
             ItemsFoundArray[3] = true;
@@ -624,6 +576,7 @@ function dropItems() {
             uniqueItemsFound += 1;
             ItemCollectionArray[4] = "Goldcoil";
             document.getElementById("amuletbrick").innerHTML = "Goldcoil";
+            $("#amulet1").text("Goldcoil");
             luck += 5;
             //isAmuletEquipped = true;
             ItemsFoundArray[4] = true;
@@ -662,6 +615,7 @@ function dropItems() {
             uniqueItemsFound += 1;
             ItemCollectionArray[6] = "Mindshield";
             document.getElementById("helmetbrick").innerHTML = "Mindshield";
+            $("#helmet2").text("Mindshield");
             wis += 3;
             // isHelmetEquipped = true;
             updatePage();
@@ -680,6 +634,7 @@ function dropItems() {
             uniqueItemsFound += 1;
             ItemCollectionArray[7] = "Leather Jib";
             document.getElementById("armorbrick").innerHTML = "Leather Jib";
+            $("#armor2").text("Leather Jib");
             luck += 3;
             // isArmorEquipped = true;
             updatePage();
@@ -697,6 +652,7 @@ function dropItems() {
             }
             document.getElementById("amuletbrick").innerHTML = "Skullchain";
             uniqueItemsFound += 1;
+            $("#amulet2").text("Skullchain");
             ItemCollectionArray[8] = "Skullchain";
             str += 3;
             // isAmuletEquipped = true;
@@ -733,6 +689,7 @@ function dropItems() {
                 $('#itemtext').text("You found Mithril Plate! Strength +4");
             }
             document.getElementById("armorbrick").innerHTML = "Mithril Plate";
+            $("#armor3").text("Mithril Plate");
             uniqueItemsFound += 1;
             ItemCollectionArray[10] = "Mithril Plate";
             str += 4;
@@ -751,6 +708,7 @@ function dropItems() {
                 $('#itemtext').text("You found Cat Ears! Luck +4!");
             }
             document.getElementById("helmetbrick").innerHTML = "Cat Ears";
+            $("#helmet3").text("Cat Ears");
             uniqueItemsFound += 1;
             ItemCollectionArray[11] = "Cat Ears"
             luck += 4;
@@ -769,6 +727,7 @@ function dropItems() {
                 $('#itemtext').text("You found Twisted Coven! Dexterity +4");
             }
             document.getElementById("amuletbrick").innerHTML = "Twisted Coven";
+            $("#amulet3").text("Twisted Coven");
             uniqueItemsFound += 1;
             ItemCollectionArray[12] = "Twisted Coven";
             dex += 4;
@@ -807,6 +766,7 @@ function dropItems() {
             }
             document.getElementById("armorbrick").innerHTML = "Magecage";
             uniqueItemsFound += 1;
+            $("#armor4").text("Magecage");
             ItemCollectionArray[14] = "Magecage";
             wis += 2;
             //isArmorEquipped = true;
@@ -824,6 +784,7 @@ function dropItems() {
                 $('#itemtext').text("You found Demon Skull! Strength +2!");
             }
             document.getElementById("helmetbrick").innerHTML = "Demon Skull";
+            $("#helmet4").text("Demon Skull");
             uniqueItemsFound += 1;
             ItemCollectionArray[15] = "Demon Skull";
             str += 2;
@@ -842,6 +803,7 @@ function dropItems() {
                 $('#itemtext').text("You found Aethercrest! Intelligence +2!");
             }
             document.getElementById("amuletbrick").innerHTML = "Aethercrest";
+            $("#amulet4").text("Aethercrest");
             uniqueItemsFound += 1;
             ItemCollectionArray[16] = "Aethercrest";
             wis += 2;
@@ -861,6 +823,7 @@ function dropItems() {
             }
             document.getElementById("amuletbrick").innerHTML = "Ancient Pact";
             uniqueItemsFound += 1;
+            $("#amulet5").text("Ancient Pact");
             ItemCollectionArray[17] = "Ancient Pact";
             str += 3;
             dex += 3;
@@ -901,6 +864,7 @@ function dropItems() {
                 $('#itemtext').text("You found Time Hat! Int +2! Luck +2!");
             }
             document.getElementById("helmetbrick").innerHTML = "Time Hat";
+            $("#helmet5").text("Time Hat");
             uniqueItemsFound += 1;
             ItemCollectionArray[19] = "Time Hat";
             wis += 2;
@@ -920,6 +884,7 @@ function dropItems() {
                 $('#itemtext').text("You found Angel Fortress! Str +3! Luck +1!");
             }
             document.getElementById("armorbrick").innerHTML = "Angel Fortress";
+            $("#armor5").text("Angel Fortress");
             uniqueItemsFound += 1;
             ItemCollectionArray[20] = "Angel Fortress";
             str += 3;
@@ -958,6 +923,7 @@ function dropItems() {
                 $('#itemtext').text("You found Stickygort! Luck +1!");
             }
             document.getElementById("helmetbrick").innerHTML = "Stickygort";
+            $("#helmet6").text("Stickygort");
             uniqueItemsFound += 1;
             ItemCollectionArray[22] = "Stickygort";
 
@@ -977,6 +943,7 @@ function dropItems() {
                 $('#itemtext').text("You found Force Totem! Dex +1! Int +3!");
             }
             document.getElementById("amuletbrick").innerHTML = "Force Totem";
+            $("#amulet6").text("Force Totem");
             uniqueItemsFound += 1;
             ItemCollectionArray[23] = "Force Totem";
             wis += 3;
@@ -997,6 +964,7 @@ function dropItems() {
             }
             document.getElementById("armorbrick").innerHTML = "Two Chains";
             uniqueItemsFound += 1;
+            $("#armor6").text("Two Chains");
             ItemCollectionArray[24] = "Two Chains";
             str += 2;
             luck += 2;
@@ -1036,6 +1004,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Quickboots";
             uniqueItemsFound += 1;
+            $("#boots1").text("Quickboots");
             ItemCollectionArray[26] = "Quickboots";
             dex += 3;
             //  isAmuletEquipped = true;
@@ -1054,6 +1023,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Solidfoot";
             uniqueItemsFound += 1;
+            $("#boots2").text("Solidfoot");
             ItemCollectionArray[27] = "Solidfoot";
             str += 3;
             //  isAmuletEquipped = true;
@@ -1072,6 +1042,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Bonustoes";
             uniqueItemsFound += 1;
+            $("#boots3").text("Bonustoes");
             ItemCollectionArray[28] = "Bonustoes";
             dex += 1;
             luck += 4;
@@ -1091,6 +1062,7 @@ function dropItems() {
             }
             document.getElementById("bootsbrick").innerHTML = "Aero Treads";
             uniqueItemsFound += 1;
+            $("#boots4").text("Aero Treads");
             ItemCollectionArray[29] = "Aero Treads";
             dex += 1;
             wis += 3;
@@ -1130,6 +1102,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Girdlehurt";
             uniqueItemsFound += 1;
+            $("#belt1").text("Girdlehurt");
             ItemCollectionArray[31] = "Girdlehurt";
             luck += 1;
             str += 1;
@@ -1149,6 +1122,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Dazzle Sash";
             uniqueItemsFound += 1;
+            $("#belt2").text("Dazzle Sash");
             ItemCollectionArray[32] = "Dazzle Sash";
             luck += 4;
             //  isAmuletEquipped = true;
@@ -1167,6 +1141,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Spirit Wrap";
             uniqueItemsFound += 1;
+            $("#belt3").text("Spirit Wrap");
             ItemCollectionArray[33] = "Spirit Wrap";
             wis += 1;
             luck += 1;
@@ -1186,6 +1161,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Belt from Beyond";
             uniqueItemsFound += 1;
+            $("#belt4").text("Belt from Beyond");
             ItemCollectionArray[34] = "Belt from Beyond";
             str -= 2;
             wis += 6;
@@ -1205,6 +1181,7 @@ function dropItems() {
             }
             document.getElementById("beltbrick").innerHTML = "Waist of Time";
             uniqueItemsFound += 1;
+            $("#belt5").text("Waist of Time");
             ItemCollectionArray[35] = "Waist of Time";
             wis += 4;
             luck += 4;
@@ -1224,6 +1201,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Nasty Pants";
             uniqueItemsFound += 1;
+            $("#pants1").text("Nasty Pants");
             ItemCollectionArray[36] = "Nasty Pants";
             luck -= 1;
             str += 3;
@@ -1243,6 +1221,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Studded Trousers";
             uniqueItemsFound += 1;
+            $("#pants2").text("Studded Trousers");
             ItemCollectionArray[37] = "Studded Trousers";
             dex += 1;
             str += 1;
@@ -1262,6 +1241,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Ultra Jeggings";
             uniqueItemsFound += 1;
+            $("#pants3").text("Ultra Jeggings");
             ItemCollectionArray[38] = "Ultra Jeggings";
             luck += 2;
             dex += 1;
@@ -1279,8 +1259,9 @@ function dropItems() {
                 document.getElementById("itembg").className = "itemPopupBG";
                 $('#itemtext').text("You found Shadow Leggings! Int +1! Dex +2!");
             }
-            document.getElementById("pantsbrick").innerHTML = "Great Axe";
+            document.getElementById("pantsbrick").innerHTML = "Shadow Leggings";
             uniqueItemsFound += 1;
+            $("#pants4").text("Shadow Leggings");
             ItemCollectionArray[39] = "Shadow Leggings";
             dex += 2;
             wis += 10;
@@ -1300,6 +1281,7 @@ function dropItems() {
             }
             document.getElementById("pantsbrick").innerHTML = "Ironkilt";
             uniqueItemsFound += 1;
+            $("#pants5").text("Ironkilt");
             ItemCollectionArray[40] = "Ironkilt";
             dex -= 1;
             str += 4;
@@ -1319,6 +1301,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Spikewall";
             uniqueItemsFound += 1;
+            $("#shield1").text("Spikewall");
             ItemCollectionArray[41] = "Spikewall";
             dex += 1;
             str += 3;
@@ -1338,6 +1321,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Wooden Shield";
             uniqueItemsFound += 1;
+            $("#shield2").text("Wooden Shield");
             ItemCollectionArray[42] = "Wooden Shield";
             dex += 2;
             str += 11;
@@ -1357,6 +1341,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Mystic Orb";
             uniqueItemsFound += 1;
+            $("#shield3").text("Mystic Orb");
             ItemCollectionArray[43] = "Mystic Orb";
             str -= 1;
             wis += 7;
@@ -1376,6 +1361,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Backup Rope";
             uniqueItemsFound += 1;
+            $("#shield4").text("Backup Rope");
             ItemCollectionArray[44] = "Backup Rope";
             dex += 4;
             wis -= 1;
@@ -1395,6 +1381,7 @@ function dropItems() {
             }
             document.getElementById("shieldbrick").innerHTML = "Stormnet";
             uniqueItemsFound += 1;
+            $("#shield5").text("Stormnet");
             ItemCollectionArray[45] = "Stormnet";
             dex += 2;
             wis += 2;
@@ -1439,6 +1426,7 @@ function gamble() {
                 uniqueItemsFound += 1;
                 ItemCollectionArray[2] = "Destiny Crown";
                 document.getElementById("helmetbrick").innerHTML = "Destiny Crown";
+                $("#helmet1").text("Destiny Crown");
                 dex += 4;
                 //isHelmetEquipped = true;
                 ItemsFoundArray[2] = true;
@@ -1457,6 +1445,7 @@ function gamble() {
                 uniqueItemsFound += 1;
                 ItemCollectionArray[3] = "Shadow Cape";
                 document.getElementById("armorbrick").innerHTML = "Shadow Cape";
+                $("#armor1").text("Shadow Cape");
                 dex += 3;
                 //isArmorEquipped = true;
                 ItemsFoundArray[3] = true;
@@ -1475,6 +1464,7 @@ function gamble() {
                 uniqueItemsFound += 1;
                 ItemCollectionArray[4] = "Goldcoil";
                 document.getElementById("amuletbrick").innerHTML = "Goldcoil";
+                $("#amulet1").text("Goldcoil");
                 luck += 5;
                 //isAmuletEquipped = true;
                 ItemsFoundArray[4] = true;
@@ -1513,6 +1503,7 @@ function gamble() {
                 uniqueItemsFound += 1;
                 ItemCollectionArray[6] = "Mindshield";
                 document.getElementById("helmetbrick").innerHTML = "Mindshield";
+                $("#helmet2").text("Mindshield");
                 wis += 3;
                 // isHelmetEquipped = true;
                 updatePage();
@@ -1531,6 +1522,7 @@ function gamble() {
                 uniqueItemsFound += 1;
                 ItemCollectionArray[7] = "Leather Jib";
                 document.getElementById("armorbrick").innerHTML = "Leather Jib";
+                $("#armor2").text("Leather Jib");
                 luck += 3;
                 // isArmorEquipped = true;
                 updatePage();
@@ -1548,6 +1540,7 @@ function gamble() {
                 }
                 document.getElementById("amuletbrick").innerHTML = "Skullchain";
                 uniqueItemsFound += 1;
+                $("#amulet2").text("Skullchain");
                 ItemCollectionArray[8] = "Skullchain";
                 str += 3;
                 // isAmuletEquipped = true;
@@ -1584,6 +1577,7 @@ function gamble() {
                     $('#itemtext').text("You found Mithril Plate! Strength +4");
                 }
                 document.getElementById("armorbrick").innerHTML = "Mithril Plate";
+                $("#armor3").text("Mithril Plate");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[10] = "Mithril Plate";
                 str += 4;
@@ -1602,6 +1596,7 @@ function gamble() {
                     $('#itemtext').text("You found Cat Ears! Luck +4!");
                 }
                 document.getElementById("helmetbrick").innerHTML = "Cat Ears";
+                $("#helmet3").text("Cat Ears");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[11] = "Cat Ears"
                 luck += 4;
@@ -1620,6 +1615,7 @@ function gamble() {
                     $('#itemtext').text("You found Twisted Coven! Dexterity +4");
                 }
                 document.getElementById("amuletbrick").innerHTML = "Twisted Coven";
+                $("#amulet3").text("Twisted Coven");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[12] = "Twisted Coven";
                 dex += 4;
@@ -1658,6 +1654,7 @@ function gamble() {
                 }
                 document.getElementById("armorbrick").innerHTML = "Magecage";
                 uniqueItemsFound += 1;
+                $("#armor4").text("Magecage");
                 ItemCollectionArray[14] = "Magecage";
                 wis += 2;
                 //isArmorEquipped = true;
@@ -1675,6 +1672,7 @@ function gamble() {
                     $('#itemtext').text("You found Demon Skull! Strength +2!");
                 }
                 document.getElementById("helmetbrick").innerHTML = "Demon Skull";
+                $("#helmet4").text("Demon Skull");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[15] = "Demon Skull";
                 str += 2;
@@ -1693,6 +1691,7 @@ function gamble() {
                     $('#itemtext').text("You found Aethercrest! Intelligence +2!");
                 }
                 document.getElementById("amuletbrick").innerHTML = "Aethercrest";
+                $("#amulet4").text("Aethercrest");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[16] = "Aethercrest";
                 wis += 2;
@@ -1712,6 +1711,7 @@ function gamble() {
                 }
                 document.getElementById("amuletbrick").innerHTML = "Ancient Pact";
                 uniqueItemsFound += 1;
+                $("#amulet5").text("Ancient Pact");
                 ItemCollectionArray[17] = "Ancient Pact";
                 str += 3;
                 dex += 3;
@@ -1752,6 +1752,7 @@ function gamble() {
                     $('#itemtext').text("You found Time Hat! Int +2! Luck +2!");
                 }
                 document.getElementById("helmetbrick").innerHTML = "Time Hat";
+                $("#helmet5").text("Time Hat");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[19] = "Time Hat";
                 wis += 2;
@@ -1771,6 +1772,7 @@ function gamble() {
                     $('#itemtext').text("You found Angel Fortress! Str +3! Luck +1!");
                 }
                 document.getElementById("armorbrick").innerHTML = "Angel Fortress";
+                $("#armor5").text("Angel Fortress");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[20] = "Angel Fortress";
                 str += 3;
@@ -1809,6 +1811,7 @@ function gamble() {
                     $('#itemtext').text("You found Stickygort! Luck +1!");
                 }
                 document.getElementById("helmetbrick").innerHTML = "Stickygort";
+                $("#helmet6").text("Stickygort");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[22] = "Stickygort";
 
@@ -1828,6 +1831,7 @@ function gamble() {
                     $('#itemtext').text("You found Force Totem! Dex +1! Int +3!");
                 }
                 document.getElementById("amuletbrick").innerHTML = "Force Totem";
+                $("#amulet6").text("Force Totem");
                 uniqueItemsFound += 1;
                 ItemCollectionArray[23] = "Force Totem";
                 wis += 3;
@@ -1848,6 +1852,7 @@ function gamble() {
                 }
                 document.getElementById("armorbrick").innerHTML = "Two Chains";
                 uniqueItemsFound += 1;
+                $("#armor6").text("Two Chains");
                 ItemCollectionArray[24] = "Two Chains";
                 str += 2;
                 luck += 2;
@@ -1887,6 +1892,7 @@ function gamble() {
                 }
                 document.getElementById("bootsbrick").innerHTML = "Quickboots";
                 uniqueItemsFound += 1;
+                $("#boots1").text("Quickboots");
                 ItemCollectionArray[26] = "Quickboots";
                 dex += 3;
                 //  isAmuletEquipped = true;
@@ -1905,6 +1911,7 @@ function gamble() {
                 }
                 document.getElementById("bootsbrick").innerHTML = "Solidfoot";
                 uniqueItemsFound += 1;
+                $("#boots2").text("Solidfoot");
                 ItemCollectionArray[27] = "Solidfoot";
                 str += 3;
                 //  isAmuletEquipped = true;
@@ -1923,6 +1930,7 @@ function gamble() {
                 }
                 document.getElementById("bootsbrick").innerHTML = "Bonustoes";
                 uniqueItemsFound += 1;
+                $("#boots3").text("Bonustoes");
                 ItemCollectionArray[28] = "Bonustoes";
                 dex += 1;
                 luck += 4;
@@ -1942,6 +1950,7 @@ function gamble() {
                 }
                 document.getElementById("bootsbrick").innerHTML = "Aero Treads";
                 uniqueItemsFound += 1;
+                $("#boots4").text("Aero Treads");
                 ItemCollectionArray[29] = "Aero Treads";
                 dex += 1;
                 wis += 3;
@@ -1981,6 +1990,7 @@ function gamble() {
                 }
                 document.getElementById("beltbrick").innerHTML = "Girdlehurt";
                 uniqueItemsFound += 1;
+                $("#belt1").text("Girdlehurt");
                 ItemCollectionArray[31] = "Girdlehurt";
                 luck += 1;
                 str += 1;
@@ -2000,6 +2010,7 @@ function gamble() {
                 }
                 document.getElementById("beltbrick").innerHTML = "Dazzle Sash";
                 uniqueItemsFound += 1;
+                $("#belt2").text("Dazzle Sash");
                 ItemCollectionArray[32] = "Dazzle Sash";
                 luck += 4;
                 //  isAmuletEquipped = true;
@@ -2018,6 +2029,7 @@ function gamble() {
                 }
                 document.getElementById("beltbrick").innerHTML = "Spirit Wrap";
                 uniqueItemsFound += 1;
+                $("#belt3").text("Spirit Wrap");
                 ItemCollectionArray[33] = "Spirit Wrap";
                 wis += 1;
                 luck += 1;
@@ -2037,6 +2049,7 @@ function gamble() {
                 }
                 document.getElementById("beltbrick").innerHTML = "Belt from Beyond";
                 uniqueItemsFound += 1;
+                $("#belt4").text("Belt from Beyond");
                 ItemCollectionArray[34] = "Belt from Beyond";
                 str -= 2;
                 wis += 6;
@@ -2056,6 +2069,7 @@ function gamble() {
                 }
                 document.getElementById("beltbrick").innerHTML = "Waist of Time";
                 uniqueItemsFound += 1;
+                $("#belt5").text("Waist of Time");
                 ItemCollectionArray[35] = "Waist of Time";
                 wis += 4;
                 luck += 4;
@@ -2075,6 +2089,7 @@ function gamble() {
                 }
                 document.getElementById("pantsbrick").innerHTML = "Nasty Pants";
                 uniqueItemsFound += 1;
+                $("#pants1").text("Nasty Pants");
                 ItemCollectionArray[36] = "Nasty Pants";
                 luck -= 1;
                 str += 3;
@@ -2094,6 +2109,7 @@ function gamble() {
                 }
                 document.getElementById("pantsbrick").innerHTML = "Studded Trousers";
                 uniqueItemsFound += 1;
+                $("#pants2").text("Studded Trousers");
                 ItemCollectionArray[37] = "Studded Trousers";
                 dex += 1;
                 str += 1;
@@ -2113,6 +2129,7 @@ function gamble() {
                 }
                 document.getElementById("pantsbrick").innerHTML = "Ultra Jeggings";
                 uniqueItemsFound += 1;
+                $("#pants3").text("Ultra Jeggings");
                 ItemCollectionArray[38] = "Ultra Jeggings";
                 luck += 2;
                 dex += 1;
@@ -2130,8 +2147,9 @@ function gamble() {
                     document.getElementById("itembg").className = "itemPopupBG";
                     $('#itemtext').text("You found Shadow Leggings! Int +1! Dex +2!");
                 }
-                document.getElementById("pantsbrick").innerHTML = "Great Axe";
+                document.getElementById("pantsbrick").innerHTML = "Shadow Leggings";
                 uniqueItemsFound += 1;
+                $("#pants4").text("Shadow Leggings");
                 ItemCollectionArray[39] = "Shadow Leggings";
                 dex += 2;
                 wis += 10;
@@ -2151,6 +2169,7 @@ function gamble() {
                 }
                 document.getElementById("pantsbrick").innerHTML = "Ironkilt";
                 uniqueItemsFound += 1;
+                $("#pants5").text("Ironkilt");
                 ItemCollectionArray[40] = "Ironkilt";
                 dex -= 1;
                 str += 4;
@@ -2170,6 +2189,7 @@ function gamble() {
                 }
                 document.getElementById("shieldbrick").innerHTML = "Spikewall";
                 uniqueItemsFound += 1;
+                $("#shield1").text("Spikewall");
                 ItemCollectionArray[41] = "Spikewall";
                 dex += 1;
                 str += 3;
@@ -2189,6 +2209,7 @@ function gamble() {
                 }
                 document.getElementById("shieldbrick").innerHTML = "Wooden Shield";
                 uniqueItemsFound += 1;
+                $("#shield2").text("Wooden Shield");
                 ItemCollectionArray[42] = "Wooden Shield";
                 dex += 2;
                 str += 11;
@@ -2208,6 +2229,7 @@ function gamble() {
                 }
                 document.getElementById("shieldbrick").innerHTML = "Mystic Orb";
                 uniqueItemsFound += 1;
+                $("#shield3").text("Mystic Orb");
                 ItemCollectionArray[43] = "Mystic Orb";
                 str -= 1;
                 wis += 7;
@@ -2227,6 +2249,7 @@ function gamble() {
                 }
                 document.getElementById("shieldbrick").innerHTML = "Backup Rope";
                 uniqueItemsFound += 1;
+                $("#shield4").text("Backup Rope");
                 ItemCollectionArray[44] = "Backup Rope";
                 dex += 4;
                 wis -= 1;
@@ -2246,6 +2269,7 @@ function gamble() {
                 }
                 document.getElementById("shieldbrick").innerHTML = "Stormnet";
                 uniqueItemsFound += 1;
+                $("#shield5").text("Stormnet");
                 ItemCollectionArray[45] = "Stormnet";
                 dex += 2;
                 wis += 2;
