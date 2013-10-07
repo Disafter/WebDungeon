@@ -36,9 +36,11 @@ var isArmorEquipped = false;
 var isAmuletEquipped = false;
 var isAutoPlaying = false;
 var timerId;
+var recoverId;
 var randomStat = 0;
 var uniqueItemsFound = 0;
 var disableItemPopups = false;
+var isRecovering = false;
 
 
 var found1 = false;
@@ -369,11 +371,24 @@ function updatePage() {
 
     //IMPORTANT CHECKS
     if (cHP <= 0) {
-        window.location.href = "defeated.html";
+        isAutoPlaying = false;
+        $("#autobutton").text("recovering...");
+        clearInterval(timerId);
+        recoverId = setInterval(recover, 500);
+      //  window.location.href = "defeated.html";
         // document.getElementById("defeatedstats").innerHTML = " Items found:" + uniqueItemsFound + "/100" + " Gold: " + gold + " Elixirs: " + elixirs + "/10";
     }
 
 
+}
+
+function recover() {
+    if (cHP <= maxHP) {
+        cHP += maxHP/
+        }
+
+    $("#autobutton").text("Autoplay");
+    
 }
 
 function monsterAttack() {
@@ -383,8 +398,8 @@ function monsterAttack() {
     updatePage();
     if (dodgeRoll <= (75 - (.25 * dex) + (.2 * currentFloor)) * .01) {
         document.getElementById("dodgenotice").innerHTML = "You were hit";
-        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.5 * currentFloor * dodgeRoll) - (luck * .1))) + " damage!"
-        cHP -= (Math.ceil((.5 * currentFloor * dodgeRoll) - (luck * .1)));
+        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.5 * currentFloor * dodgeRoll))) + " damage!"
+        cHP -= (Math.ceil((.5 * currentFloor * dodgeRoll)));
         updatePage();
     }
     else {
@@ -417,8 +432,8 @@ function monsterAttackVsRanged() {
     updatePage();
     if (dodgeRoll <= (75 - (.30 * dex) + (.2 * currentFloor)) * .007) {
         document.getElementById("dodgenotice").innerHTML = "You were hit";
-        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.5 * currentFloor * dodgeRoll) - (luck * .01))) + " damage!"
-        cHP -= (Math.floor((.5 * currentFloor * dodgeRoll) - (luck * .1)));
+        document.getElementById("fordamagebrick").innerHTML = "for " + (Math.ceil((.5 * currentFloor * dodgeRoll))) + " damage!"
+        cHP -= (Math.floor((.5 * currentFloor * dodgeRoll)));
         updatePage();
         document.getElementById("dodgechancebox").innerHTML = "Dodge:" + (100 - (((75 - (.30 * dex) + (.2 * currentFloor)))) * .7).toFixed(0) + "%";
     }
@@ -1086,7 +1101,7 @@ function dropItems() {
                 document.getElementById("itembg").className = "itemPopupBG";
                 $('#itemtext').text("You found Waist of Time! Int +4! Luck +4!");
             }
-            document.getElementById("beltbrick").innerHTML = "Waste of Time";
+            document.getElementById("beltbrick").innerHTML = "Waist of Time";
             uniqueItemsFound += 1;
             wis += 4;
             luck += 4;
