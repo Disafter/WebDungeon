@@ -84,6 +84,7 @@
     <Content Include="chest.png" />
     <Content Include="dragon.jpg" />
     <Content Include="dungeon.jpg" />
+    <Content Include="dungeon2.jpg" />
     <Content Include="Gruntfile.js" />
     <Content Include="jquery-1.9.1.js" />
     <Content Include="jquery-ui-1.10.3.custom.css" />

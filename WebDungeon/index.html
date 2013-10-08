@@ -84,16 +84,11 @@
             <div id="popupsbrick" class="bricks">
 
 
-                <button id="popupsbutton1" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button>
-
-
+                <button id="popupsbutton" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button>
 
             </div>
 
-
-            <div class="bricks">
-                <button id="itemheader" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #530005" onclick="showItems()">Items Found</button>
-            </div>
+            <div id="itemheader" class="bricks"></div>
             <div id="helmetbrick" class="bricks"></div>
             <div id="amuletbrick" class="bricks"></div>
             <div id="weaponbrick" class="bricks"></div>
@@ -132,6 +127,7 @@
             </div>
 
         </div>
+
         <div class="attackbuttoncontainer">
             <div class="actionbuttons meleeattackbutton">
                 <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FF6633" onclick="meleeAttack()">Attack</button>
@@ -162,7 +158,7 @@
         </ul>
         <div id="tabs-1">
             <ul id="helmet" class="connectedSortable ui-helper-reset">
-                <li style="text-align:center" id="helmet1" class="ui-state-default">Not Yet Found!</li>
+                <li style="text-align:center" id="helmet1" onclick="equipDestinyCrown()" class="ui-state-default">Not Yet Found!</li>
                 <li style="text-align:center" id="helmet2" class="ui-state-default">Not Yet Found!</li>
                 <li style="text-align:center" id="helmet3" class="ui-state-default">Not Yet Found!</li>
                 <li style="text-align:center" id="helmet4" class="ui-state-default">Not Yet Found!</li>
@@ -172,7 +168,7 @@
         </div>
         <div id="tabs-2">
             <ul id="weapon" class="connectedSortable ui-helper-reset">
-                <li style="text-align:center" id="weapon1" class="ui-state-default">Not Yet Found!</li>
+                <li style="text-align:center" id="weapon1" onclick="equipExcalibur()" class="ui-state-default">Not Yet Found!</li>
                 <li style="text-align:center" id="weapon2" class="ui-state-default">Not Yet Found!</li>
                 <li style="text-align:center" id="weapon3" class="ui-state-default">Not Yet Found!</li>
                 <li style="text-align:center" id="weapon4" class="ui-state-default">Not Yet Found!</li>
@@ -243,9 +239,9 @@
 
 
 
-    <div id="itemwindow" class="itemPopup hidden">
+    <div id="itemwindow" class="itemPopup hidden" onclick="removeItemWindow()">
         <h5 id="itemtext"></h5>
-        <img id="chestimage" class="chest" src="chest.png" />
+        <img id="chestimage" class="chest" src="chest.png" onclick="removeItemWindow()" />
     </div>
     <div id="itembg" class="itemPopupBG hidden"></div>
 

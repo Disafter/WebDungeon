@@ -1,5 +1,6 @@
 ﻿body {
     background-image: url('wall.jpg');
+    background-size:cover;
 }
 
 .gameframe {
@@ -126,7 +127,7 @@
 
 .bricks {
     font-family: 'Buxton Sketch';
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
     width: 136px;
     height: 24px;
