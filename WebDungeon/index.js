@@ -45,7 +45,16 @@ var wasAutoPlaying = false;
 
 var ItemsFoundArray = new Array(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
 var ItemCollectionArray = new Array();
+var item = {
+    isFound: false,
+    name: "Excalibur",
+    strength: 1,
+    dexterity: 4,
+    intelligence: 3,
+    luck: 10
+};
 
+var items = [item1, item2, item3];
 
 function maxMonsterHP() {
     return ((3 * currentFloor) + 4);
