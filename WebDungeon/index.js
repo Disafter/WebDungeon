@@ -45,16 +45,504 @@ var wasAutoPlaying = false;
 
 var ItemsFoundArray = new Array(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
 var ItemCollectionArray = new Array();
+
 var item = {
     isFound: false,
+    isEquipped: false,
+    id: 1,
     name: "Excalibur",
+    type: "Weapon",
+    strength: 7,
+    dexterity: 2,
+    intelligence: 2,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 2,
+    name: "Destiny Crown",
+    type: "Helmet",
+    strength: 2,
+    dexterity: 5,
+    intelligence: 5,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 3,
+    name: "Shadow Cape",
+    type: "Armor",
+    strength: 1,
+    dexterity: 4,
+    intelligence: 1,
+    luck: 3
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 4,
+    name: "Goldcoil",
+    type: "Amulet",
+    strength: 2,
+    dexterity: 0,
+    intelligence: 0,
+    luck: 6
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 5,
+    name: "Great Bow",
+    type: "Weapon",
+    strength: 1,
+    dexterity: 8,
+    intelligence: 1,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 6,
+    name: "Mind Shield",
+    type: "Weapon",
+    strength: 0,
+    dexterity: 0,
+    intelligence: 7,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 7,
+    name: "Leather Jib",
+    type: "Armor",
+    strength: 3,
+    dexterity: 2,
+    intelligence: 1,
+    luck: 4
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 8,
+    name: "Skullchain",
+    type: "Amulet",
+    strength: 4,
+    dexterity: 1,
+    intelligence: 1,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 9,
+    name: "Manasphere",
+    type: "Weapon",
+    strength: 0,
+    dexterity: 0,
+    intelligence: 6,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 10,
+    name: "Mithril Plate",
+    type: "Armor",
+    strength: 5,
+    dexterity: 1,
+    intelligence: 1,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 11,
+    name: "Cat Ears",
+    type: "Helmet",
+    strength: 1,
+    dexterity: 4,
+    intelligence: 1,
+    luck: 4
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 12,
+    name: "Twisted Coven",
+    type: "Amulet",
+    strength: 0,
+    dexterity: 4,
+    intelligence: 0,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 13,
+    name: "Handwarmers",
+    type: "Weapon",
+    strength: 1,
+    dexterity: 1,
+    intelligence: 1,
+    luck: 3
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 14,
+    name: "Magecage",
+    type: "Armor",
+    strength: 4,
+    dexterity: 1,
+    intelligence: 4,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 15,
+    name: "Demon Skull",
+    type: "Helmet",
+    strength: 3,
+    dexterity: 2,
+    intelligence: 2,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 16,
+    name: "Aethercrest",
+    type: "Amulet",
+    strength: 1,
+    dexterity: 1,
+    intelligence: 3,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 17,
+    name: "Ancient Pact",
+    type: "Amulet",
+    strength: 3,
+    dexterity: 3,
+    intelligence: 3,
+    luck: 3
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 18,
+    name: "Razorfist",
+    type: "Weapon",
+    strength: 3,
+    dexterity: 1,
+    intelligence: 0,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 19,
+    name: "Time Hat",
+    type: "Helmet",
+    strength: 1,
+    dexterity: 1,
+    intelligence: 3,
+    luck: 3
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 20,
+    name: "Angel Fortress",
+    type: "Armor",
+    strength: 4,
+    dexterity: 2,
+    intelligence: 1,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 21,
+    name: "Eldrich Tome",
+    type: "Weapon",
+    strength: 0,
+    dexterity: 1,
+    intelligence: 5,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 22,
+    name: "Stickygort",
+    type: "Helmet",
+    strength: 0,
+    dexterity: 0,
+    intelligence: 0,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 23,
+    name: "Force Totem",
+    type: "Amulet",
+    strength: 1,
+    dexterity: 2,
+    intelligence: 2,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 24,
+    name: "Chain Armor",
+    type: "Armor",
+    strength: 3,
+    dexterity: 2,
+    intelligence: 3,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 25,
+    name: "Bonusfingers",
+    type: "Weapon",
+    strength: 0,
+    dexterity: 1,
+    intelligence: 0,
+    luck: 5
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 26,
+    name: "Quickboots",
+    type: "Boots",
+    strength: 1,
+    dexterity: 4,
+    intelligence: 1,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 27,
+    name: "Solidfoot",
+    type: "Boots",
+    strength: 3,
+    dexterity: 3,
+    intelligence: 1,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 28,
+    name: "Bonustoes",
+    type: "Boots",
+    strength: 0,
+    dexterity: 3,
+    intelligence: 2,
+    luck: 3
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 29,
+    name: "Aero Treads",
+    type: "Boots",
     strength: 1,
     dexterity: 4,
     intelligence: 3,
-    luck: 10
+    luck: 3
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 30,
+    name: "Great Axe",
+    type: "Weapon",
+    strength: 8,
+    dexterity: 0,
+    intelligence: 0,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 31,
+    name: "Girdlehurt",
+    type: "Belt",
+    strength: 4,
+    dexterity: 1,
+    intelligence: 1,
+    luck: 1
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 32,
+    name: "Dazzle Sash",
+    type: "Belt",
+    strength: 0,
+    dexterity: 2,
+    intelligence: 2,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 33,
+    name: "Spirit Wrap",
+    type: "Belt",
+    strength: 0,
+    dexterity: 2,
+    intelligence: 2,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 34,
+    name: "Belt from Beyond",
+    type: "Belt",
+    strength: 3,
+    dexterity: 2,
+    intelligence: 3,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 35,
+    name: "Waist of Time",
+    type: "Belt",
+    strength: 0,
+    dexterity: 0,
+    intelligence: 2,
+    luck: 5
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 36,
+    name: "Nasty Pants",
+    type: "Pants",
+    strength: 3,
+    dexterity: 2,
+    intelligence: 0,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 37,
+    name: "Studdle Trousers",
+    type: "Pants",
+    strength: 4,
+    dexterity: 1,
+    intelligence: 0,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 38,
+    name: "Ultra Jeggings",
+    type: "Pants",
+    strength: 0,
+    dexterity: 4,
+    intelligence: 0,
+    luck: 3
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 39,
+    name: "Shadow Leggings",
+    type: "Pants",
+    strength: 0,
+    dexterity: 2,
+    intelligence: 5,
+    luck: 2
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 40,
+    name: "Ironkilt",
+    type: "Pants",
+    strength: 5,
+    dexterity: 0,
+    intelligence: 0,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 41,
+    name: "Spikewall",
+    type: "Shield",
+    strength: 4,
+    dexterity: 0,
+    intelligence: 0,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 42,
+    name: "Wooden Shield",
+    type: "Shield",
+    strength: 3,
+    dexterity: 3,
+    intelligence: 0,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 43,
+    name: "Mystic Orb",
+    type: "Shield",
+    strength: 0,
+    dexterity: 0,
+    intelligence: 4,
+    luck: 0
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 44,
+    name: "Backup Rope",
+    type: "Shield",
+    strength: 0,
+    dexterity: 3,
+    intelligence: 0,
+    luck: 4
+};
+var item = {
+    isFound: false,
+    isEquipped: false,
+    id: 45,
+    name: "Stormnet",
+    type: "Shield",
+    strength: 2,
+    dexterity: 2,
+    intelligence: 2,
+    luck: 2
 };
 
-var items = [item1, item2, item3];
+
 
 function maxMonsterHP() {
     return ((3 * currentFloor) + 4);
@@ -504,7 +992,7 @@ function runAway() {
 }
 
 function dropItems() {
-    itemRoll = Math.ceil((Math.random() * (1000 - luck)));
+    itemRoll = Math.ceil((Math.random() * (3000 - luck)));
     if (itemRoll == 1) {
         if (!ItemsFoundArray[1]) {
             //  if (!isWeaponEquipped) {
@@ -1392,11 +1880,11 @@ function dropItems() {
 function gamble() {
     if (gold >= 10) {
         gold -= 10;
-        itemRoll = Math.ceil((Math.random() * (1000 - luck)));        
-        if (0 < itemRoll && itemRoll < 10) {            
-                document.getElementById("itemwindow").className = "itemPopup";
-                document.getElementById("itembg").className = "itemPopupBG";
-                $('#itemtext').text("You got a Kraken Trophy! Int +5!");            
+        itemRoll = Math.ceil((Math.random() * (1000 - luck)));
+        if (0 < itemRoll && itemRoll < 10) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You got a Kraken Trophy! Int +5!");
             wis += 2;
             updatePage();
         }
@@ -1432,30 +1920,30 @@ function gamble() {
             updatePage();
         }
         else if (100 < itemRoll && itemRoll < 200) {
-                document.getElementById("itemwindow").className = "itemPopup";
-                document.getElementById("itembg").className = "itemPopupBG";
-                $('#itemtext').text("You got a Dexterity Potion! Dexterity +1!");            
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You got a Dexterity Potion! Dexterity +1!");
             dex += 1;
             updatePage();
         }
         else if (200 < itemRoll && itemRoll < 300) {
-                document.getElementById("itemwindow").className = "itemPopup";
-                document.getElementById("itembg").className = "itemPopupBG";
-                $('#itemtext').text("You got a Intelligence Potion! Intelligence +1!");            
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You got a Intelligence Potion! Intelligence +1!");
             wis += 1;
             updatePage();
         }
         else if (300 < itemRoll && itemRoll < 400) {
-                document.getElementById("itemwindow").className = "itemPopup";
-                document.getElementById("itembg").className = "itemPopupBG";
-                $('#itemtext').text("You got a Luck Potion! Luck +1!");            
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You got a Luck Potion! Luck +1!");
             luck += 1;
             updatePage();
         }
         else if (400 < itemRoll && itemRoll < 500) {
-                document.getElementById("itemwindow").className = "itemPopup";
-                document.getElementById("itembg").className = "itemPopupBG";
-                $('#itemtext').text("You got a Strength Potion! Strength +1!");     
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You got a Strength Potion! Strength +1!");
             str += 1;
             updatePage();
         }
@@ -1482,14 +1970,70 @@ function gamble() {
             updatePage();
         }
         else if (800 < itemRoll && itemRoll < 1000) {
-           document.getElementById("itemwindow").className = "itemPopup";
-           document.getElementById("itembg").className = "itemPopupBG";
-           $('#itemtext').text("You got nothing! Poor you!");
-           updatePage();
-       }
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You got nothing! Poor you!");
+            updatePage();
+        }
+    }
+    else {
+        alert("You don't have enough gold!");
     }
 }
-
+function biggamble() {
+    if (gold >= 1000) {
+        gold -= 1000;
+        itemRoll = Math.ceil((Math.random() * 500));
+        if (itemRoll < 100) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("The Spirit King Blesses You! All Stats +20!!");
+            str += 20;
+            wis += 20;
+            dex += 20;
+            luck += 20;
+            updatePage();
+        }
+        
+        else if (100 < itemRoll && itemRoll < 200) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("The Water Spirit Blesses You! Dex +30!");
+            dex += 30;
+            updatePage();
+        }
+        else if (200 < itemRoll && itemRoll < 300) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("The Fire Spirit Blesses You! Int +30!");
+            wis += 30;
+            updatePage();
+        }
+        else if (300 < itemRoll && itemRoll < 400) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("The Wind Spirit Blesses You! Luck +30!");
+            Luck += 30;
+            updatePage();
+        }
+        else if (400 < itemRoll && itemRoll < 500) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("The Earth Spirit Blesses You! Str +30!");
+            str += 30;
+            updatePage();
+        }
+        else if (500 < itemRoll && itemRoll < 1000) {
+            document.getElementById("itemwindow").className = "itemPopup";
+            document.getElementById("itembg").className = "itemPopupBG";
+            $('#itemtext').text("You got nothing! Poor you!");
+            updatePage();
+        }
+    }
+    else {
+        alert("You don't have enough gold!");
+    }
+}
 
 function removeItemWindow() {
     document.getElementById("itemwindow").className = "itemPopup hidden";
