@@ -19,4 +19,14 @@ namespace WebDungeon.Controllers
             return user;
         }
     }
+    public class ClassesDataController : ApiController
+    {
+        public ClassesData Get(string id)
+        {
+            var dbConnect = new DBConnect();
+            var classes = dbConnect.GetClasses(id);
+
+            return classes.ToArray();
+        }
+    }
 }

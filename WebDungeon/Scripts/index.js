@@ -2176,10 +2176,18 @@ $("#weapon1").on("click", equipExcalibur);*/
 //program finite selection of classes with various starting bonuses (potential for more than just flat stat bonuses)
 
 //program more rewards for playing
-
+function loadClasses() {
+    $.get("/api/ClassesData/")
+    .done(function (response) {
+        
+    })
+    .fail(function () {
+        alert("fail");
+    });
+}
 
 //BEFORE LOADING GAME, LOAD MONSTER, ITEM, AND CLASS DATA SO THAT IT MAY BE REFERENCED AFTER THE LOAD
-function loadGame() {
+function loadGame() { //loadGame retrieves all user-specific data from the database. it needs to be modified to retrieve their class name once the loadClasses function is completed. it also needs to collect the user's item data once loadUserItems is completed 
     cName = prompt("Please enter your character's name.", "Disafter");
     $.get("/api/UserData/" + cName)
     .done(function (response) {

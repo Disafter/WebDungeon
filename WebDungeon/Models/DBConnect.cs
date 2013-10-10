@@ -127,6 +127,42 @@ namespace WebDungeon.Models
 
             return user;
         }
+        public ClassesData GetUser(string name) //change return type to an array of class
+        {
+            var isOpen = OpenConnection();
+            var class1 = new ClassesData();
+            var class2 = new ClassesData();
+
+
+            if (isOpen)
+            {
+                //Create Command
+                var command = new MySqlCommand("ClassesGet", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                //command.Parameters.AddWithValue("pUserName", name);
+                //Create a data reader and Execute the command
+                var dataReader = command.ExecuteReader();
+
+                //Read the data and store them in the list
+                //make a list outside of the while loop
+                while (dataReader.Read())
+                {
+                    //list.add(class)
+                   class.classID = (int)dataReader["ClassID"];
+                   class.Name = dataReader["Name"] as string;
+                    
+
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                CloseConnection();
+            }
+
+            return class1;
+        }
 
         //Count statement
         public int Count()
