@@ -100,9 +100,22 @@ namespace WebDungeon.Models
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
+                    user.UserID = (int)dataReader["UserID"];
                     user.Name = dataReader["Name"] as string;
-                  //  user1.Gold = (int)dataReader["Gold"];
-                  //  user1.Elixirs = (int)dataReader["Elixirs"];
+                    user.ClassID = (int)dataReader["ClassID"];
+                    user.Level = (int)dataReader["Level"];
+                    user.Floor = (int)dataReader["Floor"];
+                    user.CurrentExp = (int)dataReader["CurrentExp"];
+                    user.CurrentHp = (int)dataReader["CurrentHp"];
+                    user.CurrentMp = (int)dataReader["CurrentMp"];
+                    user.BonusStatPoints = (int)dataReader["BonusStatPoints"];
+                    user.BonusStrength = (int)dataReader["BonusStrength"];
+                    user.BonusDexterity = (int)dataReader["BonusDexterity"];
+                    user.BonusIntelligence = (int)dataReader["BonusIntelligence"];
+                    user.BonusLuck = (int)dataReader["BonusLuck"];
+                    user.Gold = (int)dataReader["Gold"];
+                    user.Elixirs = (int)dataReader["Elixirs"];
+
                 }
 
                 //close Data Reader

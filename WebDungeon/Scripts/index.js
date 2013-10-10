@@ -695,7 +695,7 @@ function signUp() {
     alert("I know how desperately you want to sign up, but you'll have to wait until I sort things out ok? :)");
 }
 
-function logIn() {
+/*function logIn() {
     cName = prompt("Please enter your character's name.", "Zasheir");
     if (cName != null) {
         document.getElementById("namebox").innerHTML = cName;
@@ -713,7 +713,7 @@ function logIn() {
     wis = 2;
     luck = 2;
     elixirs = 10;
-    bonusStatPoints = 2;
+
     cHP = (1.1 * cLevel) + (1.1 * str) + 10;
     maxHP = (1.1 * cLevel) + (1.1 * str) + 10;
     cMP = (wis + 2);
@@ -729,13 +729,13 @@ function logIn() {
     if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
 
 
-}
+}*/
+
 
 function settings() {
     var blank = prompt("Really? What setting do you want to change?", "I dont know.");
     alert("Ok we changed that for you. We swear.");
 }
-
 function addStr() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
@@ -744,7 +744,6 @@ function addStr() {
         updatePage();
     }
 }
-
 function addDex() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
@@ -752,7 +751,6 @@ function addDex() {
         updatePage();
     }
 }
-
 function addInt() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
@@ -762,7 +760,6 @@ function addInt() {
     }
 
 }
-
 function addLuck() {
     if (bonusStatPoints >= 1) {
         bonusStatPoints -= 1;
@@ -770,7 +767,6 @@ function addLuck() {
         updatePage();
     }
 }
-
 function updatePage() {
 
     //Name, Class, Level
@@ -1994,7 +1990,7 @@ function biggamble() {
             luck += 20;
             updatePage();
         }
-        
+
         else if (100 < itemRoll && itemRoll < 200) {
             document.getElementById("itemwindow").className = "itemPopup";
             document.getElementById("itembg").className = "itemPopupBG";
@@ -2182,10 +2178,50 @@ $("#weapon1").on("click", equipExcalibur);*/
 //program more rewards for playing
 
 
-$.get("/api/UserData/" + cName)
-.done(function (response){
-    alert(response.name);
-})
-.fail(function () {
-    alert("fail");
-});
+//BEFORE LOADING GAME, LOAD MONSTER, ITEM, AND CLASS DATA SO THAT IT MAY BE REFERENCED AFTER THE LOAD
+function loadGame() {
+    cName = prompt("Please enter your character's name.", "Disafter");
+    $.get("/api/UserData/" + cName)
+    .done(function (response) {
+        if (cName != null) {
+            document.getElementById("namebox").innerHTML = response.Name;
+        }
+
+        cLevel = response.Level;
+        gold = response.Gold;
+        currentFloor = response.Floor;
+        maxMonsterHP = (3 * response.Floor) + 4;
+        currMonsterHP = (3 * response.Floor) + 4;
+        bonusStatPoints = response.BonusStatPoints;
+
+        str = response.BonusStrength; //ADD GEAR AND CLASS BONUSES TO THIS
+        dex = response.BonusDexterity;
+        wis = response.BonusIntelligence;
+        luck = response.BonusLuck;
+        elixirs = response.Elixirs;
+
+        cHP = (1.1 * response.Level) + (1.1 * response.BonusStrength) + 10; //ADD IT HERE TOO
+        maxHP = (1.1 * response.Level) + (1.1 * response.BonusStrength) + 10;
+        cMP = (response.BonusIntelligence + 2);
+        maxMP = (response.BonusIntelligence + 2);
+
+
+        updatePage();
+
+        if (monsterBarLength <= 0) { document.getElementById("xpbar").style.width = '1px'; }
+        monsterBarLength = (currMonsterHP / ((3 * currentFloor) + 4)) * 800;
+        if (currMonsterHP <= 0) {
+            currMonsterHP = 0;
+            monsterBarLength = 1;
+        }
+        updatePage();
+        if (monsterBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+
+        updatePage();
+
+
+    })
+    .fail(function () {
+        alert("fail");
+    });
+}

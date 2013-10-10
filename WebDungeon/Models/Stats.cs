@@ -7,13 +7,13 @@ namespace WebDungeon.Models
 {
     public class UserData
     {
-        public string UserID { get; set; }
+        public int UserID { get; set; }
         public string Name { get; set; }
         public int BonusStrength { get; set; }
         public int BonusDexterity { get; set; }
         public int BonusIntelligence { get; set; }
         public int BonusLuck { get; set; }
-        public string Level { get; set; }
+        public int Level { get; set; }
         public int ClassID { get; set; }
         public int CurrentHp { get; set; }
         public int CurrentMp { get; set; }
