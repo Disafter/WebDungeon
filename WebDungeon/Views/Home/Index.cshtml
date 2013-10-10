@@ -1,56 +1,216 @@
-﻿<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to ASP.NET Web API!</h1>
-                <h2>Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
-            </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit the
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">ASP.NET Web API Website</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET Web API.
-                If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
+﻿<div class="gameframe">
+    <div id="namebox" class="headerbox">
+        Nameless Hero
+    </div>
+    <div id="strdexbox" class="headerbox">Strength: 0 &nbsp;&nbsp;&nbsp;&nbsp;Dexterity: 0</div>
 
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
+    <div id="loginbox" class="headerbox">
+        <button style="font-size: 22px; font-weight: bold; width: 290px; height: 26px; font-family: 'Gentium Book Basic'; color: #830000" onclick="logIn()">Enter The Dungeon</button>
+    </div>
+
+    <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
+    <div id="intluckbox" class="headerbox">Intelligence: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
+    <div class="headerbox">
+        <button style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" onclick="settings()">Settings</button>
+        <button style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" onclick="about()">About</button>
+    </div>
+
+
+    <div class="statusbarbg">
+
+        <div class="statuscontainer">
+            <div id="hpheader" style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">HP :</div>
+            <div id="hpbar" class="statusbars hpbar"></div>
+        </div>
+
+        <div class="statuscontainer">
+            <div id="mpheader" style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">MP :</div>
+            <div id="mpbar" class="statusbars mpbar"></div>
+        </div>
+
+        <div class="statuscontainer">
+            <div id="xpheader" style="font-size: 17px; font-weight: bold; font-family: Aharoni" class="statusbarheader">EXP :</div>
+            <div id="xpbar" class="statusbars xpbar"></div>
+        </div>
+
+        <div class="statuscontainer">
+            <div id="monsterheader" style="font-size: 18px; font-weight: bold; font-family: Aharoni; background: #660000;" class="statusbarheader">MONSTER</div>
+            <div id="monsterbar" style="font-size: 18px; font-weight: bold; font-family: Aharoni;" class="statusbars monsterbar"></div>
+        </div>
+    </div>
+    <div class="leftbar">
+        <div id="pointbrick" class="bricks"></div>
+        <div id="plusstrdexbrick" class="bricks">
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addStr()">+Str</button>
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addDex()">+Dex</button>
+        </div>
+        <div id="plusintluckbrick" class="bricks">
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addInt()">+Int</button>
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="addLuck()">+Luck</button>
+        </div>
+
+        <div id="autobrick" class="bricks">
+            <button id="autobutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="setAutoPlay()">Autoplay</button>
+        </div>
+
+        <div id="popupsbrick" class="bricks">
+
+
+            <button id="popupsbutton" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" onclick="togglePopups()">Item Popups: On</button>
+
+        </div>
+
+        <div id="itemheader" class="bricks"></div>
+        <div id="helmetbrick" class="bricks"></div>
+        <div id="amuletbrick" class="bricks"></div>
+        <div id="weaponbrick" class="bricks"></div>
+        <div id="shieldbrick" class="bricks"></div>
+        <div id="armorbrick" class="bricks"></div>
+        <div id="beltbrick" class="bricks"></div>
+        <div id="pantsbrick" class="bricks"></div>
+        <div id="bootsbrick" class="bricks"></div>
+
+
+    </div>
+    <div class="monsterbg">
+        <img src="~/Images/dungeon.jpg" />
+    </div>
+    <div class="rightbar">
+        <div id="floorbrick" class="bricks">Entrance</div>
+        <div id="remainingbrick" class="bricks"></div>
+        <div class="bricks"></div>
+        <div id="itemfindbrick" class="bricks"></div>
+        <div id="gamblechancebrick" class="bricks"></div>
+        <div id="monsteraccuracybox" class="bricks"></div>
+        <div id="dodgechancebox" class="bricks"></div>
+        <div id="dodgenotice" class="bricks"></div>
+
+
+        <div id="fordamagebrick" class="bricks"></div>
+        <div id="elixirbrick" class="bricks"></div>
+        <div id="useelixirbrick" class="bricks">
+            <button style="font-size: 17px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: purple" onclick="useElixir()">Use Elixir</button>
+        </div>
+
+        <div id="goldbrick" class="bricks"></div>
+        <div id="gamblebrick" class="bricks">
+            <button style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #6f4400" onclick="gamble()">Gamble:10</button>
+        </div>
+        <div class="bricks">
+            <button style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #6f4400" onclick="biggamble()">Big Gamble:1k</button></div>
+
+    </div>
+
+    <div class="attackbuttoncontainer">
+        <div class="actionbuttons meleeattackbutton">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FF6633" onclick="meleeAttack()">Attack</button>
+        </div>
+        <div class="actionbuttons mpbar">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #3399FF" onclick="magicAttack()">Fireball</button>
+        </div>
+        <div class="actionbuttons xpbar">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FFCC33" onclick="rangedAttack()">Stab</button>
+        </div>
+        <div class="actionbuttons runbutton">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #ff6a00" onclick="runAway()">Run</button>
+        </div>
+    </div>
 </div>
 
-<script src="~/Scripts/jquery-1.8.2.min.js"></script>
-<script>
-    $.get("/api/Stats")
-    .done(function (response) {
-        alert(response.UserName);
-    })
-    .fail(function(response) {
-        alert("uhoh!");
-    });
-</script>
+
+<div id="tabs" style="width: 528px; margin: auto; display: block; border: solid black 1px">
+    <ul>
+        <li><a href="#tabs-1">Helmets</a></li>
+        <li><a href="#tabs-2">Weapons</a></li>
+        <li><a href="#tabs-3">Amulets</a></li>
+        <li><a href="#tabs-4">Shields</a></li>
+        <li><a href="#tabs-5">Armor</a></li>
+        <li><a href="#tabs-6">Pants</a></li>
+        <li><a href="#tabs-7">Belts</a></li>
+        <li><a href="#tabs-8">Boots</a></li>
+    </ul>
+    <div id="tabs-1">
+        <ul id="helmet" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="helmet1" onclick="equipDestinyCrown()" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="helmet2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="helmet3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="helmet4" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="helmet5" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="helmet6" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+    <div id="tabs-2">
+        <ul id="weapon" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="weapon1" onclick="equipExcalibur()" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon4" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon5" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon6" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon7" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon8" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+    <div id="tabs-3">
+        <ul id="amulet" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="amulet1" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="amulet2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="amulet3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="amulet4" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="amulet5" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="amulet6" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+    <div id="tabs-4">
+        <ul id="shield" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="shield1" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="shield2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="shield3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="shield4" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="shield5" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+    <div id="tabs-5">
+        <ul id="armor" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="armor1" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="armor2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="armor3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="armor4" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="armor5" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="armor6" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+    <div id="tabs-6">
+        <ul id="pants" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="pants1" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="pants2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="pants3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="pants4" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="pants5" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+    <div id="tabs-7">
+        <ul id="belt" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="belt1" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="belt2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="belt3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="belt4" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="belt5" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+    <div id="tabs-8">
+        <ul id="boots" class="connectedSortable ui-helper-reset">
+            <li style="text-align: center" id="boots1" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="boots2" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="boots3" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="boots4" class="ui-state-default">Not Yet Found!</li>
+        </ul>
+    </div>
+</div>
+
+<div id="itemwindow" class="itemPopup hidden" onclick="removeItemWindow()">
+    <h5 id="itemtext"></h5>
+    <img id="chestimage" class="chest" src="~/Images/chest.png" onclick="removeItemWindow()" />
+</div>
+<div id="itembg" class="itemPopupBG hidden"></div>
+

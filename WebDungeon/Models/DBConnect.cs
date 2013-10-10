@@ -82,24 +82,27 @@ namespace WebDungeon.Models
         }
 
         //Select statement
-        public Stats Select(string query)
+        public UserData GetUser(string name)
         {
             var isOpen = OpenConnection();
-            var stats = new Stats();
+            var user = new UserData();
+            
 
             if (isOpen)
             {
                 //Create Command
-                var command = new MySqlCommand(query, connection);
+                var command = new MySqlCommand("UserGet", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("pUserName", name);
                 //Create a data reader and Execute the command
                 var dataReader = command.ExecuteReader();
 
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    stats.Class = dataReader["Class"] as string;
-                    stats.Dexterity = (int)dataReader["Dexterity"];
-                    stats.UserName = dataReader["Username"] as string;
+                    user.Name = dataReader["Name"] as string;
+                  //  user1.Gold = (int)dataReader["Gold"];
+                  //  user1.Elixirs = (int)dataReader["Elixirs"];
                 }
 
                 //close Data Reader
@@ -109,7 +112,7 @@ namespace WebDungeon.Models
                 CloseConnection();
             }
 
-            return stats;
+            return user;
         }
 
         //Count statement

@@ -2181,3 +2181,11 @@ $("#weapon1").on("click", equipExcalibur);*/
 
 //program more rewards for playing
 
+
+$.get("/api/UserData/" + cName)
+.done(function (response){
+    alert(response.name);
+})
+.fail(function () {
+    alert("fail");
+});

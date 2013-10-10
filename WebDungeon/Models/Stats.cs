@@ -5,20 +5,22 @@ using System.Web;
 
 namespace WebDungeon.Models
 {
-    public class Stats
+    public class UserData
     {
-        public string UserName { get; set; }
-        public int Strength { get; set; }
-        public int Dexterity { get; set; }
-        public int Intelligence { get; set; }
-        public int Luck { get; set; }
-        public int Level { get; set; }
-        public string Class { get; set; }
-        public int Hp { get; set; }
-        public int Mp { get; set; }
-        public int Exp { get; set; }
+        public string UserID { get; set; }
+        public string Name { get; set; }
+        public int BonusStrength { get; set; }
+        public int BonusDexterity { get; set; }
+        public int BonusIntelligence { get; set; }
+        public int BonusLuck { get; set; }
+        public string Level { get; set; }
+        public int ClassID { get; set; }
+        public int CurrentHp { get; set; }
+        public int CurrentMp { get; set; }
+        public int CurrentExp { get; set; }
         public int Floor { get; set; }
-        public int MonsterHp { get; set; }
-        public int StatPoints { get; set; }
+        public int BonusStatPoints { get; set; }
+        public int Gold { get; set; }
+        public int Elixirs { get; set; }
     }
 }
