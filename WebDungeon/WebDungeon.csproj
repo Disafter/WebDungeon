@@ -163,14 +163,20 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Api\RaceController.cs" />
+    <Compile Include="Controllers\Api\MonsterController.cs" />
+    <Compile Include="Controllers\Api\ItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserDataController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\Api\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserItem.cs" />
+    <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\Monster.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\DBConnect.cs" />
-    <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +251,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="backupjs.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Content\index.css" />
     <Content Include="Scripts\jquery-1.8.2.js" />

@@ -1,0 +1,16 @@
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\bin\WebDungeon.dll
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\bin\WebDungeon.pdb
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\bin\WebDungeon.xml
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\obj\Debug\WebDungeon.Resources.resources
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\obj\Debug\WebDungeon.vbproj.GenerateResource.Cache
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\obj\Debug\WebDungeon.dll
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\obj\Debug\WebDungeon.xml
+c:\users\john\documents\visual studio 2012\Projects\WebDungeon\WebDungeon\obj\Debug\WebDungeon.pdb
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\WebDungeon.dll
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\WebDungeon.pdb
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\WebDungeon.xml
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.Resources.resources
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.vbproj.GenerateResource.Cache
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.dll
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.xml
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.pdb
