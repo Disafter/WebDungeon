@@ -1,12 +1,4 @@
-﻿
- 
-
- 
-
-   
-
-
-<div class="gameframe">
+﻿<div class="gameframe">
     <div id="namebox" class="headerbox">
         Nameless Hero
     </div>
@@ -19,8 +11,8 @@
     <div id="levelbox" class="headerbox">Level 1 Adventurer</div>
     <div id="intluckbox" class="headerbox">Intelligence: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
     <div class="headerbox">
-        <button id="settingsbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" >Settings</button>
-        <button id="aboutbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" >About</button>
+        <button style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" onclick="game.settings()">Settings</button>
+        <button style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" onclick="game.about()">About</button>
     </div>
 
 
@@ -49,12 +41,12 @@
     <div class="leftbar">
         <div id="pointbrick" class="bricks"></div>
         <div id="plusstrdexbrick" class="bricks">
-            <button id="addstrengthbutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" >+Str</button>
-            <button id="adddexteritybutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" >+Dex</button>
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="game.addStr()">+Str</button>
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="game.addDex()">+Dex</button>
         </div>
         <div id="plusintluckbrick" class="bricks">
-            <button id="addintelligencebutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" >+Int</button>
-            <button id="addluckbutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" >+Luck</button>
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="game.addInt()">+Int</button>
+            <button style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" onclick="game.addLuck()">+Luck</button>
         </div>
 
         <div id="autobrick" class="bricks">
@@ -87,9 +79,9 @@
         <div id="floorbrick" class="bricks">Entrance</div>
         <div id="remainingbrick" class="bricks"></div>
         <div class="bricks"></div>
-        <div id="itemfindbrick" class="bricks"><button style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #00ff0d" data-bind='click: getStronger'>+Get Stronger+</button></div>
-        <div id="gamblechancebrick" class="bricks">Your power level is: <span data-bind='text: strength'>&nbsp;</span></div>
-        <div id="monsteraccuracybox" class="bricks"> <button style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #f00" data-bind='click: getDebuffed'>-Get Weaker-</button></div>
+        <div id="itemfindbrick" class="bricks"></div>
+        <div id="gamblechancebrick" class="bricks"></div>
+        <div id="monsteraccuracybox" class="bricks"></div>
         <div id="dodgechancebox" class="bricks"></div>
         <div id="dodgenotice" class="bricks"></div>
 
