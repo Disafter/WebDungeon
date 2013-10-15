@@ -251,6 +251,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="backupjs.js" />
+    <Content Include="Images\dungeonleft.png" />
+    <Content Include="Images\dungeonright.png" />
+    <Content Include="Images\dungeonstraight.png" />
+    <Content Include="Scripts\Copy of index.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Content\index.css" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -285,13 +289,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Copy of Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Copy %282%29 of Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

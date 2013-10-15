@@ -95,8 +95,8 @@
 
 .monsterbg {
     width:612px;
-    height: 419px;
-    border: groove #797979 1px;
+    height: 412px;
+    padding: 7px 0px 0px 7px;
     background: black;
     display: inline-block;
 }
