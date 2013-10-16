@@ -14,7 +14,7 @@ var game = {
             name: ko.observable("Nameless Hero"),
             level: ko.observable(1),
             currentFloor: ko.observable(1),
-            characterClass: ko.observable("Berzerker"),
+            characterClass: ko.observable("Adventurer"),
             strength: ko.observable(2),
             dexterity: ko.observable(2),
             intelligence: ko.observable(2),
@@ -29,7 +29,16 @@ var game = {
             bonusStatPoints: ko.observable(0),
             elixirs: ko.observable(0),
             gold: ko.observable(0),
-            ownedItems: ko.observableArray([])
+            ownedItems: ko.observableArray([]),
+            helmet: ko.observable(""),
+            amulet: ko.observable(""),
+            weapon: ko.observable("Short Sword"),
+            shield: ko.observable(""),
+            armor: ko.observable(""),
+            belt: ko.observable(""),
+            pants: ko.observable(""),
+            boots: ko.observable(""),
+            
         };
 
         self.gameData = {
@@ -51,34 +60,54 @@ var game = {
             randomImageRoll: ko.observable(0),
             isFighting: ko.observable(false),
             findMonsterRoll: ko.observable(0),
-            imageUrl: ko.observable("/Images/dungeonstraight1.png")
+            imageUrl: ko.observable("/Images/door.png"),
         };
 
         self.monster = {
-            maxHp: ko.computed(function(){
-                return 1 + Math.floor(.5 * self.character.currentFloor());   
+            maxHp: ko.computed(function () {
+                return 1 + Math.floor(.5 * self.character.currentFloor());
             }),
             currentHp: ko.observable(0),
-            attackDamage: ko.computed(function(){
+            attackDamage: ko.computed(function () {
                 return Math.ceil((.1 * self.character.currentFloor() * self.gameData.dodgeRoll()));
             }),
-            imageUrl: ko.observable("/Images/nomonster.png")
+            imageUrl: ko.observable("/Images/nomonster.png"),
+            name: ko.observable("...door")
+
+        };
+
+        self.encounter = {
+            intro: ko.observable("You found "),
+            name: ko.observable("the entrance to "),
+            outro: ko.observable("the legendary dungeon!")
         };
 
         self.dungeon = ["/Images/dungeonstraight1.png", "/Images/dungeonstraight2.png", "/Images/dungeonstraight3.png", "/Images/dungeonstraight4.png", "/Images/dungeonleft1.png", "/Images/dungeonright1.png"];
-        self.monsters = ["/Images/nomonster.png", "/Images/rat.png", "/Images/goblin.png", "/Images/spider.png"];
+        self.monsters = ["/Images/nomonster.png", "/Images/rat.png", "/Images/goblin.png", "/Images/spider.png", "/Images/spirit1.png", "/Images/spirit2.png", "/Images/spirit3.png", ];
 
 
         self.loadGame = function () {
             game.ajax.loadGame();
         };
 
+        meleeDamage= ko.computed(function () {
+            return Math.ceil(1 * (.9 + self.character.strength() * .045455));
+        }),
+        magicDamage= ko.computed(function () {
+            return Math.ceil(1 * (2 + self.character.intelligence() * .1));
+        }),
+        rangedDamage= ko.computed(function () {
+            return Math.ceil(1 * (1 + self.character.dexterity() * .01));
+        })
+
         self.meleeAttack = function () {
             if (!self.gameData.isRecovering()) {
                 if (self.character.maxHp() > 1) {
-                    self.monster.currentHp(self.monster.currentHp() - (Math.ceil(1 * (.9 + self.character.strength() * .045455))));
+                    self.monster.currentHp(self.monster.currentHp() - Math.ceil(1 * (.9 + self.character.strength() * .045455)));
                     // if (self.monsterBarLength() <= 0) { $("#monsterbar").style.width = '1px'; }
                     if (self.monster.currentHp() <= 0) {
+                        self.encounter.intro("You defeated the ");
+                        self.encounter.outro(".");
                         self.monster.imageUrl(self.monsters[0]);
                         self.gameData.isFighting(false);
                         self.dropItems();
@@ -97,7 +126,7 @@ var game = {
                             self.character.currentMp(self.character.maxMp());
                             self.gameData.monstersLeftOnFloor(self.gameData.monstersLeftOnFloor() - 1);
                         }
-                        
+
                     }
                     self.monsterAttack();
                 }
@@ -115,11 +144,13 @@ var game = {
             if (!self.gameData.isRecovering()) {
                 if (self.character.maxHp() > 1) {
                     if (self.character.currentMp() >= 1) {
-                        self.monster.currentHp(self.monster.currentHp() - Math.ceil(1 * (2 + self.character.intelligence() * .02)));
+                        self.monster.currentHp(self.monster.currentHp() - Math.ceil(1 * (2 + self.character.intelligence() * .1)));
                         // if (self.gameData.monsterHPBarLength() <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
                         self.character.currentMp(self.character.currentMp() - 1);
                         self.gameData.magicBarLength(self.character.currentMp() / self.character.maxMp() * 337);
                         if (self.monster.currentHp() <= 0) {
+                            self.encounter.intro("You defeated the ");
+                            self.encounter.outro(".");
                             self.monster.imageUrl(self.monsters[0]);
                             self.gameData.isFighting(false);
                             self.dropItems();
@@ -138,7 +169,7 @@ var game = {
                                 self.character.currentMp(self.character.maxMp());
                                 self.gameData.monstersLeftOnFloor(self.gameData.monstersLeftOnFloor() - 1);
                             }
-                            
+
                         }
                         self.monsterAttack();
                     }
@@ -160,9 +191,11 @@ var game = {
         self.rangedAttack = function () {
             if (!self.gameData.isRecovering()) {
                 if (self.character.maxHp() > 1) {
-                    self.monster.currentHp(self.monster.currentHp() - Math.ceil(1 * (1 + self.character.dexterity() * .01)));
+                    self.monster.currentHp(self.monster.currentHp() - Math.ceil(1 + self.character.dexterity() * .01));
                     // if (self.gameData.monsterHPBarLength() <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
                     if (self.monster.currentHp() <= 0) {
+                        self.encounter.intro("You defeated the ");
+                        self.encounter.outro(".");
                         self.monster.imageUrl(self.monsters[0]);
                         self.gameData.isFighting(false);
                         self.dropItems();
@@ -180,7 +213,7 @@ var game = {
                             self.character.currentMp(self.character.maxMp());
                             self.gameData.monstersLeftOnFloor(self.gameData.monstersLeftOnFloor() - 1);
                         }
-                        
+
 
                     }
                     self.monsterAttackVsRanged();
@@ -487,9 +520,7 @@ var game = {
                 }
                 else if (self.character.currentHp() <= self.character.maxHp()) {
                     self.character.currentHp(self.character.currentHp() + Math.ceil(self.character.maxHp() / 60));
-                    
-                }
-            }
+                }}
 
                 //check hp
             else if (self.character.currentHp() <= 0) {
@@ -508,33 +539,41 @@ var game = {
                 }
                 else {
                     self.meleeAttack();
-                }
-            }
+                }}
 
                 //if not fighting, find a new monster
             else if (self.gameData.isFighting() == false) {
                 self.gameData.findMonsterRoll(Math.floor(Math.random() * 10));
                 if (self.gameData.findMonsterRoll() == 0) {
                     self.gameData.isFighting(true);
-                    self.gameData.randomImageRoll(Math.ceil(Math.random() * 3));
+                    self.gameData.randomImageRoll(Math.ceil(Math.random() * 6));
+                    self.encounter.intro("You're attacked by a ");
                     self.monster.imageUrl(self.monsters[self.gameData.randomImageRoll()]);
+                    if (self.gameData.randomImageRoll() == 1) { self.encounter.name("giant rat") };
+                    if (self.gameData.randomImageRoll() == 2) { self.encounter.name("cactugoblar") };
+                    if (self.gameData.randomImageRoll() == 3) { self.encounter.name("mysterious spider") };
+                    if (self.gameData.randomImageRoll() == 4) { self.encounter.name("spooky spirit") };
+                    if (self.gameData.randomImageRoll() == 5) { self.encounter.name("burger spirit") };
+                    if (self.gameData.randomImageRoll() == 6) { self.encounter.name("toxic spirit") };
+                    self.encounter.outro("!");
+
+
                     self.monster.currentHp(1 + Math.floor(.5 * self.character.currentFloor()));
                 }
                 else {
                     self.gameData.randomImageRoll(Math.floor(Math.random() * 6));
                     self.gameData.imageUrl(self.dungeon[self.gameData.randomImageRoll()]);
-                }
-            }
-
-
-        };
+                    self.encounter.intro("You continue through ");
+                    self.encounter.name("the hallway");
+                    self.encounter.outro(".");
+                }}};
 
         self.setAutoPlay = function () {
             if (self.gameData.isAutoPlaying() == false) {
                 self.gameData.isAutoPlaying(true);
                 $("#autobutton").text("playing...");
                 clearInterval(self.gameData.timerId);
-                self.gameData.timerId = setInterval(self.autoPlayGame, 300);
+                self.gameData.timerId = setInterval(self.autoPlayGame, 500);
             }
             else if (self.gameData.isAutoPlaying() == true) {
                 self.gameData.isAutoPlaying(false);
@@ -567,14 +606,9 @@ var game = {
             document.getElementById("monsterbar").style.width = (((Math.ceil(self.monster.currentHp()) / (1 + Math.floor(.5 * self.character.currentFloor())))) * 337) + 'px';
         });
 
-      
-
-     
-
         self.updateDodgeChance = ko.computed(function () {
             self.character.dodgeChance(Math.floor(100 - (((78 - (.05 * self.character.dexterity()))))));
         });
-
         self.dropItems = function () {
             self.gameData.itemRoll(Math.ceil((Math.random() * (3000 - self.character.luck()))));
             $.each(self.gameData.items(), function () {
@@ -599,9 +633,7 @@ var game = {
         $("#addintelligencebutton").on("click", game.model.addIntelligence);
         $("#addluckbutton").on("click", game.model.addLuck);
         $("#helmet, #weapon", "#amulet", "$boots", "#shield", "#belt", "#pants", "#armor").sortable(); // .disableSelection()
-
         var $tabs = $("#tabs").tabs();
-
         var $tab_items = $("ul:first li", $tabs).droppable({
             accept: ".connectedSortable li",
             hoverClass: "ui-state-hover",
@@ -616,87 +648,12 @@ var game = {
                 });
             }
         });
-
         game.ajax.loadClasses();
         game.ajax.loadMonsters();
         game.ajax.loadItems();
-
         game.model = new game.WebDungeonViewModel();
-
         ko.applyBindings(game.model);
     },
-    oldupdatePage: function () {
-
-        ////HP, MP, EXP
-        //character.maxHp = 5 + Math.floor(.1 * character.strength);
-        //character.maxMp = 5 + Math.floor(.2 * character.intelligence);
-        //if (character.currentHp > Math.ceil(character.maxHp)) {
-        //    character.currentHp = Math.ceil(character.maxHp);
-        //}
-        //if (character.currentMp > Math.ceil(character.maxHp)) {
-        //    character.currentMp = Math.ceil(character.maxHp);
-        //}
-        //document.getElementById("hpheader").innerHTML = "HP : " + Math.ceil(character.currentHp) + "/" + Math.ceil(character.maxHp);
-        //document.getElementById("hpbar").style.width = ((Math.ceil(character.currentHp) / Math.ceil(character.maxHp)) * 337) + 'px'; //good at 785
-        //document.getElementById("mpheader").innerHTML = "MP : " + Math.floor(character.currentMp) + "/" + Math.floor(character.maxMp);
-        //document.getElementById("mpbar").style.width = ((Math.floor(character.currentMp) / Math.floor(character.maxMp)) * 337) + 'px';
-        //expBarLength = (character.currentExperience / character.experienceNeededToLevel) * 337;
-        //document.getElementById("xpbar").style.width = expBarLength + 'px';
-        //document.getElementById("xpheader").innerHTML = "EXP :" + Math.floor(character.currentExperience);
-
-        ////STATS, STATPOINTS
-        //document.getElementById("strdexbox").innerHTML = "Strength: " + character.strength + "&nbsp;&nbsp;&nbsp;&nbsp;Dexterity: " + character.dexterity;
-        //document.getElementById("pointbrick").innerHTML = "+Stat Points:" + character.bonusStatPoints;
-        //document.getElementById("intluckbox").innerHTML = "Intelligence: " + character.intelligence + "&nbsp;&nbsp;&nbsp;Luck: " + character.luck;
-
-        ////MONSTER, MONSTER HP, FLOOR, MONSTERS LEFT
-        //monster.maxHp = 3 + Math.floor(.5 * character.currentFloor);
-        //document.getElementById("floorbrick").innerHTML = "Floor: " + character.currentFloor;
-        //document.getElementById("loginbox").innerHTML = "Inside Dungeon";
-        //gameData.monsterHPBarLength = (monster.currentHp / (3 + Math.floor(.5 * character.currentFloor)) * 337);
-        //document.getElementById("monsterbar").style.width = gameData.monsterHPBarLength + 'px';
-        //if (gameData.monsterHPBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-        //document.getElementById("remainingbrick").innerHTML = "Monsters Here:" + gameData.monstersLeftOnFloor;
-
-        ////SPECIAL STATS
-        ////document.getElementById("monsteraccuracybox").innerHTML = "Enemy Roll:" + (100 - (dodgeRoll * 100)).toFixed(0);
-        ///*document.getElementById("monsteraccuracybox").innerHTML = "Gold Find: " + (((.06 + (character.luck * .003)) * 100)).toFixed(0) + "%";
-        //document.getElementById("dodgechancebox").innerHTML = "Dodge: " + (100 - (75 - (.25 * character.dexterity) + (.2 * character.currentFloor))).toFixed(0) + "%";*/
-
-        ////ITEMS
-        ///*if ((((45) / (1000 - character.luck)) * 100) >= 1) {
-        //    document.getElementById("itemfindbrick").innerHTML = "Item Find: " + (((30) / (1000 - character.luck)) * 100).toFixed(0) + "%";
-        //}
-        //else {
-        //    document.getElementById("itemfindbrick").innerHTML = "Item Find: < 1%";
-        //}
-        //if ((((45) / (1000 - character.luck)) * 100) >= 1) {
-        //    document.getElementById("gamblechancebrick").innerHTML = "Gamble: " + (((45) / (200 - character.luck)) * 100).toFixed(0) + "%";
-        //}
-        //else {
-        //    document.getElementById("gamblechancebrick").innerHTML = "Gamble Odds: < 1%";
-        //}*/
-        //document.getElementById("elixirbrick").innerHTML = "Elixirs: " + character.elixirs + "/10";
-        //document.getElementById("goldbrick").innerHTML = "Gold: " + character.gold;
-
-        ////document.getElementById("itemheader").innerHTML = "Items Found: " + uniqueItemsFound + "/45";
-
-        ////IMPORTANT CHECKS
-        //if (character.currentHp <= 0) {
-        //    if (gameData.isAutoPlaying) {
-        //        gameData.wasAutoPlaying = true;
-        //    }
-        //    gameData.isAutoPlaying = false;
-        //    gameData.isRecovering = true;
-        //    $("#autobutton").text("recovering...");
-        //    clearInterval(gameData.timerId);
-        //    clearInterval(gameData.recoverId);
-        //    gameData.recoverId = setInterval(game.recover, 250);
-        //    //  window.location.href = "defeated.html";
-        //    // document.getElementById("defeatedstats").innerHTML = " Items found:" + uniqueItemsFound + "/100" + " Gold: " + gold + " Elixirs: " + elixirs + "/10";
-        //}
-    },
-
 
     ajax: {
         loadItems: function () {
@@ -704,19 +661,16 @@ var game = {
            .done(game.ajaxCallbacks.loadItemsCallbackDone)
            .fail(game.ajaxCallbacks.loadItemsCallbackFail);
         },
-
         loadMonsters: function () {
             $.get("/api/Monster")
            .done(game.ajaxCallbacks.loadMonstersCallbackDone)
             .fail(game.ajaxCallbacks.loadMonstersCallbackFail);
         },
-
         loadClasses: function () {
             $.get("/api/Race")
           .done(game.ajaxCallbacks.loadClassesCallbackDone)
             .fail(game.ajaxCallbacks.loadClassesCallbackFail);
         },
-
         loadGame: function () {
             //loadGame retrieves all user-specific data from the database. it needs to be modified to retrieve their class name once the loadClasses function is completed. it also needs to collect the user's item data once loadUserItems is completed 
             game.model.character.name(prompt("Please enter your character's name.", "Disafter"));
@@ -727,8 +681,6 @@ var game = {
     },
 
     ajaxCallbacks: {
-
-
         loadClassesCallbackDone: function (response) {
             $.each(response, function () {
                 var race = {
@@ -741,10 +693,7 @@ var game = {
                 };
 
                 game.model.gameData.races.push(race);
-            });
-        },
-
-
+            });},
 
         loadClassesCallbackFail: function () {
             alert("Failed to load classes :( Please refresh the game and try again.");
@@ -760,8 +709,7 @@ var game = {
                 };
 
                 game.model.gameData.monsters.push(monster);
-            });
-        },
+            });},
 
         loadMonstersCallbackFail: function () {
             alert("Failed to load monsters :( Please refresh the game and try again.");
@@ -780,8 +728,7 @@ var game = {
                 };
 
                 game.model.gameData.items().push(item);
-            });
-        },
+            });},
 
         loadItemsCallbackFail: function () {
             alert("Failed to load items :( Please refresh the game and try again.");
@@ -793,79 +740,34 @@ var game = {
                 document.getElementById("namebox").innerHTML = game.model.character.name();
             }
             game.model.character.level(userResponse.Level);
-
-
-            //var userClass;
-            //$.each(game.model.gameData.races(), function () {
-            //    if (game.model.gameData.races[this].raceId == userResponse.ClassID) {
-            //        game.model.character.characterClass(game.model.gameData.races[this].name);
-
-            //    }
-            //})
-
-
-
             SQLdetail = 'SELECT';
             if (game.model.character.characterClass()) {
                 $("#levelbox").text = "Level " + game.model.character.level() + " " + game.model.character.characterClass();
             }
-
+            game.model.gameData.imageUrl(game.model.dungeon[1]);
             game.model.character.gold(userResponse.Gold);
             game.model.character.currentFloor(userResponse.Floor);
             game.model.gameData.monstersLeftOnFloor(10 + Math.ceil(game.model.character.currentFloor() * Math.ceil(.2 * game.model.character.currentFloor())));
             game.model.monster.maxHp(1 + Math.floor(.5 * userResponse.Floor));
             game.model.monster.currentHp(1 + Math.floor(.5 * userResponse.Floor));
             game.model.character.bonusStatPoints(userResponse.BonusStatPoints);
-
             game.model.character.strength(userResponse.BonusStrength); //ADD GEAR AND CLASS BONUSES TO THIS
             game.model.character.dexterity(userResponse.BonusDexterity);
             game.model.character.intelligence(userResponse.BonusIntelligence);
             game.model.character.luck(userResponse.BonusLuck);
             game.model.character.elixirs(userResponse.Elixirs);
-
-            game.model.character.currentHp(Math.floor(5 + (.3 * userResponse.BonusStrength))); //ADD IT HERE TOO
-            game.model.character.maxHp(Math.floor(5 + (.3 * userResponse.BonusStrength)));
-            game.model.character.currentMp(Math.floor(4 + userResponse.BonusIntelligence * .5));
-            game.model.character.maxMp(Math.floor(4 + userResponse.BonusIntelligence * .5));
-
-
-
-
-            // if (game.model.gameData.monsterHPBarLength() <= 0) { document.getElementById("xpbar").style.width = '1px'; }
-            // game.model.gameData.monsterHPBarLength(monster.currentHp / (3 + Math.floor(.5 * game.model.character.currentFloor)) * 337);
+            game.model.character.currentHp(Math.floor(5 + (.3 * game.model.character.strength()))); //ADD IT HERE TOO
+            game.model.character.maxHp(Math.floor(5 + (.3 * game.model.character.strength())));
+            game.model.character.currentMp(Math.floor(4 + game.model.character.intelligence() * .5));
+            game.model.character.maxMp(Math.floor(4 + game.model.character.intelligence() * .5));
             if (game.model.monster.currentHp() <= 0) {
                 game.model.monster.currentHp(0);
-
             }
-
-            // if (game.model.gameData.monsterHPBarLength() <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
-
-
-
         },
-
         loadGameCallbackFail: function () {
             alert("Failed to load user data. Please refresh the page and try again.");
         },
     },
-
-
-    //SAMPLE FUNCTION FOR EQUIPPING GEAR FROM DATABASE
-    // for (var i = 0; i < userResponse.itemIDs.length; i++) {
-    //if (userResponse.itemIDs[i].IsEquipped === true) {
-    //    Equipment[userResponse.ItemID] = true;
-    //    alert("Equipped " + itemsResponse[userResponse.itemIDs[i].ItemID].Name);
-    //    character.strength += itemsResponse[userResponse.itemIDs[i].ItemID].Strength;
-    //    character.dexterity += itemsResponse[userResponse.itemIDs[i].ItemID].Dexterity;
-    //    character.intelligence += itemsResponse[userResponse.itemIDs[i].ItemID].Intelligence;
-    //    character.luck += itemsResponse[userResponse.itemIDs[i].ItemID].Luck;
-    //    game.updatePage();
-    //}
-
-    // },
-
-
 };
-
 game.initialize();
 

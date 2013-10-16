@@ -58,7 +58,7 @@
         </div>
 
         <div id="autobrick" class="bricks">
-            <button id="autobutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" data-bind='click: setAutoPlay'>Autoplay</button>
+            <button id="autobutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" data-bind='click: setAutoPlay'>Continue</button>
         </div>
 
         <div id="popupsbrick" class="bricks">
@@ -68,15 +68,15 @@
 
         </div>
 
-        <div id="itemheader" class="bricks"></div>
-        <div id="helmetbrick" class="bricks"></div>
-        <div id="amuletbrick" class="bricks"></div>
-        <div id="weaponbrick" class="bricks"></div>
-        <div id="shieldbrick" class="bricks"></div>
-        <div id="armorbrick" class="bricks"></div>
-        <div id="beltbrick" class="bricks"></div>
-        <div id="pantsbrick" class="bricks"></div>
-        <div id="bootsbrick" class="bricks"></div>
+        <div id="itemheader" class="itembricks" data-bind="text: '|------Equipment------|'"></div>
+        <div id="helmetbrick" class="itembricks" data-bind="text: 'Helmet: ' + character.helmet()"></div>
+        <div id="amuletbrick" class="itembricks" data-bind="text: 'Amulet: ' + character.amulet()"></div>
+        <div id="weaponbrick" class="itembricks" data-bind="text: 'Weapon: ' + character.weapon()"></div>
+        <div id="shieldbrick" class="itembricks" data-bind="text: 'Shield: '  + character.shield()"></div>
+        <div id="armorbrick" class="itembricks" data-bind="text: 'Armor: ' + character.armor()"></div>
+        <div id="beltbrick" class="itembricks" data-bind="text: 'Belt: ' + character.belt()"></div>
+        <div id="pantsbrick" class="itembricks" data-bind="text: 'Pants: '  + character.pants()"></div>
+        <div id="bootsbrick" class="itembricks" data-bind="text: 'Boots: ' + character.boots()"></div>
 
 
     </div>
@@ -110,19 +110,8 @@
 
     </div>
 
-    <div class="attackbuttoncontainer">
-        <div class="actionbuttons meleeattackbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FF6633" data-bind='click: meleeAttack'>Attack</button>
-        </div>
-        <div class="actionbuttons mpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #3399FF" data-bind='click: magicAttack'>Fireball</button>
-        </div>
-        <div class="actionbuttons xpbar">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FFCC33" data-bind='click: rangedAttack'>Stab</button>
-        </div>
-        <div class="actionbuttons runbutton">
-            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #ff6a00" data-bind='click:game.runAway'>Run</button>
-        </div>
+    <div class="attackbuttoncontainer" data-bind="text:  encounter.intro() + encounter.name() + encounter.outro()"  >
+      
     </div>
 </div>
 

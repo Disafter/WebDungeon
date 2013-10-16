@@ -1,0 +1,14 @@
+﻿<div class="actionbuttons meleeattackbutton">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FF6633" data-bind='click: meleeAttack'>Attack</button>
+        </div>
+        <div class="actionbuttons mpbar">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #3399FF" data-bind='click: magicAttack'>Fireball</button>
+        </div>
+        <div class="actionbuttons xpbar">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #FFCC33" data-bind='click: rangedAttack'>Stab</button>
+        </div>
+        <div class="actionbuttons runbutton">
+            <button style="font-size: 23px; font-weight: bold; width: 222px; height: 32px; font-family: 'Gentium Book Basic'; vertical-align: top; color: #ff6a00" data-bind='click: game.runAway'>Run</button>
+        </div>
+
+"text: 'You hit the ' + monster.name() + ' for ' + self.character.meleeDamage() + '. It hits you back for ' + monster.attackDamage() + '.' "

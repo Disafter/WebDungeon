@@ -1,4 +1,109 @@
-﻿/////from this to the comment below is code just before knockout induction
+﻿
+
+//SAMPLE FUNCTION FOR EQUIPPING GEAR FROM DATABASE
+// for (var i = 0; i < userResponse.itemIDs.length; i++) {
+//if (userResponse.itemIDs[i].IsEquipped === true) {
+//    Equipment[userResponse.ItemID] = true;
+//    alert("Equipped " + itemsResponse[userResponse.itemIDs[i].ItemID].Name);
+//    character.strength += itemsResponse[userResponse.itemIDs[i].ItemID].Strength;
+//    character.dexterity += itemsResponse[userResponse.itemIDs[i].ItemID].Dexterity;
+//    character.intelligence += itemsResponse[userResponse.itemIDs[i].ItemID].Intelligence;
+//    character.luck += itemsResponse[userResponse.itemIDs[i].ItemID].Luck;
+//    game.updatePage();
+//}
+
+// },
+
+
+
+// if (game.model.gameData.monsterHPBarLength() <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+
+//var userClass;
+//$.each(game.model.gameData.races(), function () {
+//    if (game.model.gameData.races[this].raceId == userResponse.ClassID) {
+//        game.model.character.characterClass(game.model.gameData.races[this].name);
+
+//    }
+//})
+
+// if (game.model.gameData.monsterHPBarLength() <= 0) { document.getElementById("xpbar").style.width = '1px'; }
+// game.model.gameData.monsterHPBarLength(monster.currentHp / (3 + Math.floor(.5 * game.model.character.currentFloor)) * 337);
+            
+
+
+oldupdatePage: function () {
+
+    ////HP, MP, EXP
+    //character.maxHp = 5 + Math.floor(.1 * character.strength);
+    //character.maxMp = 5 + Math.floor(.2 * character.intelligence);
+    //if (character.currentHp > Math.ceil(character.maxHp)) {
+    //    character.currentHp = Math.ceil(character.maxHp);
+    //}
+    //if (character.currentMp > Math.ceil(character.maxHp)) {
+    //    character.currentMp = Math.ceil(character.maxHp);
+    //}
+    //document.getElementById("hpheader").innerHTML = "HP : " + Math.ceil(character.currentHp) + "/" + Math.ceil(character.maxHp);
+    //document.getElementById("hpbar").style.width = ((Math.ceil(character.currentHp) / Math.ceil(character.maxHp)) * 337) + 'px'; //good at 785
+    //document.getElementById("mpheader").innerHTML = "MP : " + Math.floor(character.currentMp) + "/" + Math.floor(character.maxMp);
+    //document.getElementById("mpbar").style.width = ((Math.floor(character.currentMp) / Math.floor(character.maxMp)) * 337) + 'px';
+    //expBarLength = (character.currentExperience / character.experienceNeededToLevel) * 337;
+    //document.getElementById("xpbar").style.width = expBarLength + 'px';
+    //document.getElementById("xpheader").innerHTML = "EXP :" + Math.floor(character.currentExperience);
+
+    ////STATS, STATPOINTS
+    //document.getElementById("strdexbox").innerHTML = "Strength: " + character.strength + "&nbsp;&nbsp;&nbsp;&nbsp;Dexterity: " + character.dexterity;
+    //document.getElementById("pointbrick").innerHTML = "+Stat Points:" + character.bonusStatPoints;
+    //document.getElementById("intluckbox").innerHTML = "Intelligence: " + character.intelligence + "&nbsp;&nbsp;&nbsp;Luck: " + character.luck;
+
+    ////MONSTER, MONSTER HP, FLOOR, MONSTERS LEFT
+    //monster.maxHp = 3 + Math.floor(.5 * character.currentFloor);
+    //document.getElementById("floorbrick").innerHTML = "Floor: " + character.currentFloor;
+    //document.getElementById("loginbox").innerHTML = "Inside Dungeon";
+    //gameData.monsterHPBarLength = (monster.currentHp / (3 + Math.floor(.5 * character.currentFloor)) * 337);
+    //document.getElementById("monsterbar").style.width = gameData.monsterHPBarLength + 'px';
+    //if (gameData.monsterHPBarLength <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
+    //document.getElementById("remainingbrick").innerHTML = "Monsters Here:" + gameData.monstersLeftOnFloor;
+
+    ////SPECIAL STATS
+    ////document.getElementById("monsteraccuracybox").innerHTML = "Enemy Roll:" + (100 - (dodgeRoll * 100)).toFixed(0);
+    ///*document.getElementById("monsteraccuracybox").innerHTML = "Gold Find: " + (((.06 + (character.luck * .003)) * 100)).toFixed(0) + "%";
+    //document.getElementById("dodgechancebox").innerHTML = "Dodge: " + (100 - (75 - (.25 * character.dexterity) + (.2 * character.currentFloor))).toFixed(0) + "%";*/
+
+    ////ITEMS
+    ///*if ((((45) / (1000 - character.luck)) * 100) >= 1) {
+    //    document.getElementById("itemfindbrick").innerHTML = "Item Find: " + (((30) / (1000 - character.luck)) * 100).toFixed(0) + "%";
+    //}
+    //else {
+    //    document.getElementById("itemfindbrick").innerHTML = "Item Find: < 1%";
+    //}
+    //if ((((45) / (1000 - character.luck)) * 100) >= 1) {
+    //    document.getElementById("gamblechancebrick").innerHTML = "Gamble: " + (((45) / (200 - character.luck)) * 100).toFixed(0) + "%";
+    //}
+    //else {
+    //    document.getElementById("gamblechancebrick").innerHTML = "Gamble Odds: < 1%";
+    //}*/
+    //document.getElementById("elixirbrick").innerHTML = "Elixirs: " + character.elixirs + "/10";
+    //document.getElementById("goldbrick").innerHTML = "Gold: " + character.gold;
+
+    ////document.getElementById("itemheader").innerHTML = "Items Found: " + uniqueItemsFound + "/45";
+
+    ////IMPORTANT CHECKS
+    //if (character.currentHp <= 0) {
+    //    if (gameData.isAutoPlaying) {
+    //        gameData.wasAutoPlaying = true;
+    //    }
+    //    gameData.isAutoPlaying = false;
+    //    gameData.isRecovering = true;
+    //    $("#autobutton").text("recovering...");
+    //    clearInterval(gameData.timerId);
+    //    clearInterval(gameData.recoverId);
+    //    gameData.recoverId = setInterval(game.recover, 250);
+    //    //  window.location.href = "defeated.html";
+    //    // document.getElementById("defeatedstats").innerHTML = " Items found:" + uniqueItemsFound + "/100" + " Gold: " + gold + " Elixirs: " + elixirs + "/10";
+    //}
+},
+
+/////from this to the comment below is code just before knockout induction
 
 var character = {
     name: "Nameless Hero",

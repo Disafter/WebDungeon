@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="backuphtml.html" />
     <Content Include="Images\chest.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -236,6 +237,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Images\door.png" />
     <Content Include="Images\dungeon.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -261,6 +263,9 @@
     <Content Include="Images\nomonster.png" />
     <Content Include="Images\rat.png" />
     <Content Include="Images\spider.png" />
+    <Content Include="Images\spirit1.png" />
+    <Content Include="Images\spirit2.png" />
+    <Content Include="Images\spirit3.png" />
     <Content Include="Scripts\Copy of index.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Content\index.css" />
