@@ -81,7 +81,8 @@
 
     </div>
     <div id="mainimageframe" class="monsterbg">
-        <img src="~/Images/dungeon.jpg" />
+        <img class="dungeonimage" data-bind="attr: { src: gameData.imageUrl }" />
+        <img class="monsterimage" data-bind="attr: { src: monster.imageUrl }"/>
     </div>
     <div class="rightbar">
         <div id="floorbrick" class="bricks" data-bind="text: 'Floor ' + character.currentFloor()">Entrance</div>
@@ -139,7 +140,7 @@
     </ul>
     <div id="tabs-1">
         <ul id="helmet" class="connectedSortable ui-helper-reset">
-            <li style="text-align: center" id="helmet1" onclick="equipDestinyCrown()" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="helmet1" class="ui-state-default">Not Yet Found!</li>
             <li style="text-align: center" id="helmet2" class="ui-state-default">Not Yet Found!</li>
             <li style="text-align: center" id="helmet3" class="ui-state-default">Not Yet Found!</li>
             <li style="text-align: center" id="helmet4" class="ui-state-default">Not Yet Found!</li>
@@ -149,7 +150,7 @@
     </div>
     <div id="tabs-2">
         <ul id="weapon" class="connectedSortable ui-helper-reset">
-            <li style="text-align: center" id="weapon1" onclick="equipExcalibur()" class="ui-state-default">Not Yet Found!</li>
+            <li style="text-align: center" id="weapon1" class="ui-state-default">Not Yet Found!</li>
             <li style="text-align: center" id="weapon2" class="ui-state-default">Not Yet Found!</li>
             <li style="text-align: center" id="weapon3" class="ui-state-default">Not Yet Found!</li>
             <li style="text-align: center" id="weapon4" class="ui-state-default">Not Yet Found!</li>

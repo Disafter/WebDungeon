@@ -254,6 +254,7 @@
     <Content Include="Images\dungeonleft.png" />
     <Content Include="Images\dungeonright.png" />
     <Content Include="Images\dungeonstraight.png" />
+    <Content Include="Images\rat.png" />
     <Content Include="Scripts\Copy of index.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Content\index.css" />
@@ -275,6 +276,7 @@
     <Content Include="Content\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Images\wall.jpg" />
+    <Content Include="travelbattle.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
