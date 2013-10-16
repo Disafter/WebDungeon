@@ -51,7 +51,7 @@ var game = {
             randomImageRoll: ko.observable(0),
             isFighting: ko.observable(false),
             findMonsterRoll: ko.observable(0),
-            imageUrl: ko.observable("/Images/dungeonstraight.png")
+            imageUrl: ko.observable("/Images/dungeonstraight1.png")
         };
 
         self.monster = {
@@ -62,11 +62,11 @@ var game = {
             attackDamage: ko.computed(function(){
                 return Math.ceil((.1 * self.character.currentFloor() * self.gameData.dodgeRoll()));
             }),
-            imageUrl: ko.observable("/Images/rat.png")
+            imageUrl: ko.observable("/Images/nomonster.png")
         };
 
-        self.dungeon = ["/Images/dungeonstraight.png","/Images/dungeonleft.png","/Images/dungeonright.png"];
-        self.monsters = ["/Images/rat.png"];
+        self.dungeon = ["/Images/dungeonstraight1.png", "/Images/dungeonstraight2.png", "/Images/dungeonstraight3.png", "/Images/dungeonstraight4.png", "/Images/dungeonleft1.png", "/Images/dungeonright1.png"];
+        self.monsters = ["/Images/nomonster.png", "/Images/rat.png", "/Images/goblin.png", "/Images/spider.png"];
 
 
         self.loadGame = function () {
@@ -76,9 +76,10 @@ var game = {
         self.meleeAttack = function () {
             if (!self.gameData.isRecovering()) {
                 if (self.character.maxHp() > 1) {
-                    self.monster.currentHp(self.monster.currentHp() - (Math.floor(1 * (.9 + self.character.strength() * .045455))));
+                    self.monster.currentHp(self.monster.currentHp() - (Math.ceil(1 * (.9 + self.character.strength() * .045455))));
                     // if (self.monsterBarLength() <= 0) { $("#monsterbar").style.width = '1px'; }
                     if (self.monster.currentHp() <= 0) {
+                        self.monster.imageUrl(self.monsters[0]);
                         self.gameData.isFighting(false);
                         self.dropItems();
                         self.character.currentExperience(self.character.currentExperience() + Math.ceil(100 / self.character.level() + 100 / self.character.currentFloor()));
@@ -96,7 +97,7 @@ var game = {
                             self.character.currentMp(self.character.maxMp());
                             self.gameData.monstersLeftOnFloor(self.gameData.monstersLeftOnFloor() - 1);
                         }
-                        self.monster.currentHp(3 + Math.floor(.5 * self.character.currentFloor()));
+                        
                     }
                     self.monsterAttack();
                 }
@@ -114,11 +115,12 @@ var game = {
             if (!self.gameData.isRecovering()) {
                 if (self.character.maxHp() > 1) {
                     if (self.character.currentMp() >= 1) {
-                        self.monster.currentHp(self.monster.currentHp() - Math.floor(1 * (2 + self.character.intelligence() * .02)));
+                        self.monster.currentHp(self.monster.currentHp() - Math.ceil(1 * (2 + self.character.intelligence() * .02)));
                         // if (self.gameData.monsterHPBarLength() <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
                         self.character.currentMp(self.character.currentMp() - 1);
                         self.gameData.magicBarLength(self.character.currentMp() / self.character.maxMp() * 337);
                         if (self.monster.currentHp() <= 0) {
+                            self.monster.imageUrl(self.monsters[0]);
                             self.gameData.isFighting(false);
                             self.dropItems();
                             self.character.currentExperience(self.character.currentExperience() + Math.ceil(100 / self.character.level() + 100 / self.character.currentFloor()));
@@ -136,7 +138,7 @@ var game = {
                                 self.character.currentMp(self.character.maxMp());
                                 self.gameData.monstersLeftOnFloor(self.gameData.monstersLeftOnFloor() - 1);
                             }
-                            self.monster.currentHp(3 + Math.floor(.5 * self.character.currentFloor()));
+                            
                         }
                         self.monsterAttack();
                     }
@@ -158,9 +160,10 @@ var game = {
         self.rangedAttack = function () {
             if (!self.gameData.isRecovering()) {
                 if (self.character.maxHp() > 1) {
-                    self.monster.currentHp(self.monster.currentHp() - Math.floor(1 * (1 + self.character.dexterity() * .01)));
+                    self.monster.currentHp(self.monster.currentHp() - Math.ceil(1 * (1 + self.character.dexterity() * .01)));
                     // if (self.gameData.monsterHPBarLength() <= 0) { document.getElementById("monsterbar").style.width = '1px'; }
                     if (self.monster.currentHp() <= 0) {
+                        self.monster.imageUrl(self.monsters[0]);
                         self.gameData.isFighting(false);
                         self.dropItems();
                         self.character.currentExperience(self.character.currentExperience() + Math.ceil(100 / self.character.level() + 100 / self.character.currentFloor()));
@@ -177,7 +180,8 @@ var game = {
                             self.character.currentMp(self.character.maxMp());
                             self.gameData.monstersLeftOnFloor(self.gameData.monstersLeftOnFloor() - 1);
                         }
-                        self.monster.currentHp(3 + Math.floor(.5 * self.character.currentFloor()));
+                        
+
                     }
                     self.monsterAttackVsRanged();
                 }
@@ -304,25 +308,25 @@ var game = {
         };
 
         self.runAway = function () {
-            if (!self.gameData.isRecovering()) {
-                if (self.character.currentMp() >= 1) {
-                    self.character.currentMp(self.character.currentMp() - 1);
-                }
+            //if (!self.gameData.isRecovering()) {
+            //    if (self.character.currentMp() >= 1) {
+            //        self.character.currentMp(self.character.currentMp() - 1);
+            //    }
 
-                if (self.character.gold() > 3) {
-                    self.character.gold(self.character.gold() - 3);
-                }
-                else {
-                    self.character.gold(0);
-                }
-                self.character.currentHp(self.character.maxHp());
-                self.monster.currentHp(self.monster.maxHp());
-                document.getElementById("dodgenotice").innerHTML = "You ran away!";
-                document.getElementById("fordamagebrick").innerHTML = "";
-            }
-            else {
-                alert("You're still recovering!");
-            }
+            //    if (self.character.gold() > 3) {
+            //        self.character.gold(self.character.gold() - 3);
+            //    }
+            //    else {
+            //        self.character.gold(0);
+            //    }
+            //    self.character.currentHp(self.character.maxHp());
+            //    self.monster.currentHp(self.monster.maxHp());
+            //    document.getElementById("dodgenotice").innerHTML = "You ran away!";
+            //    document.getElementById("fordamagebrick").innerHTML = "";
+            //}
+            //else {
+            //    alert("You're still recovering!");
+            //}
         };
 
         self.gamble = function () {
@@ -509,14 +513,15 @@ var game = {
 
                 //if not fighting, find a new monster
             else if (self.gameData.isFighting() == false) {
-                self.gameData.findMonsterRoll(Math.floor(Math.random() * 8));
+                self.gameData.findMonsterRoll(Math.floor(Math.random() * 10));
                 if (self.gameData.findMonsterRoll() == 0) {
                     self.gameData.isFighting(true);
-                    self.gameData.randomImageRoll(Math.floor(Math.random() * 1));
+                    self.gameData.randomImageRoll(Math.ceil(Math.random() * 3));
                     self.monster.imageUrl(self.monsters[self.gameData.randomImageRoll()]);
+                    self.monster.currentHp(1 + Math.floor(.5 * self.character.currentFloor()));
                 }
                 else {
-                    self.gameData.randomImageRoll(Math.floor(Math.random() * 3));
+                    self.gameData.randomImageRoll(Math.floor(Math.random() * 6));
                     self.gameData.imageUrl(self.dungeon[self.gameData.randomImageRoll()]);
                 }
             }
@@ -529,7 +534,7 @@ var game = {
                 self.gameData.isAutoPlaying(true);
                 $("#autobutton").text("playing...");
                 clearInterval(self.gameData.timerId);
-                self.gameData.timerId = setInterval(self.autoPlayGame, 500);
+                self.gameData.timerId = setInterval(self.autoPlayGame, 300);
             }
             else if (self.gameData.isAutoPlaying() == true) {
                 self.gameData.isAutoPlaying(false);
@@ -559,7 +564,7 @@ var game = {
             document.getElementById("hpbar").style.width = ((Math.ceil(self.character.currentHp()) / Math.ceil(self.character.maxHp())) * 337) + 'px';
             document.getElementById("mpbar").style.width = ((Math.floor(self.character.currentMp()) / Math.floor(self.character.maxMp())) * 337) + 'px';
             document.getElementById("xpbar").style.width = ((self.character.currentExperience() / self.character.experienceNeededToLevel()) * 337) + 'px';
-            document.getElementById("monsterbar").style.width = (((Math.ceil(self.monster.currentHp()) / (3 + Math.floor(.5 * self.character.currentFloor())))) * 337) + 'px';
+            document.getElementById("monsterbar").style.width = (((Math.ceil(self.monster.currentHp()) / (1 + Math.floor(.5 * self.character.currentFloor())))) * 337) + 'px';
         });
 
       
@@ -808,8 +813,8 @@ var game = {
             game.model.character.gold(userResponse.Gold);
             game.model.character.currentFloor(userResponse.Floor);
             game.model.gameData.monstersLeftOnFloor(10 + Math.ceil(game.model.character.currentFloor() * Math.ceil(.2 * game.model.character.currentFloor())));
-            game.model.monster.maxHp(3 + Math.floor(.5 * userResponse.Floor));
-            game.model.monster.currentHp(3 + Math.floor(.5 * userResponse.Floor));
+            game.model.monster.maxHp(1 + Math.floor(.5 * userResponse.Floor));
+            game.model.monster.currentHp(1 + Math.floor(.5 * userResponse.Floor));
             game.model.character.bonusStatPoints(userResponse.BonusStatPoints);
 
             game.model.character.strength(userResponse.BonusStrength); //ADD GEAR AND CLASS BONUSES TO THIS
