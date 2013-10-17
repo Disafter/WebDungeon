@@ -11,6 +11,7 @@ var game = {
         var self = this;
 
         self.character = {
+            id: -1,
             name: ko.observable("Nameless Hero"),
             level: ko.observable(1),
             currentFloor: ko.observable(1),
@@ -30,16 +31,42 @@ var game = {
             elixirs: ko.observable(0),
             gold: ko.observable(0),
             ownedItems: ko.observableArray([]),
-            helmet: ko.observable(""),
-            amulet: ko.observable(""),
-            weapon: ko.observable("Short Sword"),
-            shield: ko.observable(""),
-            armor: ko.observable(""),
-            belt: ko.observable(""),
-            pants: ko.observable(""),
-            boots: ko.observable(""),
-            
+            helmet: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+            amulet: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+            weapon: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+            shield: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+            armor: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+            belt: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+            pants: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+            boots: ko.observable({
+                id: -1,
+                name: "Unequipped"
+            }),
+
         };
+
+
 
         self.gameData = {
             monsterHpBarLength: ko.observable(0),
@@ -89,14 +116,17 @@ var game = {
         self.loadGame = function () {
             game.ajax.loadGame();
         };
+        self.saveGame = function () {
+            game.ajax.saveGame();
+        }
 
-        meleeDamage= ko.computed(function () {
+        meleeDamage = ko.computed(function () {
             return Math.ceil(1 * (.9 + self.character.strength() * .045455));
         }),
-        magicDamage= ko.computed(function () {
+        magicDamage = ko.computed(function () {
             return Math.ceil(1 * (2 + self.character.intelligence() * .1));
         }),
-        rangedDamage= ko.computed(function () {
+        rangedDamage = ko.computed(function () {
             return Math.ceil(1 * (1 + self.character.dexterity() * .01));
         })
 
@@ -155,7 +185,6 @@ var game = {
                             self.gameData.isFighting(false);
                             self.dropItems();
                             self.character.currentExperience(self.character.currentExperience() + Math.ceil(100 / self.character.level() + 100 / self.character.currentFloor()));
-                            //   self.dropItems();
                             self.gameData.monstersLeftOnFloor(self.gameData.monstersLeftOnFloor() - 1);
                             if (self.gameData.monstersLeftOnFloor() <= 0) {
                                 self.character.currentFloor(self.character.currentFloor() + 1);
@@ -520,7 +549,8 @@ var game = {
                 }
                 else if (self.character.currentHp() <= self.character.maxHp()) {
                     self.character.currentHp(self.character.currentHp() + Math.ceil(self.character.maxHp() / 60));
-                }}
+                }
+            }
 
                 //check hp
             else if (self.character.currentHp() <= 0) {
@@ -539,7 +569,8 @@ var game = {
                 }
                 else {
                     self.meleeAttack();
-                }}
+                }
+            }
 
                 //if not fighting, find a new monster
             else if (self.gameData.isFighting() == false) {
@@ -566,7 +597,9 @@ var game = {
                     self.encounter.intro("You continue through ");
                     self.encounter.name("the hallway");
                     self.encounter.outro(".");
-                }}};
+                }
+            }
+        };
 
         self.setAutoPlay = function () {
             if (self.gameData.isAutoPlaying() == false) {
@@ -677,6 +710,73 @@ var game = {
             $.get("/api/User/" + game.model.character.name())
             .done(game.ajaxCallbacks.loadGameCallbackDone)
             .fail(game.ajaxCallbacks.loadGameCallbackFail);
+        },
+
+        saveGame: function () {
+            var items = [];
+
+            $.each(game.model.character.ownedItems(), function () {
+                var isEquipped = false;
+                if (game.model.character.helmet().id == this.id) {
+                    isEquipped = true;
+                }
+                else if (game.model.character.amulet().id == this.id) {
+                    isEquipped = true;
+                }
+                else if (game.model.character.weapon().id == this.id) {
+                    isEquipped = true;
+                }
+                else if (game.model.character.shield().id == this.id) {
+                    isEquipped = true;
+                }
+                else if (game.model.character.armor().id == this.id) {
+                    isEquipped = true;
+                }
+                else if (game.model.character.belt().id == this.id) {
+                    isEquipped = true;
+                }
+                else if (game.model.character.pants().id == this.id) {
+                    isEquipped = true;
+                }
+                else if (game.model.character.boots().id == this.id) {
+                    isEquipped = true;
+                }
+
+                var item = {
+                    id: this.id,
+                    isEquipped: isEquipped
+                };
+                items.push(item);
+            });
+            var request = {
+                characterUserId: game.model.character.id,
+                characterLevel: game.model.character.level(),
+                characterFloor: game.model.character.currentFloor(),
+                characterExp: game.model.character.currentExperience(),
+                characterGold: game.model.character.gold(),
+                characterElixirs: game.model.character.elixirs(),
+                characterBonusStatPoints: game.model.character.bonusStatPoints(),
+                characterStrength: game.model.character.strength(),
+                characterDexterity: game.model.character.dexterity(),
+                characterIntelligence: game.model.character.intelligence(),
+                characterLuck: game.model.character.luck(),
+                /*
+                equippedHelmet: game.model.character.helmet(),
+                equippedAmulet: game.model.character.amulet(),
+                equippedWeapon: game.model.character.weapon(),
+                equippedShield: game.model.character.shield(),
+                equippedArmor: game.model.character.armor(),
+                equippedBelt: game.model.character.belt(),
+                equippedPants: game.model.character.pants(),
+                equippedBoots: game.model.character.boots(),
+                */
+                items: items
+
+            };
+            $.post("/api/User", request)
+            .done(game.ajaxCallbacks.saveGameCallbackDone)
+            .fail(game.ajaxCallbacks.saveGameCallbackFail);
+
         }
     },
 
@@ -693,7 +793,8 @@ var game = {
                 };
 
                 game.model.gameData.races.push(race);
-            });},
+            });
+        },
 
         loadClassesCallbackFail: function () {
             alert("Failed to load classes :( Please refresh the game and try again.");
@@ -709,7 +810,8 @@ var game = {
                 };
 
                 game.model.gameData.monsters.push(monster);
-            });},
+            });
+        },
 
         loadMonstersCallbackFail: function () {
             alert("Failed to load monsters :( Please refresh the game and try again.");
@@ -728,7 +830,8 @@ var game = {
                 };
 
                 game.model.gameData.items().push(item);
-            });},
+            });
+        },
 
         loadItemsCallbackFail: function () {
             alert("Failed to load items :( Please refresh the game and try again.");
@@ -745,10 +848,11 @@ var game = {
                 $("#levelbox").text = "Level " + game.model.character.level() + " " + game.model.character.characterClass();
             }
             game.model.gameData.imageUrl(game.model.dungeon[1]);
+            game.model.character.id(userResponse.UserID);
             game.model.character.gold(userResponse.Gold);
             game.model.character.currentFloor(userResponse.Floor);
             game.model.gameData.monstersLeftOnFloor(10 + Math.ceil(game.model.character.currentFloor() * Math.ceil(.2 * game.model.character.currentFloor())));
-            game.model.monster.maxHp(1 + Math.floor(.5 * userResponse.Floor));
+            game.model.monster.maxHp();
             game.model.monster.currentHp(1 + Math.floor(.5 * userResponse.Floor));
             game.model.character.bonusStatPoints(userResponse.BonusStatPoints);
             game.model.character.strength(userResponse.BonusStrength); //ADD GEAR AND CLASS BONUSES TO THIS
@@ -760,6 +864,44 @@ var game = {
             game.model.character.maxHp(Math.floor(5 + (.3 * game.model.character.strength())));
             game.model.character.currentMp(Math.floor(4 + game.model.character.intelligence() * .5));
             game.model.character.maxMp(Math.floor(4 + game.model.character.intelligence() * .5));
+
+            $.each(userResponse.itemIDs, function () {
+                var userItem = this;
+
+                $.each(game.model.gameData.items(), function () {
+                    if (this.id == userItem.ItemID) {
+                        game.model.character.ownedItems.push(this); //all the item data is in ownedItems
+                        if (userItem.IsEquipped == 1) {
+                            if (this.type == 1) {
+                                game.model.character.helmet(this);
+                            }
+                            else if (this.type == 2) {
+                                game.model.character.amulet(this);
+                            }
+                            else if (this.type == 3) {
+                                game.model.character.weapons(this);
+                            }
+                            else if (this.type == 4) {
+                                game.model.character.shield(this);
+                            }
+                            else if (this.type == 5) {
+                                game.model.character.armor(this);
+                            }
+                            else if (this.type == 6) {
+                                game.model.character.belt(this);
+                            }
+                            else if (this.type == 7) {
+                                game.model.character.pants(this);
+                            }
+                            else if (this.type == 8) {
+                                game.model.character.boots(this);
+                            }
+
+                        }
+                    }
+                })
+            });
+
             if (game.model.monster.currentHp() <= 0) {
                 game.model.monster.currentHp(0);
             }
@@ -767,7 +909,15 @@ var game = {
         loadGameCallbackFail: function () {
             alert("Failed to load user data. Please refresh the page and try again.");
         },
+        saveGameCallbackDone: function (response) {
+            alert("save game success");
+        },
+        saveGameCallbackFail: function (response) {
+            alert("save game fail");
+        }
     },
+
+
 };
 game.initialize();
 

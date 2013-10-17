@@ -265,6 +265,42 @@ namespace WebDungeon.Models
             return user;
         }
 
+        public User SaveUser(UserPostRequest request)
+        {
+            var isOpen = OpenConnection();
+            var user = new User();
+
+
+            if (isOpen)
+            {
+                //Create Command
+                var command = new MySqlCommand("UserSave", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("pUserId", request.CharacterUserId);
+                command.Parameters.AddWithValue("pLevel", request.CharacterLevel);
+                command.Parameters.AddWithValue("pFloor", request.CharacterFloor);
+                command.Parameters.AddWithValue("pBonusStrength", request.CharacterStrength);
+                command.Parameters.AddWithValue("pBonusDexterity", request.CharacterDexterity);
+                command.Parameters.AddWithValue("pBonusIntelligence", request.CharacterIntelligence);
+                command.Parameters.AddWithValue("pBonusLuck", request.CharacterLuck);
+                command.Parameters.AddWithValue("pCurrentExp", request.CharacterExp);
+                command.Parameters.AddWithValue("pGold", request.CharacterGold);
+                command.Parameters.AddWithValue("pElixirs", request.CharacterElixirs);
+                command.Parameters.AddWithValue("pBonusStatPoints", request.CharacterBonusStatPoints);
+
+                command.ExecuteNonQuery();
+
+
+
+
+
+                //close Connection
+                CloseConnection();
+            }
+
+            return user;
+        }
+
         
       //  internal object GetMonsters()
       //  {

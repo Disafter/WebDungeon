@@ -18,5 +18,11 @@ namespace WebDungeon.Controllers.Api
             user.itemIDs = dbConnect.GetUserItems(user.UserID);
             return user;
         }
+
+        public void Post(UserPostRequest request)
+        {
+            var dbConnect = new DBConnect();
+            dbConnect.SaveUser(request);
+        }
     }
 }

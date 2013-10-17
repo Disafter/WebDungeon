@@ -19,7 +19,7 @@
     <div id="levelbox" class="headerbox" data-bind="text: 'Level ' + character.level() + ' ' + character.characterClass()"></div>
     <div id="intluckbox" class="headerbox" data-bind="text: 'Intelligence: ' + character.intelligence() + ' Luck: ' + character.luck()">Intelligence: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
     <div class="headerbox">
-        <button id="settingsbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" data-bind="click: settings">Settings</button>
+        <button id="settingsbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" data-bind="click: saveGame">Save Game</button>
         <button id="aboutbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" data-bind="click: about">About</button>
     </div>
 
@@ -69,14 +69,14 @@
         </div>
 
         <div id="itemheader" class="itembricks" data-bind="text: '|------Equipment------|'"></div>
-        <div id="helmetbrick" class="itembricks" data-bind="text: 'Helmet: ' + character.helmet()"></div>
-        <div id="amuletbrick" class="itembricks" data-bind="text: 'Amulet: ' + character.amulet()"></div>
-        <div id="weaponbrick" class="itembricks" data-bind="text: 'Weapon: ' + character.weapon()"></div>
-        <div id="shieldbrick" class="itembricks" data-bind="text: 'Shield: '  + character.shield()"></div>
-        <div id="armorbrick" class="itembricks" data-bind="text: 'Armor: ' + character.armor()"></div>
-        <div id="beltbrick" class="itembricks" data-bind="text: 'Belt: ' + character.belt()"></div>
-        <div id="pantsbrick" class="itembricks" data-bind="text: 'Pants: '  + character.pants()"></div>
-        <div id="bootsbrick" class="itembricks" data-bind="text: 'Boots: ' + character.boots()"></div>
+        <div id="helmetbrick" class="itembricks" data-bind="text: 'Helmet: ' + character.helmet().name"></div>
+        <div id="amuletbrick" class="itembricks" data-bind="text: 'Amulet: ' + character.amulet().name"></div>
+        <div id="weaponbrick" class="itembricks" data-bind="text: 'Weapon: ' + character.weapon().name"></div>
+        <div id="shieldbrick" class="itembricks" data-bind="text: 'Shield: '  + character.shield().name"></div>
+        <div id="armorbrick" class="itembricks" data-bind="text: 'Armor: ' + character.armor().name"></div>
+        <div id="beltbrick" class="itembricks" data-bind="text: 'Belt: ' + character.belt().name"></div>
+        <div id="pantsbrick" class="itembricks" data-bind="text: 'Pants: '  + character.pants().name"></div>
+        <div id="bootsbrick" class="itembricks" data-bind="text: 'Boots: ' + character.boots().name"></div>
 
 
     </div>
