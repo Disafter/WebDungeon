@@ -112,7 +112,7 @@ var game = {
         };
 
         self.dungeon = ["/Images/dungeonstraight1.png", "/Images/dungeonstraight2.png", "/Images/dungeonstraight3.png", "/Images/dungeonstraight4.png", "/Images/dungeonleft1.png", "/Images/dungeonright1.png"];
-        self.monsters = ["/Images/nomonster.png", "/Images/rat.png", "/Images/goblin.png", "/Images/spider.png", "/Images/spirit1.png", "/Images/spirit2.png", "/Images/spirit3.png", "/Images/orcroc2.png"];
+        self.monsters = ["/Images/nomonster.png", "/Images/rat.png", "/Images/goblin.png", "/Images/spider.png", "/Images/spirit1.png", "/Images/spirit2.png", "/Images/spirit3.png", "/Images/orcroc2.png", "/Images/root3.png", "/Images/chesty3.png"];
 
         self.newGame = function () {
             game.ajax.newGame();
@@ -581,16 +581,18 @@ var game = {
                 self.gameData.findMonsterRoll(Math.floor(Math.random() * 10));
                 if (self.gameData.findMonsterRoll() == 0) {
                     self.gameData.isFighting(true);
-                    self.gameData.randomImageRoll(Math.ceil(Math.random() * 7));
+                    self.gameData.randomImageRoll(Math.ceil(Math.random() * 9));
                     self.encounter.intro("You're attacked by a ");
                     self.monster.imageUrl(self.monsters[self.gameData.randomImageRoll()]);
                     if (self.gameData.randomImageRoll() == 1) { self.encounter.name("giant rat") };
                     if (self.gameData.randomImageRoll() == 2) { self.encounter.name("cactugoblar") };
                     if (self.gameData.randomImageRoll() == 3) { self.encounter.name("mysterious spider") };
-                    if (self.gameData.randomImageRoll() == 4) { self.encounter.name("spooky spirit") };
-                    if (self.gameData.randomImageRoll() == 5) { self.encounter.name("burger spirit") };
-                    if (self.gameData.randomImageRoll() == 6) { self.encounter.name("toxic spirit") };
-                    if (self.gameData.randomImageRoll() == 7) { self.encounter.name("orcroc") };
+                    if (self.gameData.randomImageRoll() == 4) { self.encounter.name("aetherwisp") };
+                    if (self.gameData.randomImageRoll() == 5) { self.encounter.name("bitterburger") };
+                    if (self.gameData.randomImageRoll() == 6) { self.encounter.name("sewer spirit") };
+                    if (self.gameData.randomImageRoll() == 7) { self.encounter.name("gremble") };
+                    if (self.gameData.randomImageRoll() == 8) { self.encounter.name("root") };
+                    if (self.gameData.randomImageRoll() == 9) { self.encounter.name("chesty") };
                     self.encounter.outro("!");
 
 
@@ -695,7 +697,7 @@ var game = {
 
     ajax: {
         newGame: function () {
-            game.model.character.name(prompt("Please enter your character's name.", "Disafter"));
+            game.model.character.name(prompt("Please enter your character's name.", "Anonymous Hero"));
             if (!game.model.character.name) {
                 game.model.character.name("Anonymous Hero");
             }

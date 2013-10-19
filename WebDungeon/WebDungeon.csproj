@@ -283,6 +283,8 @@
     <Content Include="Images\spirit1.png" />
     <Content Include="Images\spirit2.png" />
     <Content Include="Images\spirit3.png" />
+    <Content Include="Images\wall1.png" />
+    <Content Include="Images\wall2.png" />
     <Content Include="Scripts\Copy of index.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Content\index.css" />
