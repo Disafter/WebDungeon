@@ -7,20 +7,20 @@
 
 
 <div class="gameframe">
-    <div id="namebox" class="headerbox">
+    <div id="namebox" class="headerbox" data-bind="text: character.name">
         Nameless Hero
     </div>
     <div id="strdexbox" class="headerbox" data-bind="text: 'Strength: ' + character.strength() + ' Dexterity: ' + character.dexterity()">Strength: 0 &nbsp;&nbsp;&nbsp;&nbsp;Dexterity: 0</div>
 
     <div id="loginbox" class="headerbox">
-        <button id="loadgamebutton" style="font-size: 22px; font-weight: bold; width: 290px; height: 26px; font-family: 'Gentium Book Basic'; color: #830000" data-bind="click: loadGame">Enter The Dungeon</button>
+        <button id="loadgamebutton" style="font-size: 22px; font-weight: bold; width: 290px; height: 26px; font-family: 'Gentium Book Basic'; color: #830000" data-bind="click: loadGame">Load Game</button>
     </div>
 
     <div id="levelbox" class="headerbox" data-bind="text: 'Level ' + character.level() + ' ' + character.characterClass()"></div>
     <div id="intluckbox" class="headerbox" data-bind="text: 'Intelligence: ' + character.intelligence() + ' Luck: ' + character.luck()">Intelligence: 0 &nbsp;&nbsp;&nbsp; Luck: 0</div>
     <div class="headerbox">
         <button id="settingsbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" data-bind="click: saveGame">Save Game</button>
-        <button id="aboutbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" data-bind="click: about">About</button>
+        <button id="aboutbutton" style="font-size: 22px; font-weight: bold; width: 145px; height: 26px; font-family: 'Gentium Book Basic'; color: #390101" data-bind="click: newGame">New Game</button>
     </div>
 
 
@@ -49,22 +49,22 @@
     <div class="leftbar">
         <div id="pointbrick" class="bricks" data-bind="text: '+Stat Points: ' + character.bonusStatPoints()"></div>
         <div id="plusstrdexbrick" class="bricks">
-            <button id="addstrengthbutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" data-bind='click: addStrength'>+Str</button>
-            <button id="adddexteritybutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" data-bind='click: addDexterity'>+Dex</button>
+            <button id="addstrengthbutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green; display:none" data-bind='click: addStrength'>+Str</button>
+            <button id="adddexteritybutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green; display:none" data-bind='click: addDexterity'>+Dex</button>
         </div>
         <div id="plusintluckbrick" class="bricks">
-            <button id="addintelligencebutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" data-bind='click: addIntelligence'>+Int</button>
-            <button id="addluckbutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green" data-bind='click: addLuck'>+Luck</button>
+            <button id="addintelligencebutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green; display:none" data-bind='click: addIntelligence'>+Int</button>
+            <button id="addluckbutton" style="font-size: 17px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: green; display:none" data-bind='click: addLuck'>+Luck</button>
         </div>
 
         <div id="autobrick" class="bricks">
-            <button id="autobutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" data-bind='click: setAutoPlay'>Continue</button>
+            <button id="autobutton" style="font-size: 16px; font-weight: bold; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff; display:none" data-bind='click: setAutoPlay'>Continue</button>
         </div>
 
         <div id="popupsbrick" class="bricks">
 
 
-            <button id="popupsbutton" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff" data-bind='click: togglePopups'>Item Popups: On</button>
+            <button id="popupsbutton" style="font-size: 14px; width: auto; height: 22px; font-family: 'Gentium Book Basic'; color: #0026ff; display:none" data-bind='click: togglePopups'>Item Popups: On</button>
 
         </div>
 
@@ -98,15 +98,15 @@
         <div id="fordamagebrick" class="bricks"></div>
         <div id="elixirbrick" class="bricks" data-bind="text: 'Elixirs: ' + character.elixirs() + '/10'"></div>
         <div id="useelixirbrick" class="bricks">
-            <button style="font-size: 17px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: purple" data-bind='click: useElixir'>Use Elixir</button>
+            <button id="elixirsbutton" style="font-size: 17px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: purple; display:none" data-bind='click: useElixir'>Use Elixir</button>
         </div>
 
         <div id="goldbrick" class="bricks" data-bind="text: 'Gold: ' + character.gold()"></div>
         <div id="gamblebrick" class="bricks">
-            <button style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #6f4400" data-bind='click: gamble'>Gamble:10</button>
+            <button id="gamblebutton" style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #6f4400; display:none" data-bind='click: gamble'>Gamble:10</button>
         </div>
         <div class="bricks">
-            <button style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #6f4400" data-bind='click: bigGamble'>Big Gamble:1k</button></div>
+            <button id="biggamblebutton" style="font-size: 15px; font-weight: bold; width: 120px; height: 22px; font-family: 'Gentium Book Basic'; color: #6f4400; display:none" data-bind='click: bigGamble'>Big Gamble:1k</button></div>
 
     </div>
 

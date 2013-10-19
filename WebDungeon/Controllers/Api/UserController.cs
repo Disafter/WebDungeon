@@ -6,12 +6,14 @@ using System.Net.Http;
 using System.Web.Http;
 using MySql.Data;
 using WebDungeon.Models;
+using AttributeRouting.Web.Mvc;
 
 namespace WebDungeon.Controllers.Api
 {
     public class UserController : ApiController
     {
-        public User Get(string id)
+        [HttpGet]
+        public User Retrieve(string id)
         {
             var dbConnect = new DBConnect();
             var user = dbConnect.GetUser(id);
@@ -19,7 +21,13 @@ namespace WebDungeon.Controllers.Api
             return user;
         }
 
-        public void Post(UserPostRequest request)
+        public void Create(CreateUserRequest request)
+        {
+            var dbConnect = new DBConnect();
+            dbConnect.NewUser(request);
+        }
+
+        public void Save(UserPostRequest request)
         {
             var dbConnect = new DBConnect();
             dbConnect.SaveUser(request);

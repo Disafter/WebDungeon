@@ -12,9 +12,11 @@ var game = {
 
         self.character = {
             id: -1,
+            classId: 1,
             name: ko.observable("Nameless Hero"),
             level: ko.observable(1),
             currentFloor: ko.observable(1),
+            characterClassId: 1,
             characterClass: ko.observable("Adventurer"),
             strength: ko.observable(2),
             dexterity: ko.observable(2),
@@ -110,9 +112,11 @@ var game = {
         };
 
         self.dungeon = ["/Images/dungeonstraight1.png", "/Images/dungeonstraight2.png", "/Images/dungeonstraight3.png", "/Images/dungeonstraight4.png", "/Images/dungeonleft1.png", "/Images/dungeonright1.png"];
-        self.monsters = ["/Images/nomonster.png", "/Images/rat.png", "/Images/goblin.png", "/Images/spider.png", "/Images/spirit1.png", "/Images/spirit2.png", "/Images/spirit3.png", ];
+        self.monsters = ["/Images/nomonster.png", "/Images/rat.png", "/Images/goblin.png", "/Images/spider.png", "/Images/spirit1.png", "/Images/spirit2.png", "/Images/spirit3.png", "/Images/orcroc2.png"];
 
-
+        self.newGame = function () {
+            game.ajax.newGame();
+        },
         self.loadGame = function () {
             game.ajax.loadGame();
         };
@@ -577,7 +581,7 @@ var game = {
                 self.gameData.findMonsterRoll(Math.floor(Math.random() * 10));
                 if (self.gameData.findMonsterRoll() == 0) {
                     self.gameData.isFighting(true);
-                    self.gameData.randomImageRoll(Math.ceil(Math.random() * 6));
+                    self.gameData.randomImageRoll(Math.ceil(Math.random() * 7));
                     self.encounter.intro("You're attacked by a ");
                     self.monster.imageUrl(self.monsters[self.gameData.randomImageRoll()]);
                     if (self.gameData.randomImageRoll() == 1) { self.encounter.name("giant rat") };
@@ -586,6 +590,7 @@ var game = {
                     if (self.gameData.randomImageRoll() == 4) { self.encounter.name("spooky spirit") };
                     if (self.gameData.randomImageRoll() == 5) { self.encounter.name("burger spirit") };
                     if (self.gameData.randomImageRoll() == 6) { self.encounter.name("toxic spirit") };
+                    if (self.gameData.randomImageRoll() == 7) { self.encounter.name("orcroc") };
                     self.encounter.outro("!");
 
 
@@ -689,6 +694,20 @@ var game = {
     },
 
     ajax: {
+        newGame: function () {
+            game.model.character.name(prompt("Please enter your character's name.", "Disafter"));
+            if (!game.model.character.name) {
+                game.model.character.name("Anonymous Hero");
+            }
+            var request = {
+                characterClassId: game.model.character.characterClassId,
+                characterName: game.model.character.name()
+            };
+
+            $.post("/api/User/Create", request)
+          .done(game.ajaxCallbacks.newGameCallbackDone)
+          .fail(game.ajaxCallbacks.newGameCallbackFail);
+        },
         loadItems: function () {
             $.get("/api/Items")
            .done(game.ajaxCallbacks.loadItemsCallbackDone)
@@ -707,7 +726,7 @@ var game = {
         loadGame: function () {
             //loadGame retrieves all user-specific data from the database. it needs to be modified to retrieve their class name once the loadClasses function is completed. it also needs to collect the user's item data once loadUserItems is completed 
             game.model.character.name(prompt("Please enter your character's name.", "Disafter"));
-            $.get("/api/User/" + game.model.character.name())
+            $.get("/api/User/Retrieve/" + game.model.character.name())
             .done(game.ajaxCallbacks.loadGameCallbackDone)
             .fail(game.ajaxCallbacks.loadGameCallbackFail);
         },
@@ -773,7 +792,7 @@ var game = {
                 items: items
 
             };
-            $.post("/api/User", request)
+            $.post("/api/User/Save", request)
             .done(game.ajaxCallbacks.saveGameCallbackDone)
             .fail(game.ajaxCallbacks.saveGameCallbackFail);
 
@@ -794,10 +813,14 @@ var game = {
 
                 game.model.gameData.races.push(race);
             });
+           
         },
 
         loadClassesCallbackFail: function () {
             alert("Failed to load classes :( Please refresh the game and try again.");
+            $("#loginbox").html("Please Refresh Page");
+            $("#aboutbutton").toggle();
+            $("#settingsbutton").toggle();
         },
 
         loadMonstersCallbackDone: function (response) {
@@ -815,6 +838,9 @@ var game = {
 
         loadMonstersCallbackFail: function () {
             alert("Failed to load monsters :( Please refresh the game and try again.");
+            $("#loginbox").html("Please Refresh Page");
+            $("#aboutbutton").toggle();
+            $("#settingsbutton").toggle();
         },
 
         loadItemsCallbackDone: function (itemsResponse) {
@@ -835,6 +861,9 @@ var game = {
 
         loadItemsCallbackFail: function () {
             alert("Failed to load items :( Please refresh the game and try again.");
+            $("#loginbox").html("Please Refresh Page");
+            $("#aboutbutton").toggle();
+            $("#settingsbutton").toggle();
         },
 
         loadGameCallbackDone: function (response) {
@@ -845,10 +874,35 @@ var game = {
             game.model.character.level(userResponse.Level);
             SQLdetail = 'SELECT';
             if (game.model.character.characterClass()) {
+
+                if (userResponse.ClassID == 1) {
+                    game.model.character.characterClass("Beserker");
+                }
+                else if (userResponse.ClassID == 2) {
+                    game.model.character.characterClass("Pyromancer");
+                }
+                else if (userResponse.ClassID == 3) {
+                    game.model.character.characterClass("Assassin");
+                }
+                else if (userResponse.ClassID == 4) {
+                    game.model.character.characterClass("Dragon Knight");
+                }
+                else if (userResponse.ClassID == 5) {
+                    game.model.character.characterClass("Murderer");
+                }
+                else if (userResponse.ClassID == 6) {
+                    game.model.character.characterClass("Shadow Caster");
+                }
+                else if (userResponse.ClassID == 7) {
+                    game.model.character.characterClass("Titanspawn");
+                }
+                else if (userResponse.ClassID == 8) {
+                    game.model.character.characterClass("Gypsy Witch");
+                }
                 $("#levelbox").text = "Level " + game.model.character.level() + " " + game.model.character.characterClass();
             }
             game.model.gameData.imageUrl(game.model.dungeon[1]);
-            game.model.character.id(userResponse.UserID);
+            game.model.character.id = userResponse.UserID;
             game.model.character.gold(userResponse.Gold);
             game.model.character.currentFloor(userResponse.Floor);
             game.model.gameData.monstersLeftOnFloor(10 + Math.ceil(game.model.character.currentFloor() * Math.ceil(.2 * game.model.character.currentFloor())));
@@ -864,6 +918,7 @@ var game = {
             game.model.character.maxHp(Math.floor(5 + (.3 * game.model.character.strength())));
             game.model.character.currentMp(Math.floor(4 + game.model.character.intelligence() * .5));
             game.model.character.maxMp(Math.floor(4 + game.model.character.intelligence() * .5));
+            game.model.character.currentExperience(userResponse.CurrentExp);
 
             $.each(userResponse.itemIDs, function () {
                 var userItem = this;
@@ -905,15 +960,131 @@ var game = {
             if (game.model.monster.currentHp() <= 0) {
                 game.model.monster.currentHp(0);
             }
+            $("#loginbox").html("Game In Progress");
+            $("#aboutbutton").toggle();
+            $("#addstrengthbutton").toggle();
+            $("#adddexteritybutton").toggle();
+            $("#addintelligencebutton").toggle();
+            $("#addluckbutton").toggle();
+            $("#autobutton").toggle();
+            $("#popupsbutton").toggle();
+            $("#elixirsbutton").toggle();
+            $("#gamblebutton").toggle();
+            $("#biggamblebutton").toggle();
         },
         loadGameCallbackFail: function () {
             alert("Failed to load user data. Please refresh the page and try again.");
+            $("#loginbox").html("Please Refresh Page");
+            $("#aboutbutton").toggle();
+            $("#settingsbutton").toggle();
         },
         saveGameCallbackDone: function (response) {
             alert("save game success");
         },
         saveGameCallbackFail: function (response) {
             alert("save game fail");
+        },
+        newGameCallbackDone: function (response) {
+            
+
+
+
+            game.model.character.level(1);
+
+            var answer = prompt("Please choose your character's class.\n1: Berzerker\n2:Pyromancer\n3:Assassin\n4:Dragon Knight\n5:Murderer\n6:Shadow Caster\n7:Titanspawn\n8:Gypsy Witch", "Berserker");
+            if (!answer) {
+                answer == Math.ceil(Math.rand() * 8);
+            }
+
+            if (answer == 1||answer == "Berserker") {
+                game.model.character.characterClass("Berserker");
+                game.model.character.strength(8);
+                game.model.character.dexterity(3);
+                game.model.character.intelligence(1);
+                game.model.character.luck(1);
+            }
+            else if (answer == 2 ||answer == "Pyromancer") {
+                game.model.character.characterClass("Pyromancer");
+                game.model.character.strength(2);
+                game.model.character.dexterity(2);
+                game.model.character.intelligence(7);
+                game.model.character.luck(2);
+            }
+            else if (answer == 3||answer == "Assassin") {
+                game.model.character.characterClass("Assassin");
+                game.model.character.strength(1);
+                game.model.character.dexterity(7);
+                game.model.character.intelligence(3);
+                game.model.character.luck(2);
+            }
+            else if (answer == 4||answer == "Dragon Knight" ) {
+                game.model.character.characterClass("Dragon Knight");
+                game.model.character.strength(5);
+                game.model.character.dexterity(3);
+                game.model.character.intelligence(3);
+                game.model.character.luck(5);
+            }
+            else if (answer == 5||answer == "Murderer") {
+                game.model.character.characterClass("Murderer");
+                game.model.character.strength(5);
+                game.model.character.dexterity(4);
+                game.model.character.intelligence(1);
+                game.model.character.luck(2);
+            }
+            else if (answer == 6 ||answer == "Shadow Caster") {
+                game.model.character.characterClass("Shadow Caster");
+                game.model.character.strength(1);
+                game.model.character.dexterity(1);
+                game.model.character.intelligence(9);
+                game.model.character.luck(1);
+            }
+            else if (answer == 7||answer == "Titanspawn") {
+                game.model.character.characterClass("Titanspawn");
+                game.model.character.strength(6);
+                game.model.character.dexterity(0);
+                game.model.character.intelligence(6);
+                game.model.character.luck(0);
+            }
+            else if (answer == 8 ||answer == "Gypsy Witch") {
+                game.model.character.characterClass("Gypsy Witch");
+                game.model.character.strength(1);
+                game.model.character.dexterity(4);
+                game.model.character.intelligence(5);
+                game.model.character.luck(9);
+            }
+            else {
+                game.model.character.characterClass(answer);
+                game.model.character.strength(4);
+                game.model.character.dexterity(4);
+                game.model.character.intelligence(4);
+                game.model.character.luck(2);
+            }
+            $("#levelbox").text = "Level " + game.model.character.level() + " " + game.model.character.characterClass();
+
+            game.model.gameData.imageUrl(game.model.dungeon[1]);
+            game.model.character.gold(10);
+            game.model.character.currentFloor(1);
+            game.model.gameData.monstersLeftOnFloor(11);
+            
+            game.model.monster.currentHp(1);
+            game.model.character.bonusStatPoints(2);
+            game.model.character.elixirs(5);
+            game.model.character.currentHp(5);
+            game.model.character.maxHp(5);
+            game.model.character.currentMp(4);
+            game.model.character.maxMp(4);
+            game.model.character.currentExperience(0);
+
+            alert("New Game Creation Succeeded! Your Journey Begins!");
+            $("#loginbox").html("Game In Progress");
+            $("#aboutbutton").toggle();
+
+        },
+        newGameCallbackFail: function (response) {
+            alert("New Game Creation Failed! Refresh the game and try again!");
+            $("#loginbox").html("Please Refresh Page");
+            $("#aboutbutton").toggle();
+            $("#settingsbutton").toggle();
         }
     },
 

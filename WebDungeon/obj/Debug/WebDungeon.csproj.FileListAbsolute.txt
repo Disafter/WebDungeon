@@ -140,3 +140,11 @@ C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\zh-Hant\System.Spatial.
 C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.dll
 C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.pdb
 C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\obj\Debug\WebDungeon.csprojResolveAssemblyReference.cache
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\AttributeRouting.dll
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\AttributeRouting.Web.dll
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\AttributeRouting.Web.Mvc.dll
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\WebActivator.dll
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\AttributeRouting.xml
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\AttributeRouting.Web.xml
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\AttributeRouting.Web.Mvc.xml
+C:\Users\John\Documents\GitHub\WebDungeon\WebDungeon\bin\WebActivator.pdb

@@ -301,6 +301,28 @@ namespace WebDungeon.Models
             return user;
         }
 
+        public User NewUser(CreateUserRequest request)
+        {
+            var isOpen = OpenConnection();
+            var user = new User();
+
+
+            if (isOpen)
+            {
+                //Create Command
+                var command = new MySqlCommand("UserCreate", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("pName", request.CharacterName);
+                command.Parameters.AddWithValue("pClassId", request.CharacterClassId);
+                command.ExecuteNonQuery();
+                //close Connection
+                CloseConnection();
+            }
+
+            return user;
+        }
+
         
       //  internal object GetMonsters()
       //  {
